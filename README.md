@@ -20,17 +20,37 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+# Проект "Система бронирования ж/д билетов"
 
-To learn more about Next.js, take a look at the following resources:
+Проект по [макету Figma](https://www.figma.com/file/7981GjEsjSpBUKolk4xFoT/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2?node-id=0%3A1) в котором в качестве API используется [внешний сервер](https://students.netoservices.ru/fe-diplom/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Описание проекта
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Основные элементы
+1. Вагон.
+2. Направление.
+3. Группа направлений.
+4. Место (билет).
 
-## Deploy on Vercel
+### Вагон
+1. Вагон может быть одним из типов: сидячий, люкс (СВ), купе, плацкарт.
+2. У каждого типа вагона своя карта рассадки мест.
+3. У каждого вагона своя стоимость билетов.
+4. Для каждого вагона есть возможность выбора дополнительных услуг: бельё, кондиционер и Wi-Fi.
+5. Для некоторых вагонов стоимость белья включена в стоимость билета, то есть стоимость белья не должна прибавляться при формировании конечной стоимости билета.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Направление
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Направление — путь движения вагона из одного города в другой.
+2. Направление предполагает движение поезда только в одну сторону.
+3. Направление имеет дату отправления и дату прибытия.
+
+### Группа направлений
+
+1. Используется для того, чтобы обеспечить возможность путешествия из одного города в другой и обратно.
+2. Объединяет в себе два направления
+
+### Место (билет)
+1. Имеет свой номер на карте вагона.
+2. Может быть занято другим пассажиром.
+3. Закреплено за конкретным направлением.
