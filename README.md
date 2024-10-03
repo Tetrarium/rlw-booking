@@ -22,6 +22,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 # Проект "Система бронирования ж/д билетов"
 
+[Deploy](https://rlw-booking-9ym3a8g7x-alexandrs-projects-5a4fe3cd.vercel.app/)
+
 Проект по [макету Figma](https://www.figma.com/file/7981GjEsjSpBUKolk4xFoT/%D0%97%D0%B0%D0%BA%D0%B0%D0%B7-%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%D0%BE%D0%B2?node-id=0%3A1) в котором в качестве API используется [внешний сервер](https://students.netoservices.ru/fe-diplom/)
 
 ## Описание проекта
