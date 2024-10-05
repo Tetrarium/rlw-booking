@@ -1,9 +1,11 @@
 import React, { ReactNode } from "react";
 
+import Header from "./header";
+
 export default function Layout({ children }: { children: ReactNode; }) {
   return (
     <>
-      <header>this is a header</header>
+      <Header />
       <main>{children}</main>
       <footer>this is a footer</footer>
     </>
