@@ -1,3 +1,5 @@
+$max-width: 800px
+
 .header
   background-image: url('/images/bg/header1.png')
   background-position: center
@@ -36,7 +38,6 @@
     line-height: 1.2
 
 .banner
-  height: 200px
   display: flex
 
   &__left
@@ -49,9 +50,21 @@
     width: 50%
     color: white
 
+  @media ( max-width: $max-width )
+    flex-direction: column
+    align-items: center
+    gap: 10px
+
+    &__left
+      width: 100%
+
+    &__right
+      width: 100%
+
 .slogan
   font-size: 7.2rem
   font-weight: 100
   color: #fff
+  width: fit-content
   b
     font-weight: 700

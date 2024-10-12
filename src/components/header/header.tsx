@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import SearchForm from "../forms/search-form/searchForm";
 import s from "./header.module.sass";
 
 export default function Header() {
@@ -33,11 +34,11 @@ export default function Header() {
           <div className={s.banner}>
             <div className={s.banner__left}>
               <div className={s.slogan}>
-                Вся жизнь -<br /><b>путешествие!</b>
+                Вся жизнь - <b>путешествие!</b>
               </div>
             </div>
             <div className={s.banner__right}>
-              Календарь
+              <SearchForm />
             </div>
           </div>
         </div>
