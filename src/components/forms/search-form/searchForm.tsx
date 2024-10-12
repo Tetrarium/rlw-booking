@@ -3,9 +3,9 @@ import React from "react";
 import Calendar from "@/UI/calendar/calendar";
 import { Cached } from "@mui/icons-material";
 import { IconButton, TextField } from "@mui/material";
-import { DatePicker, PickersCalendarHeaderProps, PickerValidDate } from "@mui/x-date-pickers";
-import { useUtils } from "@mui/x-date-pickers/internals";
+import { DatePicker } from "@mui/x-date-pickers";
 
+// import { useUtils } from "@mui/x-date-pickers/internals";
 import s from "./searchForm.module.sass";
 
 const SearchForm = () => {
@@ -50,14 +50,14 @@ const SearchForm = () => {
 
 export default SearchForm;
 
-const CalendarHeader = ({ currentMonth }: PickersCalendarHeaderProps<PickerValidDate>) => {
-  const utils = useUtils();
-  const format = `${utils.formats.month} ${utils.formats.year}`;
-  // console.log(props);
-  const month = utils.formatByString(currentMonth, format);
-  return (
-    <div>
-      <div>{month[0].toUpperCase() + month.slice(1)}</div>
-    </div>
-  );
-};
+// const CalendarHeader = ({ currentMonth }: PickersCalendarHeaderProps<PickerValidDate>) => {
+//   const utils = useUtils();
+//   const format = `${utils.formats.month} ${utils.formats.year}`;
+//   // console.log(props);
+//   const month = utils.formatByString(currentMonth, format);
+//   return (
+//     <div>
+//       <div>{month[0].toUpperCase() + month.slice(1)}</div>
+//     </div>
+//   );
+// };
