@@ -21,33 +21,25 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
       slotProps={{
         layout: {
           sx: {
-            font: "Roboto",
-            fontFamily: 'Roboto',
             fontSize: 16,
-            // width: '250px',
             '& .MuiDateCalendar-root': {
-              width: 'auto',
-              height: 'auto'
+              width: '300px',
+              height: '260px'
             },
             '& .MuiDayCalendar-header': {
               display: 'none'
             },
-            '& .MuiDayCalendar-slideTransition': {
-              minHeight: 0,
-              padding: 1,
-            },
             '& .MuiDayCalendar-monthContainer': {
-              position: 'relative',
-              minHeight: 0,
+              padding: 2
             },
             '& .MuiDayCalendar-weekContainer': {
               margin: '4px 0'
-            }
+            },
           },
         },
         day: {
           sx: {
-            fontSize: 15,
+            fontSize: 16,
             fontWeight: 500,
             borderRadius: "6px",
             border: "3px solid",
@@ -58,6 +50,9 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
         },
       }}
       minDate={props.minDate || new Date()}
+      sx={{
+        fontSize: '20px'
+      }}
     />
   );
 };
