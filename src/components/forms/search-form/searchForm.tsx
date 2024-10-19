@@ -10,7 +10,7 @@ import s from "./searchForm.module.sass";
 
 const SearchForm = () => {
   return (
-    <form className={s.search} action={e => console.log(e)}>
+    <form className={s.search}>
       <div className={s.row}>
         <div className={s.label}>
           Направление
