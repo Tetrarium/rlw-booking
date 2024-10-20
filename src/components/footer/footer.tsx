@@ -1,5 +1,4 @@
 import Link from "next/link";
-// import Link from "next/link";
 import { FC } from "react";
 
 import FacebookIcon from "@/icons/facebook";
@@ -12,7 +11,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PlaceIcon from "@mui/icons-material/Place";
-import { Button, IconButton, SvgIconProps, SxProps, TextField } from "@mui/material";
+import { Button, IconButton, SvgIconProps, TextField } from "@mui/material";
 
 import s from "./footer.module.sass";
 
