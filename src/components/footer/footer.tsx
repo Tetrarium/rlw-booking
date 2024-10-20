@@ -7,13 +7,12 @@ import LinkedIn from "@/icons/linkedin";
 import SkypeIcon from "@/icons/skype";
 import TwitterIcon from "@/icons/twitter";
 import YouTubeIcon from "@/icons/youtube";
+import SendButton from "@/UI/buttons/sendButton";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PlaceIcon from "@mui/icons-material/Place";
-import {
-  Button, IconButton, Link as SocialLink, LinkProps, SvgIconProps, TextField
-} from "@mui/material";
+import { IconButton, Link as SocialLink, LinkProps, SvgIconProps, TextField } from "@mui/material";
 
 import s from "./footer.module.sass";
 
@@ -102,34 +101,19 @@ const Footer: FC = () => {
                     input: {
                       sx: {
                         fontSize: 24,
-                        py: 0
+                        py: 0,
+                        height: '60px',
                       }
                     },
                     inputLabel: {
                       sx: {
-                        fontSize: 24
+                        fontSize: 24,
+                        border: '1px solid green'
                       }
                     }
                   }}
                 />
-                <Button
-                  variant="outlined"
-                  disableRipple
-                  sx={{
-                    fontSize: 24,
-                    color: '#fff',
-                    borderColor: '#fff',
-                    fontWeight: 400,
-                    ":hover": {
-                      color: '#2D2B2F',
-                      borderColor: '#FFCA62',
-                      backgroundColor: '#FFCA62',
-                    },
-                    ":active": {
-                      borderColor: '#FFFFFF',
-                      backgroundColor: '#FFFFFF',
-                    }
-                  }}>Отправить</Button>
+                <SendButton>Отправить</SendButton>
               </div>
             </div>
             <div className={s.socials}>
