@@ -28,12 +28,12 @@ const Footer: FC = () => {
               <ul className={s.contacts__list}>
                 <li className={s.contacts__item}>
                   <LocalPhoneIcon className={s.contacts__icon} />
-                  <Link
+                  <a
                     href={'tel: 80000000000'}
                     className={s.contacts__text}
                   >
                     8 (800) 000 00 00
-                  </Link>
+                  </a>
                 </li>
                 <li className={s.contacts__item}>
                   <EmailIcon className={s.contacts__icon} />
