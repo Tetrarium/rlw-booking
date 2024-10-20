@@ -1,3 +1,4 @@
+import Link from "next/link";
 // import Link from "next/link";
 import { FC } from "react";
 
@@ -11,9 +12,15 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PlaceIcon from "@mui/icons-material/Place";
-import { Button, IconButton, Link, TextField } from "@mui/material";
+import { Button, IconButton, SvgIconProps, SxProps, TextField } from "@mui/material";
 
 import s from "./footer.module.sass";
+
+const iconProps: SvgIconProps = {
+  sx: {
+    fontSize: 40,
+  }
+};
 
 const Footer: FC = () => {
   return (
@@ -27,37 +34,41 @@ const Footer: FC = () => {
               </h3>
               <ul className={s.contacts__list}>
                 <li className={s.contacts__item}>
-                  <LocalPhoneIcon className={s.contacts__icon} />
-                  <a
+                  <LocalPhoneIcon {...iconProps} />
+                  <Link
                     href={'tel: 80000000000'}
                     className={s.contacts__text}
+                    target="_blank"
                   >
                     8 (800) 000 00 00
-                  </a>
+                  </Link>
                 </li>
                 <li className={s.contacts__item}>
-                  <EmailIcon className={s.contacts__icon} />
+                  <EmailIcon {...iconProps} />
                   <Link
                     href={'mail: inbox@mail.ru'}
                     className={s.contacts__text}
+                    target="_blank"
                   >
                     inbox@mail.ru
                   </Link>
                 </li>
                 <li className={s.contacts__item}>
-                  <SkypeIcon className={s.contacts__icon} />
+                  <SkypeIcon {...iconProps} />
                   <Link
                     href={'skype: tu.train.tickets'}
                     className={s.contacts__text}
+                    target="_blank"
                   >
                     tu.train.tickets
                   </Link>
                 </li>
                 <li className={s.contacts__item}>
-                  <PlaceIcon className={s.contacts__icon} />
+                  <PlaceIcon {...iconProps} />
                   <Link
                     href={'#'}
                     className={s.contacts__text}
+                    target="_blank"
                   >
                     г. Москва ул. Московская 27-35 555 555
                   </Link>
@@ -74,9 +85,6 @@ const Footer: FC = () => {
                   label="e-mail"
                   className={s.subscribes__input}
                   variant="outlined"
-                  // sx={{
-                  //   fontSize: 24
-                  // }}
                   slotProps={{
                     input: {
                       sx: {
