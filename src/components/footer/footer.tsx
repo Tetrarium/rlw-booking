@@ -1,12 +1,17 @@
-import Link from "next/link";
+// import Link from "next/link";
 import { FC } from "react";
 
+import FacebookIcon from "@/icons/facebook";
+import GooglePlusIcon from "@/icons/googleplus";
+import LinkedIn from "@/icons/linkedin";
 import SkypeIcon from "@/icons/skype";
+import TwitterIcon from "@/icons/twitter";
+import YouTubeIcon from "@/icons/youtube";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PlaceIcon from "@mui/icons-material/Place";
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, IconButton, Link, TextField } from "@mui/material";
 
 import s from "./footer.module.sass";
 
@@ -64,16 +69,76 @@ const Footer: FC = () => {
             <div className={s.subscribes}>
               <h3 className={s.title}>Подписка</h3>
               <h4 className={s.subtitle}>Будте в курсе событий</h4>
-              <TextField
-                label="e-mail"
-                className={s.subscribes__input}
-                variant="outlined"
-              />
-              <Button>Отправить</Button>
+              <div className={s.subscribes__row}>
+                <TextField
+                  label="e-mail"
+                  className={s.subscribes__input}
+                  variant="outlined"
+                  // sx={{
+                  //   fontSize: 24
+                  // }}
+                  slotProps={{
+                    input: {
+                      sx: {
+                        fontSize: 24,
+                        py: 0
+                      }
+                    },
+                    inputLabel: {
+                      sx: {
+                        fontSize: 24
+                      }
+                    }
+                  }}
+                />
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontSize: 24,
+                    color: '#fff',
+                    borderColor: '#fff',
+                    fontWeight: 400,
+                    ":hover": {
+                      color: '#2D2B2F',
+                      borderColor: '#FFCA62',
+                      backgroundColor: '#FFCA62',
+                    },
+                    ":active": {
+                      borderColor: '#FFFFFF',
+                      backgroundColor: '#FFFFFF',
+                    }
+                  }}>Отправить</Button>
+              </div>
             </div>
             <div className={s.socials}>
               <h3 className={s.title}>Подписывайтесь на нас</h3>
-              Socials
+              <ul className={s.socials__items}>
+                <li className={s.socials__item}>
+                  <Link href='#'>
+                    <YouTubeIcon />
+                  </Link>
+                </li>
+                <li className={s.socials__item}>
+                  <Link href='#'>
+                    <LinkedIn />
+                  </Link>
+                </li>
+                <li className={s.socials__item}>
+                  <Link href='#'>
+                    <GooglePlusIcon />
+                  </Link>
+                </li>
+                <li className={s.socials__item}>
+                  <Link href='#'>
+                    <FacebookIcon />
+                  </Link>
+                </li>
+                <li className={s.socials__item}>
+                  <Link href='#'>
+                    <TwitterIcon />
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
