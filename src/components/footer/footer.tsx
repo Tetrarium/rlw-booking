@@ -11,13 +11,27 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PlaceIcon from "@mui/icons-material/Place";
-import { Button, IconButton, SvgIconProps, TextField } from "@mui/material";
+import {
+  Button, IconButton, Link as SocialLink, LinkProps, SvgIconProps, TextField
+} from "@mui/material";
 
 import s from "./footer.module.sass";
 
 const iconProps: SvgIconProps = {
   sx: {
-    fontSize: 40,
+    fontSize: 30,
+  }
+};
+
+const socialsLinkProps: LinkProps = {
+  sx: {
+    fontSize: 30,
+    lineHeight: 1,
+    color: '#E5E5E5',
+    width: 'auto',
+    ":hover": {
+      color: '#FFCA62'
+    }
   }
 };
 
@@ -100,6 +114,7 @@ const Footer: FC = () => {
                 />
                 <Button
                   variant="outlined"
+                  disableRipple
                   sx={{
                     fontSize: 24,
                     color: '#fff',
@@ -121,29 +136,29 @@ const Footer: FC = () => {
               <h3 className={s.title}>Подписывайтесь на нас</h3>
               <ul className={s.socials__items}>
                 <li className={s.socials__item}>
-                  <Link href='#'>
+                  <SocialLink {...socialsLinkProps} href='#'>
                     <YouTubeIcon />
-                  </Link>
+                  </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <Link href='#'>
+                  <SocialLink {...socialsLinkProps} href='#'>
                     <LinkedIn />
-                  </Link>
+                  </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <Link href='#'>
+                  <SocialLink  {...socialsLinkProps} href='#'>
                     <GooglePlusIcon />
-                  </Link>
+                  </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <Link href='#'>
+                  <SocialLink {...socialsLinkProps} href='#'>
                     <FacebookIcon />
-                  </Link>
+                  </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <Link href='#'>
+                  <SocialLink {...socialsLinkProps} href='#'>
                     <TwitterIcon />
-                  </Link>
+                  </SocialLink>
                 </li>
               </ul>
             </div>
