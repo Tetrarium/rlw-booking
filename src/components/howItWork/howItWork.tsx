@@ -5,6 +5,11 @@ import BuildingIcon from "./icons/building";
 import GlobusIcon from "./icons/globus";
 import MonitorIcon from "./icons/monitorIcon";
 
+const iconProps = {
+  size: 162,
+  borderWidth: 14,
+};
+
 const HowItWork: FC = () => {
   return (
     <div className={s.container}>
@@ -17,19 +22,19 @@ const HowItWork: FC = () => {
           <div className={s.content}>
             <div className={s.item}>
               <div className={s.item__icon}>
-                <MonitorIcon />
+                <MonitorIcon {...iconProps} />
               </div>
               <div className={s.item__text}>Удобный заказ на сайте</div>
             </div>
             <div className={s.item}>
-              {/* <div className={s.item__icon}> */}
-              <BuildingIcon />
-              {/* </div> */}
+              <div className={s.item__icon}>
+                <BuildingIcon {...iconProps} />
+              </div>
               <div className={s.item__text}>Нет необходимости ехать в офис</div>
             </div>
             <div className={s.item}>
               <div className={s.item__icon}>
-                <GlobusIcon />
+                <GlobusIcon {...iconProps} />
               </div>
               <div className={s.item__text}>Огромный выбор направлений</div>
             </div>

@@ -23,7 +23,7 @@ const Container = styled
   }));
 
 const StyledSvgIcon: FC<IconProps> = ({
-  size = 400,
+  size = 50,
   borderWidth,
   children,
   ...other
@@ -33,9 +33,6 @@ const StyledSvgIcon: FC<IconProps> = ({
   }
 
   const iconSize = size - (borderWidth * 2);
-  console.log(borderWidth);
-  console.log(iconSize);
-  console.log(size);
 
   return (
     <Container $size={size} $borderWidth={borderWidth}>
