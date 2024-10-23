@@ -108,7 +108,6 @@ const Footer: FC = () => {
                     inputLabel: {
                       sx: {
                         fontSize: 24,
-                        border: '1px solid green'
                       }
                     }
                   }}

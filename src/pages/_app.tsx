@@ -11,7 +11,7 @@ import Layout from "../components/layout";
 import type { AppProps } from 'next/app';
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["100", "300", "500", "900"],
+  weight: ["100", "300", "400", "500", "900"],
 });
 
 export default function Home({ Component, pageProps }: AppProps) {
