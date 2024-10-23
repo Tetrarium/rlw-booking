@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import LearnMoreButton from "@/UI/buttons/learnMoreButton";
+
 import s from "./howItWork.module.sass";
 import BuildingIcon from "./icons/building";
 import GlobusIcon from "./icons/globus";
@@ -17,7 +19,7 @@ const HowItWork: FC = () => {
         <div className={s.inner}>
           <div className={s.header}>
             <h2 className={s.title}>Как это работает</h2>
-            <button>Узнать больше</button>
+            <LearnMoreButton />
           </div>
           <div className={s.content}>
             <div className={s.item}>
