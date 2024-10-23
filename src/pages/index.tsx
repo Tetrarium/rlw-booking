@@ -1,6 +1,7 @@
 import React from "react";
 
 import About from "@/components/about/about";
+import Feedbacks from "@/components/feedbacks/feedbacks";
 import HowItWork from "@/components/howItWork/howItWork";
 
 export default function Main() {
@@ -8,7 +9,7 @@ export default function Main() {
     <main>
       <About />
       <HowItWork />
-      This is a main component
+      <Feedbacks />
     </main>
   );
 }
