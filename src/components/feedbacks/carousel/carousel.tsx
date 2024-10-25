@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import s from "./carousel.module.sass";
+import Control from "./control";
 import Slide, { ISlide } from "./slide";
 
 const slides: ISlide[] = [
@@ -24,7 +25,9 @@ const Carousel: FC = () => {
       <div className={s.slides}>
         {slides.map(slide => <Slide key={slide.id} {...slide} />)}
       </div>
-      <div className={s.control}>Controls</div>
+      <div className={s.controls}>
+        <Control />
+      </div>
     </div>
   );
 };
