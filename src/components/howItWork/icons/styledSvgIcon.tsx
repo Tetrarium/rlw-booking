@@ -9,13 +9,12 @@ export type IconProps = {
 } & SvgIconProps & PropsWithChildren;
 
 const Container = styled
-  .div<{ $size: number, $borderWidth: number; }>((
-    { $size, $borderWidth }
+  .div<{ $size: number; }>((
+    { $size }
   ) => ({
     width: $size + 'px',
     height: $size + 'px',
     borderRadius: '50%',
-    // border: $borderWidth + 'px solid rgba(229, 229, 229, 0.2)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -35,7 +34,7 @@ const StyledSvgIcon: FC<IconProps> = ({
   const iconSize = size - (borderWidth * 2);
 
   return (
-    <Container $size={size} $borderWidth={borderWidth}>
+    <Container $size={size}>
       <SvgIcon
         {...other}
         sx={{

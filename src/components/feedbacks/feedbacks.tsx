@@ -1,5 +1,6 @@
 import React from "react";
 
+import Carousel from "./carousel/carousel";
 import s from "./feedbacks.module.sass";
 
 const Feedbacks = () => {
@@ -9,7 +10,7 @@ const Feedbacks = () => {
         <div className={s.inner}>
           <h2 className={s.title}>Отзывы</h2>
           <div className={s.content}>
-            Carousel
+            <Carousel />
           </div>
         </div>
       </div>
