@@ -8,12 +8,19 @@ import SlidesList from "./SlidesList";
 
 export type TSlide = ReactNode;
 
-interface SliderSlots {
+type DotProps = {
+  size?: number;
+  activeColor?: string;
+  defaultColor?: string;
+  hoverColor?: string;
+} & BoxProps;
+
+export interface SliderSlots {
   container?: BoxProps;
   slides?: BoxProps;
   slide?: BoxProps;
   dots?: BoxProps;
-  dot?: BoxProps;
+  dot?: DotProps;
 }
 
 interface SliderProps {

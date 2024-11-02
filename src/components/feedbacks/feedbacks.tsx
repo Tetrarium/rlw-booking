@@ -34,6 +34,9 @@ const Feedbacks = () => {
                   padding: '10px',
                   fontSize: '30px'
                 }
+              },
+              dot: {
+                size: 30
               }
             }} />
           </div>

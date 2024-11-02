@@ -1,8 +1,35 @@
-import classNames from "classnames";
 import React, { FC, useContext } from "react";
 
+import styled from "@emotion/styled";
+import { Box } from "@mui/material";
+
 import { SliderContext } from "../Slider";
-import s from "../Slider.module.sass";
+
+const StyledDot = styled(Box)<{
+  $isActive: boolean;
+  $size?: number;
+  $activeColor?: string;
+  $defaultColor?: string;
+  $hoverColor?: string;
+}>(({
+  $isActive,
+  $size = 20,
+  $activeColor = '#aaa',
+  $defaultColor = '#ccc',
+  $hoverColor = '#aaa',
+}) => ({
+  width: `${$size}px`,
+  height: `${$size}px`,
+  borderRadius: '50%',
+  backgroundColor: $isActive ? $activeColor : $defaultColor,
+  transition: 'background-color .2s linear',
+  cursor: $isActive ? 'default' : 'pointer',
+  pointerEvents: $isActive ? 'none' : 'auto',
+
+  ":hover": {
+    backgroundColor: $hoverColor,
+  }
+}));
 
 interface DotProps {
   number: number;
@@ -13,16 +40,22 @@ const Dot: FC<DotProps> = ({ number }) => {
 
   if (!context) return null;
 
-  const { goToSlide, page } = context;
+  const { goToSlide, page, slotsProps } = context;
 
-  const dotClass = classNames(s.dot, {
-    [s.dot__active]: number === page,
-  });
+  const size = slotsProps?.dot?.size;
+  const defaultColor = slotsProps?.dot?.defaultColor;
+  const activeColor = slotsProps?.dot?.activeColor;
+  const hoverColor = slotsProps?.dot?.hoverColor;
 
   return (
-    <div
-      className={dotClass}
+    <StyledDot
+      $isActive={number === page}
       onClick={() => goToSlide(number)}
+      {...slotsProps?.dot}
+      $size={size}
+      $defaultColor={defaultColor}
+      $activeColor={activeColor}
+      $hoverColor={hoverColor}
     />
   );
 };
