@@ -5,18 +5,27 @@ import { Box } from "@mui/material";
 
 import { SliderContext } from "../Slider";
 
-const StyledDot = styled(Box)<{
+const defaultProps = {
+  size: 20,
+  activeColor: '#aaa',
+  defaultColor: '#ccc',
+  hoverColor: '#aaa',
+};
+
+const StyledDot = styled(Box, {
+  shouldForwardProp: (prop) => !prop.startsWith('$')
+})<{
   $isActive: boolean;
-  $size?: number;
-  $activeColor?: string;
-  $defaultColor?: string;
-  $hoverColor?: string;
+  $size: number;
+  $activeColor: string;
+  $defaultColor: string;
+  $hoverColor: string;
 }>(({
   $isActive,
-  $size = 20,
-  $activeColor = '#aaa',
-  $defaultColor = '#ccc',
-  $hoverColor = '#aaa',
+  $size,
+  $activeColor,
+  $defaultColor,
+  $hoverColor,
 }) => ({
   width: `${$size}px`,
   height: `${$size}px`,
@@ -42,20 +51,20 @@ const Dot: FC<DotProps> = ({ number }) => {
 
   const { goToSlide, page, slotsProps } = context;
 
-  const size = slotsProps?.dot?.size;
-  const defaultColor = slotsProps?.dot?.defaultColor;
-  const activeColor = slotsProps?.dot?.activeColor;
-  const hoverColor = slotsProps?.dot?.hoverColor;
+  let { size, defaultColor, activeColor, hoverColor, ...other } = {
+    ...defaultProps,
+    ...slotsProps?.dot
+  };
 
   return (
     <StyledDot
       $isActive={number === page}
-      onClick={() => goToSlide(number)}
-      {...slotsProps?.dot}
       $size={size}
       $defaultColor={defaultColor}
       $activeColor={activeColor}
       $hoverColor={hoverColor}
+      onClick={() => goToSlide(number)}
+      {...other}
     />
   );
 };

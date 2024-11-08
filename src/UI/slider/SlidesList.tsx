@@ -6,7 +6,9 @@ import { Box } from "@mui/material";
 import Slide from "./Slide";
 import { SliderContext } from "./Slider";
 
-const Container = styled(Box)<{ $shift: number; }>(({ $shift }) => ({
+const Container = styled(Box, {
+  shouldForwardProp: (prop) => !prop.startsWith('$'),
+})<{ $shift: number; }>(({ $shift }) => ({
   display: "flex",
   height: "100%",
   width: "100%",
@@ -24,7 +26,10 @@ const SlidesList = () => {
 
 
   return (
-    <Container $shift={shift} {...slotsProps?.slides}>
+    <Container
+      $shift={shift}
+      {...slotsProps?.slides}
+    >
       {items.map((s, i) => (
         <Slide key={i} data={s} />
       ))}

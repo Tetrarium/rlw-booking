@@ -9,7 +9,9 @@ interface SlideProps {
   data: TSlide;
 }
 
-const StyledSlide = styled(Box)<{ $width: number; }>(({ $width }) => ({
+const StyledSlide = styled(Box, {
+  shouldForwardProp: (prop) => !prop.startsWith('$'),
+})<{ $width: number; }>(({ $width }) => ({
   flex: `1 0 ${$width}%`,
 }));
 
