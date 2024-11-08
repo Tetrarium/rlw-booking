@@ -1,15 +1,15 @@
 import { FC } from "react";
 
-import s from "./slide.module.sass";
+import s from "./feedbackCard.module.sass";
 
-export interface ISlide {
+export interface FeedbackCardProps {
   id: number;
   avatar: string;
   name: string;
   text: string;
 }
 
-const Slide: FC<ISlide> = ({ avatar, name, text }) => {
+const FeedbackCard: FC<FeedbackCardProps> = ({ avatar, name, text }) => {
   return (
     <div className={s.container}>
       <div className={s.avatar}>
@@ -23,4 +23,4 @@ const Slide: FC<ISlide> = ({ avatar, name, text }) => {
   );
 };
 
-export default Slide;
+export default FeedbackCard;

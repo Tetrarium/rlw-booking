@@ -43,7 +43,6 @@ interface SliderContextValue {
 export const SliderContext = createContext<SliderContextValue | undefined>(undefined);
 
 const StyledSlider = styled(Box)({
-  border: '1px solid black', // !delete Удалить после тестирования
   overflow: 'hidden',
   position: 'relative',
 });
@@ -56,7 +55,6 @@ const Slider: FC<SliderProps> = ({ slides = [], slidesPerPage = 1, slotsProps })
   const slideWidth = 100 / slidesPerPage;
 
   const maxShift = Math.max(slides.length * slideWidth - 100, 0);
-  console.log(maxShift);
 
   const shift = Math.min(page * 100, maxShift);
 

@@ -19,7 +19,6 @@ const Dots = () => {
   if (!context) return null;
 
   const { pages, slotsProps } = context;
-  console.log(pages);
 
   return (
     <StyledDots {...slotsProps?.dots}>
