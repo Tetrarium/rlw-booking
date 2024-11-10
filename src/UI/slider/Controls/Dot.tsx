@@ -51,7 +51,7 @@ const Dot: FC<DotProps> = ({ number }) => {
 
   const { goToSlide, page, slotsProps } = context;
 
-  let { size, defaultColor, activeColor, hoverColor, ...other } = {
+  const { size, defaultColor, activeColor, hoverColor, ...other } = {
     ...defaultProps,
     ...slotsProps?.dot
   };

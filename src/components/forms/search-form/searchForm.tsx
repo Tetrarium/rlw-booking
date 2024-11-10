@@ -3,7 +3,6 @@ import React from "react";
 import Calendar from "@/UI/calendar/calendar";
 import { Cached } from "@mui/icons-material";
 import { IconButton, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
 
 import s from "./searchForm.module.sass";
 
@@ -37,10 +36,7 @@ const SearchForm = () => {
         <div className={s.fields}>
           <Calendar className={s.field} />
           <div className={s.btn__place} />
-          <DatePicker
-            className={s.field}
-          // label="Uncontrolled picker"
-          />
+          <Calendar className={s.field} />
         </div>
       </div>
     </form>
