@@ -43,5 +43,5 @@
     "[sass]": {
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true
-    }
+    },
 }

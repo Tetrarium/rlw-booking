@@ -2,6 +2,10 @@ import { useLayoutEffect, useState } from "react";
 
 export type ResponceData<T> = {
   data: null;
+  isLoading: false;
+  error: null;
+} | {
+  data: null;
   isLoading: true;
   error: null;
 } | {
@@ -45,10 +49,13 @@ export default function useFetch<T>(url: string, queryParams?: QueryParams): Res
     Promise.resolve()
       .then(() => fetch(fullUrl))
       .then((data) => data.json())
-      .then((data: T) => setData(data))
+      .then((data: T & { error: string; }) => {
+        if (data.error) throw new Error(data.error);
+        setData(data);
+      })
       .catch(e => setError(e))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [fullUrl]);
 
   return { data, isLoading, error } as ResponceData<T>;
 }

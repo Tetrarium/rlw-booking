@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC } from "react";
 
 import s from "./feedbackCard.module.sass";
@@ -13,7 +14,7 @@ const FeedbackCard: FC<FeedbackCardProps> = ({ avatar, name, text }) => {
   return (
     <div className={s.container}>
       <div className={s.avatar}>
-        <img src={avatar} alt={name} />
+        <Image src={avatar} alt={name} width={205} height={205} />
       </div>
       <div className={s.comment}>
         <h3 className={s.title}>{name}</h3>

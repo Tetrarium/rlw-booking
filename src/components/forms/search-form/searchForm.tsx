@@ -2,8 +2,9 @@ import React from "react";
 
 import Calendar from "@/UI/calendar/calendar";
 import { Cached } from "@mui/icons-material";
-import { IconButton, TextField } from "@mui/material";
+import { IconButton } from "@mui/material";
 
+import CitySearchField from "./CitySearchField/CitySearchField";
 import s from "./searchForm.module.sass";
 
 const SearchForm = () => {
@@ -14,19 +15,21 @@ const SearchForm = () => {
           Направление
         </div>
         <div className={s.fields}>
-          <TextField
-            className={s.field}
-            label="Откуда"
-          />
+          <div className={s.field}>
+            <CitySearchField
+              label="Откуда"
+            />
+          </div>
           <div className={s.btn__place}>
             <IconButton color="inherit">
               <Cached fontSize="large" />
             </IconButton>
           </div>
-          <TextField
-            className={s.field}
-            label="Куда"
-          />
+          <div className={s.field}>
+            <CitySearchField
+              label="Откуда"
+            />
+          </div>
         </div>
       </div>
       <div className={s.row}>
@@ -34,9 +37,13 @@ const SearchForm = () => {
           Дата
         </div>
         <div className={s.fields}>
-          <Calendar className={s.field} />
+          <div className={s.field}>
+            <Calendar />
+          </div>
           <div className={s.btn__place} />
-          <Calendar className={s.field} />
+          <div className={s.field}>
+            <Calendar />
+          </div>
         </div>
       </div>
     </form>

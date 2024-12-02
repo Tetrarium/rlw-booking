@@ -27,7 +27,7 @@ const Feedbacks = () => {
           <div className={s.content}>
             <Slider
               slides={feedbackCards}
-              slidesPerPage={windowWidth > 1000 ? 2 : 1}
+              slidesPerPage={windowWidth > 900 ? 2 : 1}
               slotsProps={{
                 slides: {
                   sx: {
