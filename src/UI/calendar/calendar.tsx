@@ -15,13 +15,12 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
       {...props}
       showDaysOutsideCurrentMonth
       slots={{
-        calendarHeader: CalendarHeader
+        calendarHeader: CalendarHeader,
       }}
-      // label="Uncontrolled picker"
       slotProps={{
         layout: {
           sx: {
-            fontSize: 16,
+            backgroundColor: '#fff',
             '& .MuiDateCalendar-root': {
               width: '300px',
               height: '260px'
@@ -48,11 +47,30 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
             width: "35px"
           }
         },
+        textField: {
+          size: "small",
+          // variant: "filled",
+          hiddenLabel: true,
+          fullWidth: true,
+          sx: {
+            backgroundColor: '#fff',
+          },
+          slotProps: {
+            input: {
+              sx: {
+                fontSize: '18px'
+              }
+            },
+            formHelperText: {
+              sx: {
+                fontSize: '18px'
+              }
+            }
+          }
+        },
+
       }}
       minDate={props.minDate || new Date()}
-      sx={{
-        fontSize: '20px'
-      }}
     />
   );
 };

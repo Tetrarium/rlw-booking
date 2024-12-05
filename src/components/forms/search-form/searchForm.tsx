@@ -27,7 +27,7 @@ const SearchForm = () => {
           </div>
           <div className={s.field}>
             <CitySearchField
-              label="Откуда"
+              label="Куда"
             />
           </div>
         </div>
