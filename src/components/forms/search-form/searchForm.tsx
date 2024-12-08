@@ -1,5 +1,6 @@
 import React from "react";
 
+import FindButton from "@/UI/buttons/findButton";
 import Calendar from "@/UI/calendar/calendar";
 import { Cached } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
@@ -44,6 +45,11 @@ const SearchForm = () => {
           <div className={s.field}>
             <Calendar />
           </div>
+        </div>
+      </div>
+      <div className={s.row}>
+        <div className={s.sendForm}>
+          <FindButton />
         </div>
       </div>
     </form>
