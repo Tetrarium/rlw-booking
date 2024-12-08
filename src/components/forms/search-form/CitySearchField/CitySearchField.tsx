@@ -52,7 +52,7 @@ const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
       value={value}
       onChange={(e, v) => setValue(v)}
       aria-placeholder={label}
-      popupIcon={<PlaceIcon />}
+      popupIcon={<PlaceIcon fontSize="large" />}
       slotProps={{
         paper: {
           elevation: 4,
@@ -66,7 +66,7 @@ const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
         },
         popupIndicator: {
           sx: {
-            transform: 'none'
+            transform: 'none',
           }
         }
       }}
@@ -78,16 +78,14 @@ const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
           sx={{
             '*': {
               textTransform: 'capitalize',
+              fontSize: '1.125rem',
             }
           }}
           slotProps={{
             input: {
               ...params.InputProps,
               sx: {
-                fontSize: '1.125rem',
-                textTransform: 'capitalize',
                 backgroundColor: '#fff',
-                width: '100%'
               },
             },
           }}

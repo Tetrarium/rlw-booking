@@ -4,7 +4,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box, IconButton } from "@mui/material";
 import {
-    DatePicker, DatePickerProps, PickersCalendarHeaderProps, PickerValidDate
+  DatePicker, DatePickerProps, PickersCalendarHeaderProps, PickerValidDate
 } from "@mui/x-date-pickers";
 import { useUtils } from "@mui/x-date-pickers/internals";
 
@@ -20,7 +20,6 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
       slotProps={{
         layout: {
           sx: {
-            backgroundColor: '#fff',
             '& .MuiDateCalendar-root': {
               width: '300px',
               height: '260px'
@@ -48,27 +47,18 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
           }
         },
         textField: {
-          size: "small",
-          // variant: "filled",
           hiddenLabel: true,
           fullWidth: true,
           sx: {
             backgroundColor: '#fff',
-          },
-          slotProps: {
-            input: {
-              sx: {
-                fontSize: '18px'
-              }
-            },
-            formHelperText: {
-              sx: {
-                fontSize: '18px'
-              }
-            }
-          }
-        },
+            overflow: 'hidden',
+            borderRadius: 1,
+            '*': {
+              fontSize: 18,
 
+            }
+          },
+        },
       }}
       minDate={props.minDate || new Date()}
     />

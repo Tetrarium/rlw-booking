@@ -22,7 +22,7 @@ const SearchForm = () => {
           </div>
           <div className={s.btn__place}>
             <IconButton color="inherit">
-              <Cached fontSize="large" />
+              <Cached />
             </IconButton>
           </div>
           <div className={s.field}>
