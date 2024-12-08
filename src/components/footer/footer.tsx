@@ -18,13 +18,13 @@ import s from "./footer.module.sass";
 
 const iconProps: SvgIconProps = {
   sx: {
-    fontSize: 30,
+    fontSize: '1.875rem',
   }
 };
 
 const socialsLinkProps: LinkProps = {
   sx: {
-    fontSize: 30,
+    fontSize: '1.875rem',
     lineHeight: 1,
     color: '#E5E5E5',
     width: 'auto',
@@ -94,20 +94,16 @@ const Footer: FC = () => {
               <h4 className={s.subtitle}>Будте в курсе событий</h4>
               <div className={s.subscribes__row}>
                 <TextField
-                  label="e-mail"
                   className={s.subscribes__input}
                   variant="outlined"
+                  placeholder="e-mail"
+                  size="medium"
                   slotProps={{
                     input: {
                       sx: {
-                        fontSize: 24,
+                        height: 60,
+                        fontSize: '1.5rem',
                         py: 0,
-                        height: '60px',
-                      }
-                    },
-                    inputLabel: {
-                      sx: {
-                        fontSize: 24,
                       }
                     }
                   }}
@@ -156,7 +152,7 @@ const Footer: FC = () => {
             sx={{ font: 'inherit', color: '#fff', border: '1px solid #fff' }}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <KeyboardArrowUpOutlinedIcon fontSize="large" />
+            <KeyboardArrowUpOutlinedIcon fontSize="medium" />
           </IconButton>
           <div className={s.copiright__text}>2018 WEB</div>
         </div>

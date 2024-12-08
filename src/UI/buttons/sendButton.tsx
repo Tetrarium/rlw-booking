@@ -4,7 +4,7 @@ import { Button, ButtonProps, SxProps } from "@mui/material";
 
 const SendButton: FC<ButtonProps> = ({ sx = {}, ...other }) => {
   const sxProps: SxProps = {
-    fontSize: 24,
+    fontSize: '1.5rem',
     height: '60px',
     color: '#fff',
     borderColor: '#fff',

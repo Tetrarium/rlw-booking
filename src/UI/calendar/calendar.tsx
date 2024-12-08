@@ -70,7 +70,6 @@ export default Calendar;
 const CalendarHeader = ({ currentMonth, onMonthChange }: PickersCalendarHeaderProps<PickerValidDate>) => {
   const utils = useUtils();
   const format = `${utils.formats.month} ${utils.formats.year}`;
-  // console.log(props);
   const month = utils.formatByString(currentMonth, format);
 
   const selectNextMonth = () => onMonthChange(utils.addMonths(currentMonth, 1), "left");

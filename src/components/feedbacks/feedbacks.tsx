@@ -36,8 +36,7 @@ const Feedbacks = () => {
                 },
                 slide: {
                   sx: {
-                    padding: '10px',
-                    fontSize: '30px'
+                    padding: 1.25,
                   }
                 },
                 dot: {

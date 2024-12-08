@@ -12,11 +12,11 @@ const LearnMoreButton: FC<ButtonProps & PropsWithChildren> = ({ children, ...pro
         border: '1px solid #fff',
         px: 8.5,
         height: 60,
-        fontSize: '2.4rem',
+        fontSize: '1.5rem',
         fontWeight: 700,
         color: '#fff',
         textTransform: 'none',
-        borderRadius: '5px',
+        borderRadius: 1.25,
         ":hover": {
           color: '#2D2B2F',
           borderColor: '#FFCA62',
