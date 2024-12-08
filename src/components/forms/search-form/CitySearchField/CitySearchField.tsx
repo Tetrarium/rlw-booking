@@ -1,6 +1,8 @@
 import React, { FC, useCallback, useState } from "react";
 
+import { fetchData } from "@/API/fetchData";
 import { useDebounce } from "@/hooks/useDebounce";
+import { SERVER_URLS } from "@/setting";
 import { ICity } from "@/types/city";
 import PlaceIcon from "@mui/icons-material/Place";
 import { Autocomplete, TextField } from "@mui/material";
@@ -18,14 +20,8 @@ const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
   const [cities, setCities] = useState<ICity[]>([]);
 
   const fetchCities = useCallback((value: string) => {
-    fetch(`https://students.netoservices.ru/fe-diplom/routes/cities?name=${value}`)
-      .then(response => response.json())
-      .then((data: ICity[] & { error: string; }) => {
-        if (data.error) throw new Error(data.error);
-
-        setCities(data);
-      })
-      .catch(e => console.log(e));
+    fetchData<ICity[]>(SERVER_URLS.CITIES + `?name=${value}`)
+      .then(data => setCities(data || []));
   }, []);
 
   useDebounce(() => {
