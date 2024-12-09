@@ -49,7 +49,9 @@ const SearchForm = () => {
       </div>
       <div className={s.row}>
         <div className={s.sendForm}>
-          <FindButton />
+          <div className={s.field}>
+            <FindButton sx={{ width: '100%' }} />
+          </div>
         </div>
       </div>
     </form>

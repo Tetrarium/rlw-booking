@@ -10,11 +10,16 @@ const FindButton: FC<ButtonProps> = ({ sx = {}, ...other }) => {
     borderColor: '#FFA800',
     backgroundColor: '#FFA800',
     fontWeight: 700,
-    width: '20rem',
     ":hover": {
+      color: '#292929',
+      backgroundColor: '#FFA800',
       boxShadow: '0 4px 4px rgba(0, 0, 0, .25)',
     },
-    ":active": {},
+    ":active": {
+      color: '#FFA800',
+      backgroundColor: 'transparent',
+      boxShadow: '0 4px 4px rgba(0, 0, 0, .25)',
+    },
     ...sx,
   };
 

@@ -14,6 +14,7 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
     <DatePicker
       {...props}
       showDaysOutsideCurrentMonth
+      format="dd/MM/yy"
       slots={{
         calendarHeader: CalendarHeader,
       }}
@@ -22,7 +23,7 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
           sx: {
             '& .MuiDateCalendar-root': {
               width: '300px',
-              height: '260px'
+              height: '300px'
             },
             '& .MuiDayCalendar-header': {
               display: 'none'
@@ -40,10 +41,32 @@ const Calendar: FC<DatePickerProps<Date>> = (props) => {
             fontSize: 16,
             fontWeight: 500,
             borderRadius: "6px",
-            border: "3px solid",
+            border: "3px solid black",
             borderColor: "transparent",
-            height: "25px",
-            width: "35px"
+            backgroundColor: 'transparent',
+            height: "30px",
+            width: "35px",
+            '&.Mui-selected': {
+              border: '3px solid #FFA800',
+              color: '#000',
+              backgroundColor: 'rgba(255, 170, 0, 0.472)',
+              ':hover': {
+                color: '#000',
+                backgroundColor: 'rgba(255, 170, 0, 0.472)',
+              },
+              ':focus-visible': {
+                color: '#000',
+                backgroundColor: 'rgba(255, 170, 0, 0.472)',
+              },
+            },
+            ':hover': {
+              color: '#000',
+              backgroundColor: 'rgba(255, 170, 0, 0.472)',
+            },
+            ':focus-visible': {
+              color: '#000',
+              backgroundColor: 'rgba(255, 170, 0, 0.472)',
+            },
           }
         },
         textField: {
