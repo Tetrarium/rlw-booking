@@ -3,7 +3,7 @@ import React, { FC, useCallback, useState } from "react";
 import { fetchData } from "@/API/fetchData";
 import { useDebounce } from "@/hooks/useDebounce";
 import { SERVER_URLS } from "@/setting";
-import { ICity } from "@/types/city";
+import { City } from "@/types/models";
 import PlaceIcon from "@mui/icons-material/Place";
 import { Autocomplete, TextField } from "@mui/material";
 
@@ -17,10 +17,10 @@ type Option = { label: string; id: string; };
 const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
   const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState<Option | null>(null);
-  const [cities, setCities] = useState<ICity[]>([]);
+  const [cities, setCities] = useState<City[]>([]);
 
   const fetchCities = useCallback((value: string) => {
-    fetchData<ICity[]>(SERVER_URLS.CITIES + `?name=${value}`)
+    fetchData<City[]>(SERVER_URLS.CITIES + `?name=${value}`)
       .then(data => setCities(data || []));
   }, []);
 

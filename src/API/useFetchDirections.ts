@@ -1,8 +1,8 @@
-import { ICity } from "@/types/city";
+import { City } from "@/types/models";
 
 import useFetch, { ResponceData } from "./useFetch";
 
-type ResponceCities = ResponceData<ICity[]>;
+type ResponceCities = ResponceData<City[]>;
 
 export const useFetchCities = (name: string): ResponceCities => {
   // if (name.length < 2) {
