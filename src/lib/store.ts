@@ -2,9 +2,11 @@ import { createWrapper } from "next-redux-wrapper";
 
 import { configureStore } from "@reduxjs/toolkit";
 
+import { reducer } from "./reducers";
+
 export const makeStore = () => {
   return configureStore({
-    reducer: {}
+    reducer,
   });
 };
 

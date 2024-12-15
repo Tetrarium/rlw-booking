@@ -1,5 +1,5 @@
 import { GetRoutesDTO } from "@/types/dto";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { combineReducers, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: GetRoutesDTO = {
   from_city_id: '',
@@ -18,3 +18,9 @@ export const queryRoutesParamsSlice = createSlice({
     }
   }
 });
+
+const reducers = {
+  [queryRoutesParamsSlice.name]: queryRoutesParamsSlice.reducer,
+};
+
+export const reducer = combineReducers(reducers);
