@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 
-const initialState = {
+import { configureStore } from "@reduxjs/toolkit";
 
+export const makeStore = () => {
+  return configureStore({
+    reducer: {}
+  });
 };
 
-export const searchTicketsSlice = createSlice({
-  name: 'searchTickets',
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
 
-  initialState,
-
-  reducers: {
-
-  }
-});
+export const wrapper = createWrapper(makeStore, { debug: true });
