@@ -19,6 +19,8 @@ const SearchForm = () => {
           <div className={s.field}>
             <CitySearchField
               label="Откуда"
+              city={{ _id: '', name: '' }}
+              onSelect={() => { }}
             />
           </div>
           <div className={s.btn__place}>
@@ -29,6 +31,8 @@ const SearchForm = () => {
           <div className={s.field}>
             <CitySearchField
               label="Куда"
+              city={{ _id: '', name: '' }}
+              onSelect={() => { }}
             />
           </div>
         </div>

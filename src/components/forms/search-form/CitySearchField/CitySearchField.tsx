@@ -9,14 +9,15 @@ import { Autocomplete, TextField } from "@mui/material";
 
 interface FieldProps {
   label?: string;
-  // onSelect: (value: string) => void;
+  city: City;
+  onSelect: (_id: string, name: string) => void;
 }
 
 type Option = { label: string; id: string; };
 
-const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
+const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
   const [inputValue, setInputValue] = useState('');
-  const [value, setValue] = useState<Option | null>(null);
+  const [value, setValue] = useState<Option>({ id: city._id, label: city.name });
   const [cities, setCities] = useState<City[]>([]);
 
   const fetchCities = useCallback((value: string) => {
@@ -37,6 +38,12 @@ const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
     }))
     : [];
 
+  const handleSelect = useCallback((option: (Option | null)) => {
+    if (!option) return;
+    setValue(option);
+    onSelect(option.id, option.label);
+  }, [onSelect]);
+
   return (
     <Autocomplete
       disablePortal
@@ -46,7 +53,7 @@ const CitySearchField: FC<FieldProps> = ({ label = '' }) => {
       inputValue={inputValue}
       onInputChange={(e, v) => setInputValue(v)}
       value={value}
-      onChange={(e, v) => setValue(v)}
+      onChange={(e, v) => handleSelect(v)}
       aria-placeholder={label}
       popupIcon={<PlaceIcon fontSize="large" />}
       slotProps={{
