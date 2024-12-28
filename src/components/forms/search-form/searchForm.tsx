@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useCallback } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { setDateEnd, setDateStart } from "@/lib/reducers/datesSlice";
@@ -13,13 +13,22 @@ import { IconButton } from "@mui/material";
 import CitySearchField from "./CitySearchField/CitySearchField";
 import s from "./searchForm.module.sass";
 
-const SearchForm = () => {
+interface SearchFormProps {
+  onSubmit: () => void,
+}
+
+const SearchForm: FC<SearchFormProps> = ({ onSubmit }) => {
   const { departure, destination } = useAppSelector(state => state.locations);
   const { date_start, date_end } = useAppSelector(state => state.dates);
   const dispatch = useAppDispatch();
 
+  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit();
+  }, [onSubmit]);
+
   return (
-    <form className={s.search}>
+    <form className={s.search} onSubmit={handleSubmit}>
       <div className={s.row}>
         <div className={s.label}>
           Направление
@@ -73,7 +82,7 @@ const SearchForm = () => {
       <div className={s.row}>
         <div className={s.sendForm}>
           <div className={s.field}>
-            <FindButton sx={{ width: '100%' }} />
+            <FindButton type="submit" sx={{ width: '100%' }} />
           </div>
         </div>
       </div>
