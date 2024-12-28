@@ -20,6 +20,8 @@ const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
   const [value, setValue] = useState<Option>({ id: city._id, label: city.name });
   const [cities, setCities] = useState<City[]>([]);
 
+  // TODO Разобраться, как сделать, чтобы не делать запрос при реверсе городов
+  // также запрос не нужен при выборе селекта
   const fetchCities = useCallback((value: string) => {
     fetchData<City[]>(SERVER_URLS.CITIES + `?name=${value}`)
       .then(data => setCities(data || []));

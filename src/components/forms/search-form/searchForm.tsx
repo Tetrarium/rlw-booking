@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setDateEnd, setDateStart } from "@/lib/reducers/datesSlice";
 import {
     changeDepartureCity, changeDestinationCity, reverseLocations
 } from "@/lib/reducers/locationsSlice";
@@ -14,6 +15,7 @@ import s from "./searchForm.module.sass";
 
 const SearchForm = () => {
   const { departure, destination } = useAppSelector(state => state.locations);
+  const { date_start, date_end } = useAppSelector(state => state.dates);
   const dispatch = useAppDispatch();
 
   return (
@@ -52,11 +54,17 @@ const SearchForm = () => {
         </div>
         <div className={s.fields}>
           <div className={s.field}>
-            <Calendar />
+            <Calendar
+              value={date_start}
+              onChange={date => dispatch(setDateStart(date ? date.valueOf() : null))}
+            />
           </div>
           <div className={s.btn__place} />
           <div className={s.field}>
-            <Calendar />
+            <Calendar
+              value={date_end}
+              onChange={date => dispatch(setDateEnd(date ? date.valueOf() : null))}
+            />
           </div>
         </div>
       </div>

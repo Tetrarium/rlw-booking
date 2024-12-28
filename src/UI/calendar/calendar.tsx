@@ -4,15 +4,20 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box, IconButton } from "@mui/material";
 import {
-  DatePicker, DatePickerProps, PickersCalendarHeaderProps, PickerValidDate
+    DatePicker, DatePickerProps, PickersCalendarHeaderProps, PickerValidDate
 } from "@mui/x-date-pickers";
 import { useUtils } from "@mui/x-date-pickers/internals";
 
-const Calendar: FC<DatePickerProps<Date>> = (props) => {
+type DateProps = {
+  value: number | null;
+} & Omit<DatePickerProps<PickerValidDate>, 'value'>;
+
+const Calendar: FC<DateProps> = ({ value, ...props }) => {
 
   return (
     <DatePicker
       {...props}
+      value={value ? new Date(value) : null}
       showDaysOutsideCurrentMonth
       format="dd/MM/yy"
       slots={{
