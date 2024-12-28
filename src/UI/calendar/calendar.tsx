@@ -8,11 +8,7 @@ import {
 } from "@mui/x-date-pickers";
 import { useUtils } from "@mui/x-date-pickers/internals";
 
-type DateProps = {
-  value: number | null;
-} & Omit<DatePickerProps<PickerValidDate>, 'value'>;
-
-const Calendar: FC<DateProps> = ({ value, ...props }) => {
+const Calendar: FC<DatePickerProps<PickerValidDate>> = ({ value, ...props }) => {
 
   return (
     <DatePicker

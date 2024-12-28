@@ -55,15 +55,17 @@ const SearchForm = () => {
         <div className={s.fields}>
           <div className={s.field}>
             <Calendar
-              value={date_start}
+              value={date_start ? new Date(date_start) : null}
               onChange={date => dispatch(setDateStart(date ? date.valueOf() : null))}
+              maxDate={date_end ? new Date(date_end) : undefined}
             />
           </div>
           <div className={s.btn__place} />
           <div className={s.field}>
             <Calendar
-              value={date_end}
+              value={date_end ? new Date(date_end) : null}
               onChange={date => dispatch(setDateEnd(date ? date.valueOf() : null))}
+              minDate={date_start ? new Date(date_start) : undefined}
             />
           </div>
         </div>
