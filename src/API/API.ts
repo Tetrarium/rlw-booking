@@ -1,6 +1,6 @@
 import { SERVER_URLS } from "@/setting";
 import { GetRoutesDTO } from "@/types/dto";
-import { RoutesResponse } from "@/types/models";
+import { CitiesResponse, RoutesResponse } from "@/types/models";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const appApi = createApi({
@@ -15,7 +15,10 @@ export const appApi = createApi({
         params: data,
       }),
     }),
+    getCities: builder.query<CitiesResponse, string>({
+      query: (name) => `cities?name=${name}`,
+    }),
   }),
 });
 
-export const { useGetRoutesQuery } = appApi;
+export const { useGetRoutesQuery, useGetCitiesQuery } = appApi;

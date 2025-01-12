@@ -1,8 +1,9 @@
 import React, { FC, useCallback, useState } from "react";
 
-import { fetchData } from "@/API/fetchData";
+import { useGetCitiesQuery } from "@/API/API";
+// import { fetchData } from "@/API/fetchData";
 import { useDebounce } from "@/hooks/useDebounce";
-import { SERVER_URLS } from "@/setting";
+// import { SERVER_URLS } from "@/setting";
 import { City } from "@/types/models";
 import PlaceIcon from "@mui/icons-material/Place";
 import { Autocomplete, TextField } from "@mui/material";
@@ -20,16 +21,21 @@ const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
   const [value, setValue] = useState<Option>({ id: city._id, label: city.name });
   const [cities, setCities] = useState<City[]>([]);
 
+  const { data } = useGetCitiesQuery(inputValue);
+
   // TODO Разобраться, как сделать, чтобы не делать запрос при реверсе городов
   // также запрос не нужен при выборе селекта
-  const fetchCities = useCallback((value: string) => {
-    fetchData<City[]>(SERVER_URLS.CITIES + `?name=${value}`)
-      .then(data => setCities(data || []));
-  }, []);
+  // const fetchCities = useCallback((value: string) => {
+  //   fetchData<City[]>(SERVER_URLS.CITIES + `?name=${value}`)
+  //     .then(data => setCities(data || []));
+  // }, []);
 
   useDebounce(() => {
-    if (inputValue.length > 0) {
-      fetchCities(inputValue);
+    // if (inputValue.length > 0) {
+    //   fetchCities(inputValue);
+    // }
+    if (data && data instanceof Array && data.length > 0) {
+      setCities(data);
     }
   }, inputValue, 300);
 

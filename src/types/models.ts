@@ -72,3 +72,5 @@ export interface RoutesResponse {
   total_count: number;
   items: TrainItem[];
 }
+
+export type CitiesResponse = City[] | { error: string; };
