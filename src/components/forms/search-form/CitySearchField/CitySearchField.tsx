@@ -19,27 +19,15 @@ type Option = { label: string; id: string; };
 const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
   const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState<Option>({ id: city._id, label: city.name });
-  const [cities, setCities] = useState<City[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const { data } = useGetCitiesQuery(inputValue);
-
-  // TODO Разобраться, как сделать, чтобы не делать запрос при реверсе городов
-  // также запрос не нужен при выборе селекта
-  // const fetchCities = useCallback((value: string) => {
-  //   fetchData<City[]>(SERVER_URLS.CITIES + `?name=${value}`)
-  //     .then(data => setCities(data || []));
-  // }, []);
+  const { data: cities } = useGetCitiesQuery(searchTerm);
 
   useDebounce(() => {
-    // if (inputValue.length > 0) {
-    //   fetchCities(inputValue);
-    // }
-    if (data && data instanceof Array && data.length > 0) {
-      setCities(data);
-    }
+    setSearchTerm(inputValue);
   }, inputValue, 300);
 
-  const options = cities
+  const options = cities && cities instanceof Array
     ? cities.map(({ name, _id }) => ({
       label: name,
       id: _id,
