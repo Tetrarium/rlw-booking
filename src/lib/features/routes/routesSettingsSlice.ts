@@ -1,3 +1,4 @@
+import { RootState } from "@/lib/store";
 import { RoutesSettings } from "@/types/dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -120,3 +121,23 @@ export const {
 } = routesSettingsSlice.actions;
 
 export default routesSettingsSlice;
+
+export const selectDefinedRoutesSettings = (state: RootState) => {
+  const allRoutesSettings = state["routes-settings"];
+
+  type Value = string | number | boolean | null | undefined;
+
+  const definedSettings: { [key: string]: Value; } = {};
+
+  (Object.entries(allRoutesSettings) as [string, Value][])
+    .forEach(([key, value]) => {
+      if (value !== undefined) {
+        definedSettings[key] = value;
+      }
+    });
+
+  // Мне не нравится это решение, но я не знаю как сделать лучше
+  return definedSettings as unknown as RoutesSettings;
+};
+
+export const selectRoutesSettings = (state: RootState) => state["routes-settings"];
