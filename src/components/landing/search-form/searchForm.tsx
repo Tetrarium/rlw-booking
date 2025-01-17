@@ -1,31 +1,41 @@
-import React, { FC, useCallback } from "react";
+import { useRouter } from "next/router";
+import { ParsedUrlQueryInput } from "querystring";
+import React, { useCallback } from "react";
 
 import { setDateEnd, setDateStart } from "@/lib/features/routes/datesSlice";
 import {
     changeDepartureCity, changeDestinationCity, reverseLocations
 } from "@/lib/features/routes/locationsSlice";
+import { selectDefinedRoutesSettings } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import FindButton from "@/UI/buttons/findButton";
 import Calendar from "@/UI/calendar/calendar";
 import { Cached } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
-import CitySearchField from "./CitySearchField/CitySearchField";
+import CitySearchField from "../../shared/CitySearchField/CitySearchField";
 import s from "./searchForm.module.sass";
 
-interface SearchFormProps {
-  onSubmit: () => void,
-}
-
-const SearchForm: FC<SearchFormProps> = ({ onSubmit }) => {
+const SearchForm = () => {
   const { departure, destination } = useAppSelector(state => state.locations);
   const { date_start, date_end } = useAppSelector(state => state.dates);
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
+
+  const routesSettings = useAppSelector(selectDefinedRoutesSettings);
+
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit();
-  }, [onSubmit]);
+    // onSubmit();
+
+    if (!routesSettings) return;
+
+    router.push({
+      pathname: "/routes",
+      query: routesSettings as unknown as ParsedUrlQueryInput
+    });
+  }, [router, routesSettings]);
 
   return (
     <form className={s.search} onSubmit={handleSubmit}>

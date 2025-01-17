@@ -74,6 +74,7 @@ const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
           {...params}
           label=""
           placeholder={label}
+          required
           sx={{
             '*': {
               textTransform: 'capitalize',

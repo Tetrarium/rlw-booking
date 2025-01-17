@@ -8,7 +8,7 @@ import { makeStore } from "@/lib/store";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
-import Layout from "../components/layout";
+import Layout from "../components/landing/layout";
 
 import type { AppProps } from 'next/app';
 const roboto = Roboto({

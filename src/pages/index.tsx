@@ -1,12 +1,8 @@
 import React from "react";
 
-import About from "@/components/about/about";
-import Feedbacks from "@/components/feedbacks/feedbacks";
-import HowItWork from "@/components/howItWork/howItWork";
-
-// import { makeServer } from "@/mockServer/server";
-
-// makeServer();
+import About from "@/components/landing/about/about";
+import Feedbacks from "@/components/landing/feedbacks/feedbacks";
+import HowItWork from "@/components/landing/howItWork/howItWork";
 
 export default function Main() {
   return (

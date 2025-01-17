@@ -125,6 +125,13 @@ export default routesSettingsSlice;
 export const selectDefinedRoutesSettings = (state: RootState) => {
   const allRoutesSettings = state["routes-settings"];
 
+  const { from_city_id, to_city_id } = allRoutesSettings;
+
+  if (from_city_id === '' || to_city_id === '') {
+    return undefined;
+  }
+
+
   type Value = string | number | boolean | null | undefined;
 
   const definedSettings: { [key: string]: Value; } = {};

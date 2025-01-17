@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { ReactNode } from "react";
 
-import Footer from "./footer/footer";
+import Footer from "../shared/footer/footer";
 import Header from "./header/header";
 
 export default function Layout({ children }: { children: ReactNode; }) {

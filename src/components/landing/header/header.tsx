@@ -1,14 +1,9 @@
 import Link from "next/link";
-import { useCallback } from "react";
 
-import SearchForm from "../forms/search-form/searchForm";
+import SearchForm from "../search-form/searchForm";
 import s from "./header.module.sass";
 
 export default function Header() {
-  const handleSubmitForm = useCallback(() => {
-
-  }, []);
-
   return (
     <header className={s.header}>
       <div className={s.mask}>
@@ -43,7 +38,7 @@ export default function Header() {
               </div>
             </div>
             <div className={s.banner__right}>
-              <SearchForm onSubmit={handleSubmitForm} />
+              <SearchForm />
             </div>
           </div>
         </div>

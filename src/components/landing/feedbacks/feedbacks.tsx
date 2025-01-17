@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Slider from "../../UI/slider/Slider";
+import Slider from "../../../UI/slider/Slider";
 import FeedbackCard, { FeedbackCardProps } from "./feedbackCard";
 import s from "./feedbacks.module.sass";
 
