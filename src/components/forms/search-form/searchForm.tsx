@@ -1,10 +1,10 @@
 import React, { FC, useCallback } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setDateEnd, setDateStart } from "@/lib/reducers/datesSlice";
+import { setDateEnd, setDateStart } from "@/lib/features/datesSlice";
 import {
     changeDepartureCity, changeDestinationCity, reverseLocations
-} from "@/lib/reducers/locationsSlice";
+} from "@/lib/features/locationsSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import FindButton from "@/UI/buttons/findButton";
 import Calendar from "@/UI/calendar/calendar";
 import { Cached } from "@mui/icons-material";

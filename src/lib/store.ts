@@ -3,7 +3,7 @@ import { createWrapper } from "next-redux-wrapper";
 import { appApi } from "@/API/API";
 import { configureStore } from "@reduxjs/toolkit";
 
-import { reducer } from "./reducers";
+import { reducer } from "./features";
 
 export const makeStore = () => {
   return configureStore({
