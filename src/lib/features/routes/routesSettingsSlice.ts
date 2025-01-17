@@ -1,6 +1,6 @@
 import { RootState } from "@/lib/store";
 import { RoutesSettings } from "@/types/dto";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: RoutesSettings = {
   from_city_id: '',
@@ -122,29 +122,28 @@ export const {
 
 export default routesSettingsSlice;
 
-export const selectDefinedRoutesSettings = (state: RootState) => {
-  const allRoutesSettings = state["routes-settings"];
+export const selectAllRoutesSettings = (state: RootState) => state["routes-settings"];
 
-  const { from_city_id, to_city_id } = allRoutesSettings;
+export const selectDefinedRoutesSettings = createSelector(
+  [selectAllRoutesSettings],
+  (allRoutesSettings) => {
+    const { from_city_id, to_city_id, ...otherSettings } = allRoutesSettings;
 
-  if (from_city_id === '' || to_city_id === '') {
-    return undefined;
+    if (from_city_id === '' || to_city_id === '') {
+      return undefined;
+    }
+
+    type Value = string | number | boolean | null | undefined;
+
+    const definedSettings = (Object.entries(otherSettings) as [string, Value][])
+      .reduce((acc, [key, value]) => {
+        if (value === undefined) {
+          acc[key] = value;
+        }
+
+        return acc;
+      }, { from_city_id, to_city_id } as { [key: string]: Value; });
+
+    return definedSettings as unknown as RoutesSettings;
   }
-
-
-  type Value = string | number | boolean | null | undefined;
-
-  const definedSettings: { [key: string]: Value; } = {};
-
-  (Object.entries(allRoutesSettings) as [string, Value][])
-    .forEach(([key, value]) => {
-      if (value !== undefined) {
-        definedSettings[key] = value;
-      }
-    });
-
-  // Мне не нравится это решение, но я не знаю как сделать лучше
-  return definedSettings as unknown as RoutesSettings;
-};
-
-export const selectRoutesSettings = (state: RootState) => state["routes-settings"];
+);
