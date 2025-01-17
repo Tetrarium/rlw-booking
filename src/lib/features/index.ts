@@ -3,12 +3,12 @@ import { combineReducers } from "@reduxjs/toolkit";
 
 import datesSlice from "./routes/datesSlice";
 import locationsSlice from "./routes/locationsSlice";
-import routesSlice from "./routes/routesSlice";
+import routesSettingsSlice from "./routes/routesSettingsSlice";
 
 const reducers = {
   [locationsSlice.name]: locationsSlice.reducer,
   [datesSlice.name]: datesSlice.reducer,
-  [routesSlice.name]: routesSlice.reducer,
+  [routesSettingsSlice.name]: routesSettingsSlice.reducer,
   [appApi.reducerPath]: appApi.reducer,
 };
 

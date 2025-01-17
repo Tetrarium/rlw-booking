@@ -2,7 +2,7 @@ import { AppStartListening } from "@/lib/listenerMiddleware";
 import { City } from "@/types/models";
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 
-import { citiesChanged } from "./routesSlice";
+import { citiesChanged } from "./routesSettingsSlice";
 
 interface LocationState {
   departure: City;

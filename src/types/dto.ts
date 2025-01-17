@@ -1,4 +1,4 @@
-export interface RoutesParams {
+export interface RoutesSettings {
   from_city_id: string;
   to_city_id: string;
   date_start?: string;
