@@ -74,7 +74,9 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
     - [x] Города отправления/назначения
 
-    - [x] Даты
+    - [ ] Даты
+
+      - [ ] <b>!Проработать преобразование даты к требуемому формату</b>
 
     - [x] Комфорт
 
