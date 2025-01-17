@@ -1,4 +1,4 @@
-export interface GetRoutesDTO {
+export interface RoutesParams {
   from_city_id: string;
   to_city_id: string;
   date_start?: string;

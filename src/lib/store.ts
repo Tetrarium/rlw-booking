@@ -4,11 +4,14 @@ import { appApi } from "@/API/API";
 import { configureStore } from "@reduxjs/toolkit";
 
 import { reducer } from "./features";
+import { listenerMiddleware } from "./listenerMiddleware";
 
 export const makeStore = () => {
   return configureStore({
     reducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(appApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+      .concat(appApi.middleware)
+      .concat(listenerMiddleware.middleware),
   });
 };
 

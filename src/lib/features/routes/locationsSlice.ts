@@ -1,5 +1,8 @@
+import { AppStartListening } from "@/lib/listenerMiddleware";
 import { City } from "@/types/models";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+
+import { citiesChanged } from "./routesSlice";
 
 interface LocationState {
   departure: City;
@@ -38,3 +41,14 @@ const locationsSlice = createSlice({
 export default locationsSlice;
 
 export const { changeDepartureCity, changeDestinationCity, reverseLocations } = locationsSlice.actions;
+
+export const addLocationsListeners = (startAppListening: AppStartListening) => {
+  startAppListening({
+    matcher: isAnyOf(changeDepartureCity, changeDestinationCity, reverseLocations),
+    effect: (_action, listenerApi) => {
+      const { departure, destination } = listenerApi.getState().locations;
+
+      listenerApi.dispatch(citiesChanged({ from_city_id: departure._id, to_city_id: destination._id }));
+    }
+  });
+};

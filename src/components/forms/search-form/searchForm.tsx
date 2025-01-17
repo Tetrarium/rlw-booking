@@ -1,9 +1,9 @@
 import React, { FC, useCallback } from "react";
 
-import { setDateEnd, setDateStart } from "@/lib/features/datesSlice";
+import { setDateEnd, setDateStart } from "@/lib/features/routes/datesSlice";
 import {
     changeDepartureCity, changeDestinationCity, reverseLocations
-} from "@/lib/features/locationsSlice";
+} from "@/lib/features/routes/locationsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import FindButton from "@/UI/buttons/findButton";
 import Calendar from "@/UI/calendar/calendar";
