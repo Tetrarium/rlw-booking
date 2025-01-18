@@ -27,7 +27,6 @@ const SearchForm = () => {
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // onSubmit();
 
     if (!routesSettings) return;
 
@@ -92,7 +91,7 @@ const SearchForm = () => {
       <div className={s.row}>
         <div className={s.sendForm}>
           <div className={s.field}>
-            <FindButton type="submit" sx={{ width: '100%' }} />
+            <FindButton disabled={!routesSettings} type="submit" sx={{ width: '100%' }} />
           </div>
         </div>
       </div>

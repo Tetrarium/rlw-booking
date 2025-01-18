@@ -35,7 +35,11 @@ const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
     : [];
 
   const handleSelect = useCallback((option: (Option | null)) => {
-    if (!option) return;
+    console.log(option);
+    if (!option) {
+      onSelect('', '');
+      return;
+    };
     setValue(option);
     onSelect(option.id, option.label);
   }, [onSelect]);
