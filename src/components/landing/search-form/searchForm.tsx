@@ -36,6 +36,14 @@ const SearchForm = () => {
     });
   }, [router, routesSettings]);
 
+  const handleChangeDateStart = useCallback((date: Date | null) => {
+    dispatch(setDateStart(date ? date.valueOf() : null));
+  }, [dispatch]);
+
+  const handleChangeDateEnd = useCallback((date: Date | null) => {
+    dispatch(setDateEnd(date ? date.valueOf() : null));
+  }, [dispatch]);
+
   return (
     <form className={s.search} onSubmit={handleSubmit}>
       <div className={s.row}>
@@ -74,7 +82,7 @@ const SearchForm = () => {
           <div className={s.field}>
             <Calendar
               value={date_start ? new Date(date_start) : null}
-              onChange={date => dispatch(setDateStart(date ? date.valueOf() : null))}
+              onChange={handleChangeDateStart}
               maxDate={date_end ? new Date(date_end) : undefined}
             />
           </div>
@@ -82,7 +90,7 @@ const SearchForm = () => {
           <div className={s.field}>
             <Calendar
               value={date_end ? new Date(date_end) : null}
-              onChange={date => dispatch(setDateEnd(date ? date.valueOf() : null))}
+              onChange={handleChangeDateEnd}
               minDate={date_start ? new Date(date_start) : undefined}
             />
           </div>
