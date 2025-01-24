@@ -1,6 +1,5 @@
-// export const BASE_SERVER_URL = 'https://students.netoservices.ru/fe-diplom/';
-// export const BASE_SERVER_URL = 'http://localhost:3000/api';
-export const BASE_SERVER_URL = 'http://localhost:3001';
+export const BASE_SERVER_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+console.log('The API is available at', BASE_SERVER_URL);
 
 export const SERVER_URLS = {
   CITIES: BASE_SERVER_URL + '/routes/cities',
