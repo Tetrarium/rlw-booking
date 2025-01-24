@@ -6,7 +6,9 @@ import { setDateEnd, setDateStart } from "@/lib/features/routes/datesSlice";
 import {
     changeDepartureCity, changeDestinationCity, reverseLocations
 } from "@/lib/features/routes/locationsSlice";
-import { selectDefinedRoutesSettings } from "@/lib/features/routes/routesSettingsSlice";
+import {
+    dateStartChanged, selectDefinedRoutesSettings
+} from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import FindButton from "@/UI/buttons/findButton";
 import Calendar from "@/UI/calendar/calendar";
@@ -37,7 +39,7 @@ const SearchForm = () => {
   }, [router, routesSettings]);
 
   const handleChangeDateStart = useCallback((date: Date | null) => {
-    dispatch(setDateStart(date ? date.valueOf() : null));
+    dispatch(dateStartChanged(date));
   }, [dispatch]);
 
   const handleChangeDateEnd = useCallback((date: Date | null) => {

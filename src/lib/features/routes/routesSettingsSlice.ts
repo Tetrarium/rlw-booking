@@ -1,4 +1,5 @@
 import { RootState } from "@/lib/store";
+import { dateFormatToISO, isValidDate } from "@/lib/utils/date";
 import { RoutesSettings } from "@/types/dto";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -9,6 +10,22 @@ const initialState: RoutesSettings = {
 
 type CitiesParams = Pick<RoutesSettings, 'from_city_id' | 'to_city_id'>;
 
+// dateFormat = YYYY-MM-DD]
+// отрефакторить
+const dateReducer = {
+  reducer(state: RoutesSettings, action: PayloadAction<string>) {
+    state.date_start = action.payload;
+  },
+  prepare(date: Date | null) {
+
+    const dateISO = isValidDate(date)
+      ? dateFormatToISO(date)
+      : '';
+
+    return { payload: dateISO };
+  },
+};
+
 export const routesSettingsSlice = createSlice({
   name: 'routes-settings',
   initialState,
@@ -17,9 +34,7 @@ export const routesSettingsSlice = createSlice({
       state.from_city_id = action.payload.from_city_id;
       state.to_city_id = action.payload.to_city_id;
     },
-    dateStartChanged: (state, action: PayloadAction<string>) => {
-      state.date_start = action.payload;
-    },
+    dateStartChanged: dateReducer,
     dateEndChanged: (state, action: PayloadAction<string>) => {
       state.date_end = action.payload;
     },
