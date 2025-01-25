@@ -10,11 +10,9 @@ const initialState: RoutesSettings = {
 
 type CitiesParams = Pick<RoutesSettings, 'from_city_id' | 'to_city_id'>;
 
-// dateFormat = YYYY-MM-DD]
-// отрефакторить
-const dateReducer = {
+const createDateReducer = <K extends keyof RoutesSettings>(stateKey: K) => ({
   reducer(state: RoutesSettings, action: PayloadAction<string>) {
-    state.date_start = action.payload;
+    state[stateKey] = action.payload as RoutesSettings[K];
   },
   prepare(date: Date | null) {
 
@@ -24,7 +22,7 @@ const dateReducer = {
 
     return { payload: dateISO };
   },
-};
+});
 
 export const routesSettingsSlice = createSlice({
   name: 'routes-settings',
@@ -34,16 +32,10 @@ export const routesSettingsSlice = createSlice({
       state.from_city_id = action.payload.from_city_id;
       state.to_city_id = action.payload.to_city_id;
     },
-    dateStartChanged: dateReducer,
-    dateEndChanged: (state, action: PayloadAction<string>) => {
-      state.date_end = action.payload;
-    },
-    dateStartArrivalChanged: (state, action: PayloadAction<string>) => {
-      state.date_start_arrival = action.payload;
-    },
-    dateEndArrivalChanged: (state, action: PayloadAction<string>) => {
-      state.date_end_arrival = action.payload;
-    },
+    dateStartChanged: createDateReducer('date_start'),
+    dateEndChanged: createDateReducer('date_end'),
+    dateStartArrivalChanged: createDateReducer('date_start_arrival'),
+    dateEndArrivalChanged: createDateReducer('date_end_arrival'),
     haveFirstClassChanged: (state, action: PayloadAction<boolean>) => {
       state.have_first_class = action.payload;
     },
