@@ -1,9 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 
 import { useGetCitiesQuery } from "@/API/API";
-// import { fetchData } from "@/API/fetchData";
 import { useDebounce } from "@/hooks/useDebounce";
-// import { SERVER_URLS } from "@/setting";
 import { City } from "@/types/models";
 import PlaceIcon from "@mui/icons-material/Place";
 import { Autocomplete, TextField } from "@mui/material";

@@ -9,7 +9,16 @@ const SwapLocationsButton = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <IconButton color="inherit" onClick={() => dispatch(reverseLocations())}>
+    <IconButton
+      color="inherit"
+      onClick={() => dispatch(reverseLocations())}
+      sx={{
+        color: '#fff',
+        ':hover': {
+          color: '#FFA800',
+        },
+      }}
+    >
       <Cached />
     </IconButton>
   );
