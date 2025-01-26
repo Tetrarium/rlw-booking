@@ -4,7 +4,7 @@ import s from "./about.module.sass";
 
 const About: FC = () => {
   return (
-    <div className='wrapper'>
+    <div className='wrapper' id="about-us">
       <div className={s.container}>
         <h2 className={s.title}>О нас</h2>
         <div className={s.content}>

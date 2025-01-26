@@ -20,7 +20,7 @@ const Feedbacks = () => {
   }, []);
 
   return (
-    <div className={s.container}>
+    <div className={s.container} id="reviews">
       <div className="wrapper">
         <div className={s.inner}>
           <h2 className={s.title}>Отзывы</h2>

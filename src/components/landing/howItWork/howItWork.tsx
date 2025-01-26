@@ -14,7 +14,7 @@ const iconProps = {
 
 const HowItWork: FC = () => {
   return (
-    <div className={s.container}>
+    <div className={s.container} id="how-it-works">
       <div className="wrapper">
         <div className={s.inner}>
           <div className={s.header}>

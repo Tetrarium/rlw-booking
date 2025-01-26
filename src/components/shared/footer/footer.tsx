@@ -40,7 +40,7 @@ const Footer: FC = () => {
       <div className="wrapper">
         <div className={s.content}>
           <div className={s.column}>
-            <div className={s.contacts}>
+            <div className={s.contacts} id="contacts">
               <h3 className={s.title}>
                 Свяжитесь с нами
               </h3>
@@ -78,7 +78,7 @@ const Footer: FC = () => {
                 <li className={s.contacts__item}>
                   <PlaceIcon {...iconProps} />
                   <Link
-                    href={'#'}
+                    href={'/#'}
                     className={s.contacts__text}
                     target="_blank"
                   >
@@ -115,27 +115,27 @@ const Footer: FC = () => {
               <h3 className={s.title}>Подписывайтесь на нас</h3>
               <ul className={s.socials__items}>
                 <li className={s.socials__item}>
-                  <SocialLink {...socialsLinkProps} href='#'>
+                  <SocialLink {...socialsLinkProps} href='/#'>
                     <YouTubeIcon />
                   </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <SocialLink {...socialsLinkProps} href='#'>
+                  <SocialLink {...socialsLinkProps} href='/#'>
                     <LinkedIn />
                   </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <SocialLink  {...socialsLinkProps} href='#'>
+                  <SocialLink  {...socialsLinkProps} href='/#'>
                     <GooglePlusIcon />
                   </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <SocialLink {...socialsLinkProps} href='#'>
+                  <SocialLink {...socialsLinkProps} href='/#'>
                     <FacebookIcon />
                   </SocialLink>
                 </li>
                 <li className={s.socials__item}>
-                  <SocialLink {...socialsLinkProps} href='#'>
+                  <SocialLink {...socialsLinkProps} href='/#'>
                     <TwitterIcon />
                   </SocialLink>
                 </li>

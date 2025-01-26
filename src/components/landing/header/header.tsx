@@ -1,7 +1,7 @@
-import Link from "next/link";
-
 import Logo from "@/components/shared/logo/logo";
 import Mask from "@/components/shared/mask/mask";
+import Nav from "@/components/shared/nav/nav";
+import Wrapper from "@/components/shared/wrapper/wrapper";
 
 import SearchForm from "../search-form/searchForm";
 import s from "./header.module.sass";
@@ -11,25 +11,8 @@ export default function Header() {
     <header className={s.header}>
       <Mask>
         <Logo />
-        <nav className={s.nav}>
-          <div className="wrapper">
-            <ul className={s.nav__list}>
-              <li className={s.nav__item}>
-                <Link className={s.nav__link} href={''}>О нас</Link>
-              </li>
-              <li className={s.nav__item}>
-                <Link className={s.nav__link} href={''}>Как это работает</Link>
-              </li>
-              <li className={s.nav__item}>
-                <Link className={s.nav__link} href={''}>Отзывы</Link>
-              </li>
-              <li className={s.nav__item}>
-                <Link className={s.nav__link} href={''}>Контакты</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <div className="wrapper">
+        <Nav />
+        <Wrapper>
           <div className={s.banner}>
             <div className={s.banner__left}>
               <div className={s.slogan}>
@@ -40,7 +23,7 @@ export default function Header() {
               <SearchForm />
             </div>
           </div>
-        </div>
+        </Wrapper>
       </Mask>
     </header>
   );
