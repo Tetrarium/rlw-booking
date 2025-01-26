@@ -2,17 +2,14 @@ import { useRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
 import React, { useCallback } from "react";
 
-import {
-    changeDepartureCity, changeDestinationCity, reverseLocations
-} from "@/lib/features/routes/locationsSlice";
+import { changeDepartureCity, changeDestinationCity } from "@/lib/features/routes/locationsSlice";
 import {
     dateEndChanged, dateStartChanged, selectDateEnd, selectDateStart, selectDefinedRoutesSettings
 } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import FindButton from "@/UI/buttons/findButton";
+import SwapLocationsButton from "@/UI/buttons/swapLocationsButton";
 import Calendar from "@/UI/calendar/calendar";
-import { Cached } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
 
 import CitySearchField from "../../shared/CitySearchField/CitySearchField";
 import s from "./searchForm.module.sass";
@@ -62,9 +59,7 @@ const SearchForm = () => {
             />
           </div>
           <div className={s.btn__place}>
-            <IconButton color="inherit" onClick={() => dispatch(reverseLocations())}>
-              <Cached />
-            </IconButton>
+            <SwapLocationsButton />
           </div>
           <div className={s.field}>
             <CitySearchField
