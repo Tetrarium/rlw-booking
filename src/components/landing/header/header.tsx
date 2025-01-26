@@ -1,17 +1,16 @@
 import Link from "next/link";
 
+import Logo from "@/components/shared/logo/logo";
+import Mask from "@/components/shared/mask/mask";
+
 import SearchForm from "../search-form/searchForm";
 import s from "./header.module.sass";
 
 export default function Header() {
   return (
     <header className={s.header}>
-      <div className={s.mask}>
-        <div className={s.logo}>
-          <div className="wrapper">
-            Лого
-          </div>
-        </div>
+      <Mask>
+        <Logo />
         <nav className={s.nav}>
           <div className="wrapper">
             <ul className={s.nav__list}>
@@ -42,7 +41,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </Mask>
     </header>
   );
 }

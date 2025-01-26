@@ -1,10 +1,17 @@
 import React from "react";
 
+import Logo from "@/components/shared/logo/logo";
+import Mask from "@/components/shared/mask/mask";
+
+import s from "./header.module.sass";
+
 const Header = () => {
   return (
-    <div>
-      This is a pages&apos; header
-    </div>
+    <header className={s.header}>
+      <Mask>
+        <Logo />
+      </Mask>
+    </header>
   );
 };
 
