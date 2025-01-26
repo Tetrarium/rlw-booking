@@ -165,9 +165,6 @@ export const selectDefinedRoutesSettings = createSelector(
         return acc;
       }, { from_city_id, to_city_id } as { [key: string]: Value; });
 
-    console.log(allRoutesSettings);
-    console.log(definedSettings);
-
     return definedSettings as unknown as RoutesSettings;
   }
 );

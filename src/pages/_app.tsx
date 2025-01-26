@@ -8,7 +8,7 @@ import { makeStore } from "@/lib/store";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
-import Layout from "../components/landing/layout";
+// import Layout from "../components/landing/layout";
 
 import type { AppProps } from 'next/app';
 const roboto = Roboto({
@@ -23,9 +23,9 @@ export default function Home({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
         <div className={roboto.className}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          {/* <Layout> */}
+          <Component {...pageProps} />
+          {/* </Layout> */}
         </div>
       </LocalizationProvider>
     </Provider>

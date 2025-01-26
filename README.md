@@ -74,9 +74,9 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
     - [x] Города отправления/назначения
 
-    - [ ] Даты
+    - [x] Даты
 
-      - [ ] <b>!Проработать преобразование даты к требуемому формату</b>
+      - [x] Проработать преобразование даты к требуемому формату
 
     - [x] Комфорт
 
@@ -101,6 +101,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
     - [x] Отзывы
 
   - [ ] Остальные страницы
+
+    - [ ] Лайаут
 
     - [ ] Хедер
 
