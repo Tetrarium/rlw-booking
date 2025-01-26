@@ -2,12 +2,11 @@ import { useRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
 import React, { useCallback } from "react";
 
-import { setDateEnd, setDateStart } from "@/lib/features/routes/datesSlice";
 import {
     changeDepartureCity, changeDestinationCity, reverseLocations
 } from "@/lib/features/routes/locationsSlice";
 import {
-    dateStartChanged, selectDefinedRoutesSettings
+    dateEndChanged, dateStartChanged, selectDateEnd, selectDateStart, selectDefinedRoutesSettings
 } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import FindButton from "@/UI/buttons/findButton";
@@ -20,7 +19,8 @@ import s from "./searchForm.module.sass";
 
 const SearchForm = () => {
   const { departure, destination } = useAppSelector(state => state.locations);
-  const { date_start, date_end } = useAppSelector(state => state.dates);
+  const dateStart = useAppSelector(selectDateStart);
+  const dateEnd = useAppSelector(selectDateEnd);
   const dispatch = useAppDispatch();
 
   const router = useRouter();
@@ -43,7 +43,7 @@ const SearchForm = () => {
   }, [dispatch]);
 
   const handleChangeDateEnd = useCallback((date: Date | null) => {
-    dispatch(setDateEnd(date ? date.valueOf() : null));
+    dispatch(dateEndChanged(date));
   }, [dispatch]);
 
   return (
@@ -83,17 +83,17 @@ const SearchForm = () => {
         <div className={s.fields}>
           <div className={s.field}>
             <Calendar
-              value={date_start ? new Date(date_start) : null}
+              value={dateStart}
               onChange={handleChangeDateStart}
-              maxDate={date_end ? new Date(date_end) : undefined}
+              maxDate={dateEnd || undefined}
             />
           </div>
           <div className={s.btn__place} />
           <div className={s.field}>
             <Calendar
-              value={date_end ? new Date(date_end) : null}
+              value={dateEnd}
               onChange={handleChangeDateEnd}
-              minDate={date_start ? new Date(date_start) : undefined}
+              minDate={dateStart || undefined}
             />
           </div>
         </div>

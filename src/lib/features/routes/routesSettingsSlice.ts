@@ -1,5 +1,5 @@
 import { RootState } from "@/lib/store";
-import { dateFormatToISO, isValidDate } from "@/lib/utils/date";
+import { dateFormatFromISO, dateFormatToISO, isValidDate } from "@/lib/utils/date";
 import { RoutesSettings } from "@/types/dto";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -10,7 +10,9 @@ const initialState: RoutesSettings = {
 
 type CitiesParams = Pick<RoutesSettings, 'from_city_id' | 'to_city_id'>;
 
-const createDateReducer = <K extends keyof RoutesSettings>(stateKey: K) => ({
+type DateKeys = Extract<keyof RoutesSettings, 'date_start' | 'date_end' | 'date_start_arrival' | 'date_end_arrival'>;
+
+const createDateReducer = <K extends DateKeys>(stateKey: K) => ({
   reducer(state: RoutesSettings, action: PayloadAction<string>) {
     state[stateKey] = action.payload as RoutesSettings[K];
   },
@@ -23,6 +25,18 @@ const createDateReducer = <K extends keyof RoutesSettings>(stateKey: K) => ({
     return { payload: dateISO };
   },
 });
+
+const createDateSelector = <K extends DateKeys>(stateKey: K) =>
+  createSelector(
+    (state: RootState) => state["routes-settings"][stateKey],
+    (dateString: string | undefined) => {
+      if (!dateString) return null;
+
+      const date = dateFormatFromISO(dateString);
+
+      return isValidDate(date) ? date : null;
+    }
+  );
 
 export const routesSettingsSlice = createSlice({
   name: 'routes-settings',
@@ -144,13 +158,21 @@ export const selectDefinedRoutesSettings = createSelector(
 
     const definedSettings = (Object.entries(otherSettings) as [string, Value][])
       .reduce((acc, [key, value]) => {
-        if (value === undefined) {
+        if (value !== undefined) {
           acc[key] = value;
         }
 
         return acc;
       }, { from_city_id, to_city_id } as { [key: string]: Value; });
 
+    console.log(allRoutesSettings);
+    console.log(definedSettings);
+
     return definedSettings as unknown as RoutesSettings;
   }
 );
+
+export const selectDateStart = createDateSelector('date_start');
+export const selectDateEnd = createDateSelector('date_end');
+export const selectDateStartArrival = createDateSelector('date_start_arrival');
+export const selectDateEndArrival = createDateSelector('date_end_arrival');
