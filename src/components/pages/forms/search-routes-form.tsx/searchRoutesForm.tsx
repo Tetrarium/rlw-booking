@@ -100,7 +100,7 @@ const SearchRoutesForm = () => {
       <div className={s.row}>
         <div className={s.send}>
           <div className={s.field}>
-            <FindButton type="submit" sx={{ width: '100%' }} />
+            <FindButton type="submit" />
           </div>
         </div>
       </div>
