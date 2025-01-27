@@ -1,5 +1,5 @@
 import { BASE_SERVER_URL } from "@/setting";
-import { RoutesSettings } from "@/types/dto";
+// import { RoutesSettings } from "@/types/dto";
 import { CitiesResponse, RoutesResponse } from "@/types/models";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -9,11 +9,8 @@ export const appApi = createApi({
     baseUrl: BASE_SERVER_URL,
   }),
   endpoints: (builder) => ({
-    getRoutes: builder.query<RoutesResponse, RoutesSettings>({
-      query: (data) => ({
-        url: 'routes',
-        params: data,
-      }),
+    getRoutes: builder.query<RoutesResponse, string>({
+      query: (queryString) => `/routes?${queryString}`,
     }),
     getCities: builder.query<CitiesResponse, string>({
       query: (name) => ({

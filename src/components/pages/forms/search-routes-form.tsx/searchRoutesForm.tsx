@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
 import React, { FormEvent, useCallback } from "react";
 
-import CitySearchField from "@/components/shared/CitySearchField/CitySearchField";
+import CitySearchField from "@/components/shared/сitySearchField/сitySearchField";
 import { changeDepartureCity, changeDestinationCity } from "@/lib/features/routes/locationsSlice";
 import {
     dateEndChanged, dateStartChanged, selectDateEnd, selectDateStart, selectDefinedRoutesSettings
