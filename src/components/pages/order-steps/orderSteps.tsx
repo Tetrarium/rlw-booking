@@ -1,32 +1,44 @@
 import classNames from "classnames";
-import React, { FC } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 
 import s from "./orderSteps.module.sass";
 
-interface OrderStepsProps {
-  currentStep: number;
+interface Step {
+  id: number;
+  path: string;
+  label: string;
 }
 
-const steps = ['Билеты', 'Пассажиры', 'Оплата', 'Проверка'];
+const steps: Step[] = [
+  { id: 1, path: '/routes', label: 'Билеты' },
+  { id: 2, path: '/passengers', label: 'Пассажиры' },
+  { id: 3, path: '/payment', label: 'Оплата' },
+  { id: 4, path: '/check', label: 'Проверка' },
+];
 
-const OrderSteps: FC<OrderStepsProps> = ({ currentStep }) => {
+const OrderSteps = () => {
+  const router = useRouter();
+
+  const currentStep = steps.findIndex(step => step.path === router.pathname) + 1;
+
   return (
     <div className={s.container}>
       <div className={s.steps}>
-        {steps.map((step, index) => (
+        {steps.map(({ id, label: step }) => (
           <div
-            key={step}
+            key={id}
             className={
               classNames(
                 s.step,
                 {
-                  [s.active]: index + 1 === currentStep,
-                  [s.completed]: index + 1 < currentStep,
+                  [s.active]: id === currentStep,
+                  [s.completed]: id < currentStep,
                 }
               )
             }
           >
-            <div className={s.stepNumber}>{index + 1}</div>
+            <div className={s.stepNumber}>{id}</div>
             <span className={s.label}>{step}</span>
           </div>
         ))}

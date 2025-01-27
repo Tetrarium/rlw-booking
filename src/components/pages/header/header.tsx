@@ -17,7 +17,7 @@ const Header = () => {
         <div className={s.banner}>
           <SearchRoutesForm />
         </div>
-        <OrderSteps currentStep={1} />
+        <OrderSteps />
       </Mask>
     </header>
   );

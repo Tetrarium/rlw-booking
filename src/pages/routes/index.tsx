@@ -1,16 +1,13 @@
 import React from "react";
 
 import Layout from "@/components/pages/layout";
-import Footer from "@/components/shared/footer/footer";
+import RoutesView from "@/components/pages/routes-view/routesView";
 
 const Routes = () => {
   return (
     <>
       <Layout>
-        <main>
-          Routes
-        </main>
-        <Footer />
+        <RoutesView />
       </Layout>
     </>
   );
