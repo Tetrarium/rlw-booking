@@ -6,6 +6,7 @@ import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: RoutesSettings = {
   from_city_id: '',
   to_city_id: '',
+  limit: 5,
 };
 
 type CitiesParams = Pick<RoutesSettings, 'from_city_id' | 'to_city_id'>;

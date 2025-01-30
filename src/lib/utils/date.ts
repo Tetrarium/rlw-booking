@@ -1,5 +1,5 @@
 export function dateFormatToISO(date: Date) {
-  return date.toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat('sv-SE').format(date);
 };
 
 export function dateFormatFromISO(date: string) {

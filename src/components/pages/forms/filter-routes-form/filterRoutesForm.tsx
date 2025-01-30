@@ -6,7 +6,7 @@ import s from "./filterRoutesForm.module.sass";
 
 const FilterRoutesForm = () => {
   return (
-    <form className={s.form}>
+    <form className={s.container}>
       <div className={s.dates}>
         <div className={s.datesRow}>
           <h3 className={s.label}>Дата поездки</h3>
@@ -63,6 +63,23 @@ const FilterRoutesForm = () => {
         <div className={s.directionHeader}>
           <div className={s.directionIcon}>Icon</div>
           <h3 className={s.directionTitle}>Туда</h3>
+          <button className={s.directionToggle}>Toggle</button>
+        </div>
+        <div className={s.directionBody}>
+          <div className={s.directionRow}>
+            <h4 className={s.directionLabelLeave}>Время отбытия</h4>
+            <div>time range component</div>
+          </div>
+          <div className={s.directionRow}>
+            <h4 className={s.directionLabelArrive}>Время отбытия</h4>
+            <div>time range component</div>
+          </div>
+        </div>
+      </div>
+      <div className={s.direction}>
+        <div className={s.directionHeader}>
+          <div className={s.directionIcon}>Icon</div>
+          <h3 className={s.directionTitle}>Обратно</h3>
           <button className={s.directionToggle}>Toggle</button>
         </div>
         <div className={s.directionBody}>
