@@ -7,6 +7,7 @@ import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
 import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
+import { Switch } from "@mui/material";
 
 import s from "./filterRoutesForm.module.sass";
 
@@ -115,14 +116,14 @@ interface ComfortRowProps {
 const ComfortRow: FC<ComfortRowProps> = ({ icon, name, value, onChange }) => {
   return (
     <div className={s.comfortRow}>
-      <div className={s.comfortRow__icon}>
+      <div className={s.comfortRowIcon}>
         {icon}
       </div>
-      <div className={s.comfortRow__name}>
+      <div className={s.comfortRowName}>
         {name}
       </div>
-      <div className={s.comfortRow__checkbox}>
-        <input type="checkbox" checked={value} onChange={onChange} />
+      <div className={s.comfortRowCheckbox}>
+        <Switch value={value} onChange={onChange} />
       </div>
     </div>
   );
