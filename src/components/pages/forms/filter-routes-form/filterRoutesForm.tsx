@@ -1,5 +1,11 @@
 import React, { FC, ReactNode } from "react";
 
+import ExpressIcon from "@/components/shared/icons/expressIcon";
+import TrainFirstClassIcon from "@/components/shared/icons/trainFirstClassIcon";
+import TrainFourthClassIcon from "@/components/shared/icons/trainFourthClassIcon";
+import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
+import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
+import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
 
 import s from "./filterRoutesForm.module.sass";
@@ -19,37 +25,37 @@ const FilterRoutesForm = () => {
       </div>
       <div className={s.comfort}>
         <ComfortRow
-          icon={<div />}
+          icon={<TrainSecondIcon />}
           name="Кровать"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
-          icon={<div />}
+          icon={<TrainThirdClassIcon />}
           name="Кровать"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
-          icon={<div />}
+          icon={<TrainFourthClassIcon />}
           name="Кровать"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
-          icon={<div />}
+          icon={<TrainFirstClassIcon />}
           name="Кровать"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
-          icon={<div />}
+          icon={<WiFiIcon />}
           name="Кровать"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
-          icon={<div />}
+          icon={<ExpressIcon />}
           name="Кровать"
           value={true}
           onChange={() => { }}

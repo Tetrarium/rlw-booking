@@ -11,6 +11,7 @@ export interface RoutesSettings {
   have_fourth_class?: boolean;
   have_wifi?: boolean;
   have_air_conditioning?: boolean;
+  have_express?: boolean;
   price_from?: number;
   price_to?: number;
   start_departure_hour_from?: number;
