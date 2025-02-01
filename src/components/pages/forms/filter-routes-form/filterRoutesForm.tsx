@@ -7,7 +7,7 @@ import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
 import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
-import { Switch } from "@mui/material";
+import FilterSwitch from "@/UI/switchers/filterSwitch";
 
 import s from "./filterRoutesForm.module.sass";
 
@@ -27,37 +27,37 @@ const FilterRoutesForm = () => {
       <div className={s.comfort}>
         <ComfortRow
           icon={<TrainSecondIcon />}
-          name="Кровать"
+          name="Купе"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
           icon={<TrainThirdClassIcon />}
-          name="Кровать"
+          name="Плацкарт"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
           icon={<TrainFourthClassIcon />}
-          name="Кровать"
+          name="Сидячий"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
           icon={<TrainFirstClassIcon />}
-          name="Кровать"
+          name="Люкс"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
           icon={<WiFiIcon />}
-          name="Кровать"
+          name="Wi-Fi"
           value={true}
           onChange={() => { }}
         />
         <ComfortRow
           icon={<ExpressIcon />}
-          name="Кровать"
+          name="Экспресс"
           value={true}
           onChange={() => { }}
         />
@@ -113,7 +113,7 @@ interface ComfortRowProps {
   onChange: () => void;
 }
 
-const ComfortRow: FC<ComfortRowProps> = ({ icon, name, value, onChange }) => {
+const ComfortRow: FC<ComfortRowProps> = ({ icon, name }) => {
   return (
     <div className={s.comfortRow}>
       <div className={s.comfortRowIcon}>
@@ -123,7 +123,7 @@ const ComfortRow: FC<ComfortRowProps> = ({ icon, name, value, onChange }) => {
         {name}
       </div>
       <div className={s.comfortRowCheckbox}>
-        <Switch value={value} onChange={onChange} />
+        <FilterSwitch />
       </div>
     </div>
   );
