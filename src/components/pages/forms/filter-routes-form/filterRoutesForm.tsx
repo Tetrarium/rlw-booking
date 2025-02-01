@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React from "react";
 
 import ExpressIcon from "@/components/shared/icons/expressIcon";
 import TrainFirstClassIcon from "@/components/shared/icons/trainFirstClassIcon";
@@ -7,8 +7,8 @@ import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
 import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
-import FilterSwitch from "@/UI/switchers/filterSwitch";
 
+import FilterComfortItem from "./filterComfortItem";
 import s from "./filterRoutesForm.module.sass";
 
 const FilterRoutesForm = () => {
@@ -25,42 +25,42 @@ const FilterRoutesForm = () => {
         </div>
       </div>
       <div className={s.comfort}>
-        <ComfortRow
-          icon={<TrainSecondIcon />}
-          name="Купе"
-          value={true}
-          onChange={() => { }}
-        />
-        <ComfortRow
-          icon={<TrainThirdClassIcon />}
-          name="Плацкарт"
-          value={true}
-          onChange={() => { }}
-        />
-        <ComfortRow
-          icon={<TrainFourthClassIcon />}
-          name="Сидячий"
-          value={true}
-          onChange={() => { }}
-        />
-        <ComfortRow
-          icon={<TrainFirstClassIcon />}
-          name="Люкс"
-          value={true}
-          onChange={() => { }}
-        />
-        <ComfortRow
-          icon={<WiFiIcon />}
-          name="Wi-Fi"
-          value={true}
-          onChange={() => { }}
-        />
-        <ComfortRow
-          icon={<ExpressIcon />}
-          name="Экспресс"
-          value={true}
-          onChange={() => { }}
-        />
+        <div className={s.comfortRow}>
+          <FilterComfortItem
+            icon={<TrainSecondIcon />}
+            name="Купе"
+          />
+        </div>
+        <div className={s.comfortRow}>
+          <FilterComfortItem
+            icon={<TrainThirdClassIcon />}
+            name="Плацкарт"
+          />
+        </div>
+        <div className={s.comfortRow}>
+          <FilterComfortItem
+            icon={<TrainFourthClassIcon />}
+            name="Сидячий"
+          />
+        </div>
+        <div className={s.comfortRow}>
+          <FilterComfortItem
+            icon={<TrainFirstClassIcon />}
+            name="Люкс"
+          />
+        </div>
+        <div className={s.comfortRow}>
+          <FilterComfortItem
+            icon={<WiFiIcon />}
+            name="Wi-Fi"
+          />
+        </div>
+        <div className={s.comfortRow}>
+          <FilterComfortItem
+            icon={<ExpressIcon />}
+            name="Экспресс"
+          />
+        </div>
       </div>
       <div className={s.pricesRange}>
         <label className={s.label}>Стоимость</label>
@@ -105,26 +105,3 @@ const FilterRoutesForm = () => {
 };
 
 export default FilterRoutesForm;
-
-interface ComfortRowProps {
-  icon: ReactNode;
-  name: string;
-  value: boolean;
-  onChange: () => void;
-}
-
-const ComfortRow: FC<ComfortRowProps> = ({ icon, name }) => {
-  return (
-    <div className={s.comfortRow}>
-      <div className={s.comfortRowIcon}>
-        {icon}
-      </div>
-      <div className={s.comfortRowName}>
-        {name}
-      </div>
-      <div className={s.comfortRowCheckbox}>
-        <FilterSwitch />
-      </div>
-    </div>
-  );
-};
