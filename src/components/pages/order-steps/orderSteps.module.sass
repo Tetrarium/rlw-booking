@@ -3,11 +3,10 @@
   justify-content: center
   align-items: center
   background-color: #2b2b2b
-  // padding: 0 1rem
 
 .steps
   display: flex
-  justify-content: space-between
+  justify-content: center
   align-items: stretch
   width: 100%
   overflow: hidden
@@ -16,11 +15,10 @@
   display: flex
   flex-direction: row
   align-items: center
-  justify-content: center
   text-align: center
-  flex: 1
   position: relative
   padding: 1.44rem
+  z-index: 1
 
   &:not(:last-child)::after
     content: ''
@@ -29,14 +27,30 @@
     right: -2.3em
     width: 4.6em
     height: 4.6em
-    z-index: 5
+    z-index: 0
     border-right: 2px solid #e5e5e5
     border-top: 2px solid #e5e5e5
     rotate: 45deg
     border-top-right-radius: .25em
 
   &:not(:first-child)
-    padding-left: 3.5rem
+    padding-left: 4rem
+
+  &:first-child
+    flex-grow: 1
+    justify-content: flex-end
+    padding-left: 1.125rem
+
+  &:last-child
+    flex-grow: 1
+    padding-right: 1.125rem
+
+.stepContent
+  display: flex
+  align-items: center
+  width: 16.875rem
+  flex-shrink: 1
+  align-items: center
 
 .stepNumber
   font-size: 2.25rem
@@ -55,6 +69,7 @@
   font-size: 1.875rem
   font-weight: 700
   color: #fff
+  z-index: 1
 
 .active
   background-color: #FFA800

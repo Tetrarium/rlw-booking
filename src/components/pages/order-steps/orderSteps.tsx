@@ -38,8 +38,10 @@ const OrderSteps = () => {
               )
             }
           >
-            <div className={s.stepNumber}>{id}</div>
-            <span className={s.label}>{step}</span>
+            <div className={s.stepContent}>
+              <div className={s.stepNumber}>{id}</div>
+              <span className={s.label}>{step}</span>
+            </div>
           </div>
         ))}
       </div>
