@@ -9,8 +9,11 @@ import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
 
 import PriceRange from "../../price-range/priceRange";
+import TimePickerAccordion from "../../time-picker-accordion/timePickerAccordion";
 import FilterComfortItem from "./filterComfortItem";
 import s from "./filterRoutesForm.module.sass";
+import BackwardIcon from "./icons/backwardIcon";
+import ForwardIcon from "./icons/forwardIcon";
 
 const FilterRoutesForm = () => {
   return (
@@ -69,39 +72,17 @@ const FilterRoutesForm = () => {
           <PriceRange />
         </div>
       </div>
-      <div className={s.direction}>
-        <div className={s.directionHeader}>
-          <div className={s.directionIcon}>Icon</div>
-          <h3 className={s.directionTitle}>Туда</h3>
-          <button className={s.directionToggle}>Toggle</button>
-        </div>
-        <div className={s.directionBody}>
-          <div className={s.directionRow}>
-            <h4 className={s.directionLabelLeave}>Время отбытия</h4>
-            <div>time range component</div>
-          </div>
-          <div className={s.directionRow}>
-            <h4 className={s.directionLabelArrive}>Время отбытия</h4>
-            <div>time range component</div>
-          </div>
-        </div>
+      <div className={s.timePicker}>
+        <TimePickerAccordion
+          icon={<ForwardIcon />}
+          title="Туда"
+        />
       </div>
-      <div className={s.direction}>
-        <div className={s.directionHeader}>
-          <div className={s.directionIcon}>Icon</div>
-          <h3 className={s.directionTitle}>Обратно</h3>
-          <button className={s.directionToggle}>Toggle</button>
-        </div>
-        <div className={s.directionBody}>
-          <div className={s.directionRow}>
-            <h4 className={s.directionLabelLeave}>Время отбытия</h4>
-            <div>time range component</div>
-          </div>
-          <div className={s.directionRow}>
-            <h4 className={s.directionLabelArrive}>Время отбытия</h4>
-            <div>time range component</div>
-          </div>
-        </div>
+      <div className={s.timePicker}>
+        <TimePickerAccordion
+          icon={<BackwardIcon />}
+          title="Обратно"
+        />
       </div>
     </form>
   );
