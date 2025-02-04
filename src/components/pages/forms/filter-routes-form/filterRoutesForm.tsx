@@ -8,6 +8,7 @@ import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
 
+import PriceRange from "../../price-range/priceRange";
 import FilterComfortItem from "./filterComfortItem";
 import s from "./filterRoutesForm.module.sass";
 
@@ -64,7 +65,9 @@ const FilterRoutesForm = () => {
       </div>
       <div className={s.pricesRange}>
         <label className={s.label}>Стоимость</label>
-        <div>price range component</div>
+        <div className={s.priceRange}>
+          <PriceRange />
+        </div>
       </div>
       <div className={s.direction}>
         <div className={s.directionHeader}>
