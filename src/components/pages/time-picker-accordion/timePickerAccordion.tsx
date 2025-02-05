@@ -2,6 +2,7 @@ import React, { FC, ReactNode, useState } from "react";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
+import TimePickerSlider from "../time-picker-slider.tsx/timePickerSlider";
 import CollapseIcon from "./icons/collapseIcon";
 import ExpandIcon from "./icons/expandIcon";
 import s from "./timePickerAccordion.module.sass";
@@ -43,8 +44,20 @@ const TimePickerAccordion: FC<TimePickerAccordionProps> = ({ icon, title }) => {
           <div className={s.title}>{title}</div>
         </div>
       </AccordionSummary>
-      <AccordionDetails>
-        Content
+      <AccordionDetails
+        sx={{
+          padding: 0,
+        }}
+      >
+        <div className={s.sliders}>
+          <TimePickerSlider
+            title="Время отбытия"
+          />
+          <TimePickerSlider
+            title="Время прибытия"
+            arrival
+          />
+        </div>
       </AccordionDetails>
     </Accordion>
   );

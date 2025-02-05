@@ -36,7 +36,7 @@ const PriceRange: FC<PriceRangeProps> = ({
       <Slider
         min={min}
         max={max}
-        getAriaLabel={() => "Temperature range"}
+        getAriaLabel={() => "Price range"}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="off"

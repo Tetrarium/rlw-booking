@@ -118,6 +118,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
       - [x] Настроики комфорта
 
-      - [ ] Диапазон цен
+      - [x] Диапазон цен
 
-      - [ ] Время туда / обратно
+      - [x] Время туда / обратно
+
+      - [ ] Обработчики фильтра
