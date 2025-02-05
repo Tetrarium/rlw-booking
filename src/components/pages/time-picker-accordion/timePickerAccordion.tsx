@@ -10,8 +10,19 @@ import s from "./timePickerAccordion.module.sass";
 interface TimePickerAccordionProps {
   icon: ReactNode;
   title: string;
+  departureTimes?: [string, string];
+  arrivalTimes?: [string, string];
+  onChangeDepartureTimes?: (values: [string, string]) => void;
+  onChangeArrivalTimes?: (values: [string, string]) => void;
 }
-const TimePickerAccordion: FC<TimePickerAccordionProps> = ({ icon, title }) => {
+const TimePickerAccordion: FC<TimePickerAccordionProps> = ({
+  icon,
+  title,
+  departureTimes,
+  arrivalTimes,
+  onChangeDepartureTimes,
+  onChangeArrivalTimes,
+}) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -52,10 +63,14 @@ const TimePickerAccordion: FC<TimePickerAccordionProps> = ({ icon, title }) => {
         <div className={s.sliders}>
           <TimePickerSlider
             title="Время отбытия"
+            values={departureTimes}
+            onChange={onChangeDepartureTimes}
           />
           <TimePickerSlider
             title="Время прибытия"
             arrival
+            values={arrivalTimes}
+            onChange={onChangeArrivalTimes}
           />
         </div>
       </AccordionDetails>
