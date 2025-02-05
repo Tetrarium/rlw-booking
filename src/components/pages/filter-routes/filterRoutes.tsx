@@ -6,18 +6,29 @@ import TrainFourthClassIcon from "@/components/shared/icons/trainFourthClassIcon
 import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
 import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
+import { rangeSettingsChanged } from "@/lib/features/routes/routesSettingsSlice";
+import { useAppDispatch } from "@/lib/hooks";
 import Calendar from "@/UI/calendar/calendar";
 
-import HoursPickerAccordion from "../../hours-picker-accordion/hoursPickerAccordion";
-import PriceRange from "../../price-range/priceRange";
+import HoursPickerAccordion from "../hours-picker-accordion/hoursPickerAccordion";
+import PriceRange from "../price-range/priceRange";
 import FilterComfortItem from "./filterComfortItem";
-import s from "./filterRoutesForm.module.sass";
+import s from "./filterRoutes.module.sass";
 import BackwardIcon from "./icons/backwardIcon";
 import ForwardIcon from "./icons/forwardIcon";
 
-const FilterRoutesForm = () => {
+const FilterRoutes = () => {
+  const dispatch = useAppDispatch();
+
+  dispatch(rangeSettingsChanged({
+    keyFrom: "start_arrival_hour_from",
+    keyTo: "price_to",
+    value: [0, 100000]
+  }));
+
+
   return (
-    <form className={s.container}>
+    <div className={s.container}>
       <div className={s.dates}>
         <div className={s.datesRow}>
           <h3 className={s.label}>Дата поездки</h3>
@@ -84,8 +95,8 @@ const FilterRoutesForm = () => {
           title="Обратно"
         />
       </div>
-    </form>
+    </div>
   );
 };
 
-export default FilterRoutesForm;
+export default FilterRoutes;

@@ -9,9 +9,35 @@ const initialState: RoutesSettings = {
   limit: 5,
 };
 
+type RoutesSettingsKeys = keyof RoutesSettings;
+
 type CitiesParams = Pick<RoutesSettings, 'from_city_id' | 'to_city_id'>;
 
 type DateKeys = Extract<keyof RoutesSettings, 'date_start' | 'date_end' | 'date_start_arrival' | 'date_end_arrival'>;
+
+type BooleanKeys = Extract<
+  RoutesSettingsKeys,
+  'have_first_class'
+  | 'have_second_class'
+  | 'have_third_class'
+  | 'have_fourth_class'
+  | 'have_wifi'
+  | 'have_air_conditioning'
+>;
+
+type FromKeys<T extends string> = T extends `${string}_from` ? T : never;
+
+type RangeKeysMap = {
+  [K in FromKeys<RoutesSettingsKeys>]: `${K extends `${infer Prefix}_from` ? `${Prefix}_to` : never}`
+};
+
+// type ValidRangeKeyFrom<T extends string> = T extends keyof RangeKeysMap ? T : never;
+// type ValidRangeKeyTo<T extends string> = T extends keyof RangeKeysMap ? RangeKeysMap[T] : never;
+
+type RangeKeyFrom = keyof RangeKeysMap;
+type RangeKeyTo<T extends RangeKeyFrom> = RangeKeysMap[T];
+// type RangeKeyFrom = ValidRangeKeyFrom<RoutesSettingsKeys>;
+// type RangeKeyTo<T extends RangeKeyFrom> = ValidRangeKeyTo<T>;
 
 const createDateReducer = <K extends DateKeys>(stateKey: K) => ({
   reducer(state: RoutesSettings, action: PayloadAction<string>) {
@@ -51,6 +77,8 @@ export const routesSettingsSlice = createSlice({
     dateEndChanged: createDateReducer('date_end'),
     dateStartArrivalChanged: createDateReducer('date_start_arrival'),
     dateEndArrivalChanged: createDateReducer('date_end_arrival'),
+
+    // booleans
     haveFirstClassChanged: (state, action: PayloadAction<boolean>) => {
       state.have_first_class = action.payload;
     },
@@ -69,6 +97,12 @@ export const routesSettingsSlice = createSlice({
     haveAirConditioningChanged: (state, action: PayloadAction<boolean>) => {
       state.have_air_conditioning = action.payload;
     },
+
+    booleansSettingChanged: (state, action: PayloadAction<{ key: BooleanKeys, value: boolean; }>) => {
+      state[action.payload.key] = action.payload.value;
+    },
+
+    // range
     priceFromChanged: (state, action: PayloadAction<number>) => {
       state.price_from = action.payload;
     },
@@ -99,6 +133,16 @@ export const routesSettingsSlice = createSlice({
     endArrivalHourToChanged: (state, action: PayloadAction<number>) => {
       state.end_arrival_hour_to = action.payload;
     },
+
+    rangeSettingsChanged: <T extends RangeKeyFrom>(
+      state: RoutesSettings,
+      action: PayloadAction<{ keyFrom: T; keyTo: RangeKeyTo<T>; value: [number, number]; }>
+    ) => {
+      state[action.payload.keyFrom] = action.payload.value[0];
+      state[action.payload.keyTo] = action.payload.value[1];
+    },
+
+    // pagination
     pageChanged: (state, action: PayloadAction<number>) => {
       const page = action.payload;
 
@@ -138,6 +182,7 @@ export const {
   startArrivalHourToChanged,
   startDepartureHourFromChanged,
   startDepartureHourToChanged,
+  rangeSettingsChanged,
   limitChanged,
   sortChanged,
 } = routesSettingsSlice.actions;

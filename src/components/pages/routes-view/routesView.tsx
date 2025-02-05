@@ -2,7 +2,7 @@ import React from "react";
 
 import Wrapper from "@/components/shared/wrapper/wrapper";
 
-import FilterRoutesForm from "../forms/filter-routes-form/filterRoutesForm";
+import FilterRoutes from "../filter-routes/filterRoutes";
 import RoutesContent from "../routes-content/routesContent";
 import s from "./routesView.module.sass";
 
@@ -11,7 +11,7 @@ const RoutesView = () => {
     <Wrapper>
       <main className={s.container}>
         <aside className={s.aside}>
-          <FilterRoutesForm />
+          <FilterRoutes />
         </aside>
         <section className={s.content}>
           <RoutesContent />
