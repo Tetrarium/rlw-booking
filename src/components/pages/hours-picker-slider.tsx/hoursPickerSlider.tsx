@@ -1,38 +1,38 @@
 import classNames from "classnames";
-import React, { FC, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 
 import { Slider } from "@mui/material";
 
-import { getMinutesRange, getTimeRange } from "./time.Service";
-import s from "./timePickerSlider.module.sass";
+import s from "./hoursPickerSlider.module.sass";
 
-interface TimePickerSliderProps {
+export type HoursRange = [number, number];
+
+interface HoursPickerSliderProps {
   title: string;
-  values?: [string, string];
-  onChange?: (values: [string, string]) => void;
+  values?: HoursRange;
+  onChange?: (values: HoursRange) => void;
   arrival?: boolean;
 }
 
 const min = 0;
-const max = 1440;
-const TimePickerSlider: FC<TimePickerSliderProps> = ({
+const max = 24;
+const HoursPickerSlider: FC<HoursPickerSliderProps> = ({
   title,
   arrival = false,
   onChange = () => { },
-  values = ['0:00', '24:00'],
+  values = [0, 24],
 }) => {
-  const minutes = getMinutesRange(values);
-  const [value, setValue] = useState<[number, number]>(minutes);
+  const [value, setValue] = useState<HoursRange>(values);
   const titleClass = classNames(
     s.title,
     { [s.arrival]: arrival }
   );
 
-  const [startTime, endTime] = getTimeRange(value);
+  const handleEndChange = useCallback(() => {
+    onChange(values);
+  }, [onChange, values]);
 
-  const handleEndChange = () => {
-    onChange([startTime, endTime]);
-  };
+  const calculatePosition = (val: number) => `${((val - min) / (max - min)) * 100}%`;
 
   return (
     <div className={s.timePicker}>
@@ -41,10 +41,10 @@ const TimePickerSlider: FC<TimePickerSliderProps> = ({
         value={value}
         min={min}
         max={max}
-        step={5}
-        onChange={(e, newValue) => setValue(newValue as [number, number])}
+        step={1}
+        onChange={(e, newValue) => setValue(newValue as HoursRange)}
         onChangeCommitted={handleEndChange}
-        getAriaLabel={() => "Time range"}
+        getAriaLabel={(index) => index === 0 ? "Start time" : "End time"}
         sx={{
           '& .MuiSlider-thumb': {
             width: '1.125rem',
@@ -54,7 +54,8 @@ const TimePickerSlider: FC<TimePickerSliderProps> = ({
           '& .MuiSlider-track': {
             backgroundColor: '#FFA800',
             opacity: 1,
-            height: '0.625rem'
+            height: '0.625rem',
+            border: 'none',
           },
           '& .MuiSlider-rail': {
             backgroundColor: 'transparent',
@@ -67,16 +68,16 @@ const TimePickerSlider: FC<TimePickerSliderProps> = ({
         <span className={s.min}>{value[0] > max / 6 ? '0:00' : ''}</span>
         <span
           className={s.value}
-          style={{ left: `${((value[0] - min) / (max - min)) * 100}%` }}
-        >{startTime}</span>
+          style={{ left: calculatePosition(value[0]) }}
+        >{value[0]}:00</span>
         <span
           className={s.value}
-          style={{ left: `${((value[1] - min) / (max - min)) * 100}%` }}
-        >{endTime}</span>
+          style={{ left: calculatePosition(value[1]) }}
+        >{value[1]}:00</span>
         <span className={s.max}>{value[1] < max - max / 5 ? '24:00' : ''}</span>
       </div>
     </div>
   );
 };
 
-export default TimePickerSlider;
+export default HoursPickerSlider;

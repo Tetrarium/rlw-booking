@@ -8,8 +8,8 @@ import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import Calendar from "@/UI/calendar/calendar";
 
+import HoursPickerAccordion from "../../hours-picker-accordion/hoursPickerAccordion";
 import PriceRange from "../../price-range/priceRange";
-import TimePickerAccordion from "../../time-picker-accordion/timePickerAccordion";
 import FilterComfortItem from "./filterComfortItem";
 import s from "./filterRoutesForm.module.sass";
 import BackwardIcon from "./icons/backwardIcon";
@@ -73,13 +73,13 @@ const FilterRoutesForm = () => {
         </div>
       </div>
       <div className={s.timePicker}>
-        <TimePickerAccordion
+        <HoursPickerAccordion
           icon={<ForwardIcon />}
           title="Туда"
         />
       </div>
       <div className={s.timePicker}>
-        <TimePickerAccordion
+        <HoursPickerAccordion
           icon={<BackwardIcon />}
           title="Обратно"
         />

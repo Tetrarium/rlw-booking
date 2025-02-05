@@ -2,26 +2,26 @@ import React, { FC, ReactNode, useState } from "react";
 
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
-import TimePickerSlider from "../time-picker-slider.tsx/timePickerSlider";
+import HoursPickerSlider, { HoursRange } from "../hours-picker-slider.tsx/hoursPickerSlider";
+import s from "./hoursPickerAccordion.module.sass";
 import CollapseIcon from "./icons/collapseIcon";
 import ExpandIcon from "./icons/expandIcon";
-import s from "./timePickerAccordion.module.sass";
 
-interface TimePickerAccordionProps {
+interface HoursPickerAccordionProps {
   icon: ReactNode;
   title: string;
-  departureTimes?: [string, string];
-  arrivalTimes?: [string, string];
-  onChangeDepartureTimes?: (values: [string, string]) => void;
-  onChangeArrivalTimes?: (values: [string, string]) => void;
+  departureHoursRange?: HoursRange;
+  arrivalHoursRange?: HoursRange;
+  onChangeDepartureHoursRange?: (values: HoursRange) => void;
+  onChangeArrivalHoursRange?: (values: HoursRange) => void;
 }
-const TimePickerAccordion: FC<TimePickerAccordionProps> = ({
+const HoursPickerAccordion: FC<HoursPickerAccordionProps> = ({
   icon,
   title,
-  departureTimes,
-  arrivalTimes,
-  onChangeDepartureTimes,
-  onChangeArrivalTimes,
+  departureHoursRange,
+  onChangeDepartureHoursRange,
+  arrivalHoursRange,
+  onChangeArrivalHoursRange,
 }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -61,16 +61,16 @@ const TimePickerAccordion: FC<TimePickerAccordionProps> = ({
         }}
       >
         <div className={s.sliders}>
-          <TimePickerSlider
+          <HoursPickerSlider
             title="Время отбытия"
-            values={departureTimes}
-            onChange={onChangeDepartureTimes}
+            values={departureHoursRange}
+            onChange={onChangeDepartureHoursRange}
           />
-          <TimePickerSlider
+          <HoursPickerSlider
             title="Время прибытия"
             arrival
-            values={arrivalTimes}
-            onChange={onChangeArrivalTimes}
+            values={arrivalHoursRange}
+            onChange={onChangeArrivalHoursRange}
           />
         </div>
       </AccordionDetails>
@@ -78,4 +78,4 @@ const TimePickerAccordion: FC<TimePickerAccordionProps> = ({
   );
 };
 
-export default TimePickerAccordion;
+export default HoursPickerAccordion;

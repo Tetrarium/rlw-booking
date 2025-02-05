@@ -50,7 +50,8 @@ const PriceRange: FC<PriceRangeProps> = ({
           '& .MuiSlider-track': {
             backgroundColor: '#FFA800',
             opacity: 1,
-            height: '1rem'
+            height: '1rem',
+            border: 'none',
           },
           '& .MuiSlider-rail': {
             backgroundColor: 'transparent',
