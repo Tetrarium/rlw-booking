@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, memo, useCallback, useMemo, useState } from "react";
 
 import { Slider } from "@mui/material";
 
@@ -16,7 +16,8 @@ interface HoursPickerSliderProps {
 
 const min = 0;
 const max = 24;
-const HoursPickerSlider: FC<HoursPickerSliderProps> = ({
+
+let HoursPickerSlider: FC<HoursPickerSliderProps> = ({
   title,
   arrival = false,
   onChange = () => { },
@@ -29,10 +30,24 @@ const HoursPickerSlider: FC<HoursPickerSliderProps> = ({
   );
 
   const handleEndChange = useCallback(() => {
-    onChange(values);
-  }, [onChange, values]);
+    onChange(value);
+  }, [onChange, value]);
+
+  const handleChange = useCallback((_: Event, newValue: number | number[]) => {
+    setValue(newValue as HoursRange);
+  }, []);
 
   const calculatePosition = (val: number) => `${((val - min) / (max - min)) * 100}%`;
+
+  const positions = useMemo(() => ({
+    start: calculatePosition(value[0]),
+    end: calculatePosition(value[1]),
+  }), [value]);
+
+  const titleId = useMemo(
+    () => `hours-picker-title-${title.replace(/\s+/g, '-').toLowerCase()}`,
+    [title]
+  );
 
   return (
     <div className={s.timePicker}>
@@ -42,42 +57,32 @@ const HoursPickerSlider: FC<HoursPickerSliderProps> = ({
         min={min}
         max={max}
         step={1}
-        onChange={(e, newValue) => setValue(newValue as HoursRange)}
+        onChange={handleChange}
         onChangeCommitted={handleEndChange}
+        aria-labelledby={titleId}
         getAriaLabel={(index) => index === 0 ? "Start time" : "End time"}
-        sx={{
-          '& .MuiSlider-thumb': {
-            width: '1.125rem',
-            height: '1.125rem',
-            backgroundColor: '#FFFFFF'
-          },
-          '& .MuiSlider-track': {
-            backgroundColor: '#FFA800',
-            opacity: 1,
-            height: '0.625rem',
-            border: 'none',
-          },
-          '& .MuiSlider-rail': {
-            backgroundColor: 'transparent',
-            border: '1px solid #FFFFFF',
-            height: '0.625rem'
-          }
+        classes={{
+          thumb: s.thumb,
+          track: s.track,
+          rail: s.rail,
         }}
       />
       <div className={s.values}>
         <span className={s.min}>{value[0] > max / 6 ? '0:00' : ''}</span>
         <span
           className={s.value}
-          style={{ left: calculatePosition(value[0]) }}
+          style={{ left: positions.start }}
         >{value[0]}:00</span>
         <span
           className={s.value}
-          style={{ left: calculatePosition(value[1]) }}
+          style={{ left: positions.end }}
         >{value[1]}:00</span>
         <span className={s.max}>{value[1] < max - max / 5 ? '24:00' : ''}</span>
       </div>
     </div>
   );
 };
+
+HoursPickerSlider = memo(HoursPickerSlider);
 
 export default HoursPickerSlider;
