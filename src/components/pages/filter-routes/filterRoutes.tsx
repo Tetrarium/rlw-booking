@@ -1,24 +1,17 @@
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-import ExpressIcon from "@/components/shared/icons/expressIcon";
-import TrainFirstClassIcon from "@/components/shared/icons/trainFirstClassIcon";
-import TrainFourthClassIcon from "@/components/shared/icons/trainFourthClassIcon";
-import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
-import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
-import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import {
-    booleansSettingToggled, dateEndArrivalChanged, dateStartArrivalChanged, RangeKeyFrom,
-    RangeKeyTo, rangeSettingsChanged, selectBooleanSettings, selectDateEndArrival,
-    selectDateStartArrival, selectPriceRange, selectQueryString
+    dateEndArrivalChanged, dateStartArrivalChanged, rangeSettingsChanged, selectDateEndArrival,
+    selectDateStartArrival, selectQueryString
 } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import Calendar from "@/UI/calendar/calendar";
 
 import HoursPickerAccordion from "../hours-picker-accordion/hoursPickerAccordion";
+import FilterComfort from "./components/filter-comfort/filterComfort";
 import FilterPrice from "./components/filter-price/filterPrice";
-import FilterComfortItem from "./filterComfortItem";
 import s from "./filterRoutes.module.sass";
 import BackwardIcon from "./icons/backwardIcon";
 import ForwardIcon from "./icons/forwardIcon";
@@ -28,9 +21,7 @@ const FilterRoutes = () => {
 
   const dateStartArrival = useAppSelector(selectDateStartArrival);
   const dateEndArrival = useAppSelector(selectDateEndArrival);
-  const booleanSettings = useAppSelector(selectBooleanSettings);
 
-  const priceRange = useAppSelector(selectPriceRange);
 
   const startDepartureHoursFrom = useAppSelector(state => state["routes-settings"].start_departure_hour_from);
   const startDepartureHoursTo = useAppSelector(state => state["routes-settings"].start_departure_hour_to);
@@ -60,10 +51,6 @@ const FilterRoutes = () => {
 
   }, [queryString, router]);
 
-  const handlePriceRangeChange = useCallback(<T extends RangeKeyFrom>(keyFrom: T, keyTo: RangeKeyTo<T>) => (values: [number, number]) => {
-    dispatch(rangeSettingsChanged({ keyFrom, keyTo, value: values }));
-  }, [dispatch]);
-
   return (
     <div className={s.container}>
       <div className={s.dates}>
@@ -82,57 +69,8 @@ const FilterRoutes = () => {
           />
         </div>
       </div>
-      <div className={s.comfort}>
-        <div className={s.comfortRow}>
-          <FilterComfortItem
-            icon={<TrainSecondIcon />}
-            name="Купе"
-            checked={booleanSettings.have_second_class}
-            onChange={() => dispatch(booleansSettingToggled("have_second_class"))}
-          />
-        </div>
-        <div className={s.comfortRow}>
-          <FilterComfortItem
-            icon={<TrainThirdClassIcon />}
-            name="Плацкарт"
-            checked={booleanSettings.have_third_class}
-            onChange={() => dispatch(booleansSettingToggled("have_third_class"))}
-          />
-        </div>
-        <div className={s.comfortRow}>
-          <FilterComfortItem
-            icon={<TrainFourthClassIcon />}
-            name="Сидячий"
-            checked={booleanSettings.have_fourth_class}
-            onChange={() => dispatch(booleansSettingToggled("have_fourth_class"))}
-          />
-        </div>
-        <div className={s.comfortRow}>
-          <FilterComfortItem
-            icon={<TrainFirstClassIcon />}
-            name="Люкс"
-            checked={booleanSettings.have_first_class}
-            onChange={() => dispatch(booleansSettingToggled("have_first_class"))}
-          />
-        </div>
-        <div className={s.comfortRow}>
-          <FilterComfortItem
-            icon={<WiFiIcon />}
-            name="Wi-Fi"
-            checked={booleanSettings.have_wifi}
-            onChange={() => dispatch(booleansSettingToggled("have_wifi"))}
-          />
-        </div>
-        <div className={s.comfortRow}>
-          <FilterComfortItem
-            icon={<ExpressIcon />}
-            name="Экспресс"
-            checked={booleanSettings.have_express}
-            onChange={() => dispatch(booleansSettingToggled("have_express"))}
-          />
-        </div>
-      </div>
-      <FilterPrice values={priceRange} onChange={handlePriceRangeChange("price_from", "price_to")} />
+      <FilterComfort />
+      <FilterPrice />
       <div className={s.timePicker}>
         <HoursPickerAccordion
           icon={<ForwardIcon />}

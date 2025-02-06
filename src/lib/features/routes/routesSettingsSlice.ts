@@ -17,7 +17,7 @@ type CitiesParams = Pick<RoutesSettings, CitiesKeys>;
 
 type DateKeys = Extract<RoutesSettingsKeys, `date_${string}`>;
 
-type BooleanKeys = Extract<RoutesSettingsKeys, `have_${string}`>;
+export type BooleanKeys = Extract<RoutesSettingsKeys, `have_${string}`>;
 
 
 type RangeKeysMap = {
@@ -135,11 +135,6 @@ export const selectQueryString = createSelector(
   [selectDefinedRoutesSettings],
   (routesSettings) => routesSettings ? new URLSearchParams(Object.entries(routesSettings)).toString() : '',
 );
-
-export const selectPriceRange = (state: RootState) => [
-  state["routes-settings"].price_from ?? 0,
-  state["routes-settings"].price_to ?? 10000,
-] as [number, number];
 
 export const selectDateStart = dateStartHandlers.selector;
 export const selectDateEnd = dateEndHandlers.selector;
