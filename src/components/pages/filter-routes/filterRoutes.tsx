@@ -1,6 +1,6 @@
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 
 import ExpressIcon from "@/components/shared/icons/expressIcon";
 import TrainFirstClassIcon from "@/components/shared/icons/trainFirstClassIcon";
@@ -9,14 +9,15 @@ import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
 import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import {
-    booleansSettingToggled, dateEndArrivalChanged, dateStartArrivalChanged, rangeSettingsChanged,
-    selectBooleanSettings, selectDateEndArrival, selectDateStartArrival, selectQueryString
+    booleansSettingToggled, dateEndArrivalChanged, dateStartArrivalChanged, RangeKeyFrom,
+    RangeKeyTo, rangeSettingsChanged, selectBooleanSettings, selectDateEndArrival,
+    selectDateStartArrival, selectPriceRange, selectQueryString
 } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import Calendar from "@/UI/calendar/calendar";
 
 import HoursPickerAccordion from "../hours-picker-accordion/hoursPickerAccordion";
-import PriceRange from "../price-range/priceRange";
+import FilterPrice from "./components/filter-price/filterPrice";
 import FilterComfortItem from "./filterComfortItem";
 import s from "./filterRoutes.module.sass";
 import BackwardIcon from "./icons/backwardIcon";
@@ -29,8 +30,8 @@ const FilterRoutes = () => {
   const dateEndArrival = useAppSelector(selectDateEndArrival);
   const booleanSettings = useAppSelector(selectBooleanSettings);
 
-  const priceFrom = useAppSelector(state => state["routes-settings"].price_from);
-  const priceTo = useAppSelector(state => state["routes-settings"].price_to);
+  const priceRange = useAppSelector(selectPriceRange);
+
   const startDepartureHoursFrom = useAppSelector(state => state["routes-settings"].start_departure_hour_from);
   const startDepartureHoursTo = useAppSelector(state => state["routes-settings"].start_departure_hour_to);
   const startArrivalHoursFrom = useAppSelector(state => state["routes-settings"].start_arrival_hour_from);
@@ -58,6 +59,10 @@ const FilterRoutes = () => {
     }
 
   }, [queryString, router]);
+
+  const handlePriceRangeChange = useCallback(<T extends RangeKeyFrom>(keyFrom: T, keyTo: RangeKeyTo<T>) => (values: [number, number]) => {
+    dispatch(rangeSettingsChanged({ keyFrom, keyTo, value: values }));
+  }, [dispatch]);
 
   return (
     <div className={s.container}>
@@ -127,25 +132,7 @@ const FilterRoutes = () => {
           />
         </div>
       </div>
-      <div className={s.pricesRange}>
-        <label className={s.label}>Стоимость</label>
-        <div className={s.priceRange}>
-          <PriceRange
-            values={[priceFrom ?? 0, priceTo ?? 10000]}
-            min={0}
-            max={10000}
-            onChange={(values) => {
-              dispatch(
-                rangeSettingsChanged({
-                  keyFrom: "price_from",
-                  keyTo: "price_to",
-                  value: values
-                })
-              );
-            }}
-          />
-        </div>
-      </div>
+      <FilterPrice values={priceRange} onChange={handlePriceRangeChange("price_from", "price_to")} />
       <div className={s.timePicker}>
         <HoursPickerAccordion
           icon={<ForwardIcon />}

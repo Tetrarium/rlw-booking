@@ -28,8 +28,8 @@ type RangeKeysMap = {
   : never]: `${K extends `${infer Prefix}_from` ? Prefix : never}_to`;
 };
 
-type RangeKeyFrom = keyof RangeKeysMap;
-type RangeKeyTo<T extends RangeKeyFrom> = RangeKeysMap[T];
+export type RangeKeyFrom = keyof RangeKeysMap;
+export type RangeKeyTo<T extends RangeKeyFrom> = RangeKeysMap[T];
 
 const createDateHandlers = <K extends DateKeys>(stateKey: K) => ({
   reducer: {
@@ -136,6 +136,10 @@ export const selectQueryString = createSelector(
   (routesSettings) => routesSettings ? new URLSearchParams(Object.entries(routesSettings)).toString() : '',
 );
 
+export const selectPriceRange = (state: RootState) => [
+  state["routes-settings"].price_from ?? 0,
+  state["routes-settings"].price_to ?? 10000,
+] as [number, number];
 
 export const selectDateStart = dateStartHandlers.selector;
 export const selectDateEnd = dateEndHandlers.selector;
