@@ -52,6 +52,7 @@ const createDateHandlers = <K extends DateKeys>(stateKey: K) => ({
   )
 });
 
+
 const dateStartHandlers = createDateHandlers('date_start');
 const dateEndHandlers = createDateHandlers('date_end');
 const dateStartArrivalHandlers = createDateHandlers('date_start_arrival');
@@ -70,8 +71,8 @@ export const routesSettingsSlice = createSlice({
     dateStartArrivalChanged: dateStartArrivalHandlers.reducer,
     dateEndArrivalChanged: dateEndArrivalHandlers.reducer,
 
-    booleansSettingChanged: (state, action: PayloadAction<{ key: BooleanKeys, value: boolean; }>) => {
-      state[action.payload.key] = action.payload.value;
+    booleansSettingToggled: (state, action: PayloadAction<BooleanKeys>) => {
+      state[action.payload] = !state[action.payload];
     },
 
     rangeSettingsChanged: <T extends RangeKeyFrom>(
@@ -105,7 +106,7 @@ export const {
   dateEndChanged,
   dateStartArrivalChanged,
   dateEndArrivalChanged,
-  booleansSettingChanged,
+  booleansSettingToggled,
   rangeSettingsChanged,
   limitChanged,
   sortChanged,
@@ -134,3 +135,6 @@ export const selectDateStart = dateStartHandlers.selector;
 export const selectDateEnd = dateEndHandlers.selector;
 export const selectDateStartArrival = dateStartArrivalHandlers.selector;
 export const selectDateEndArrival = dateEndArrivalHandlers.selector;
+
+export const selectBooleanSettings = (state: RootState) =>
+  state["routes-settings"] as { [K in BooleanKeys]: boolean | undefined };
