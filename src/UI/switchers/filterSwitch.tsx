@@ -6,10 +6,11 @@ interface FilterSwitchProps {
   checked?: boolean;
   onChange?: () => void;
 }
-const FilterSwitch: FC<FilterSwitchProps> = (props) => {
+const FilterSwitch: FC<FilterSwitchProps> = ({ checked, onChange }) => {
   return (
     <Switch
-      {...props}
+      checked={checked || false}
+      onChange={onChange}
       sx={{
         '&.MuiSwitch-root': {
           padding: '0.25rem 0.0625rem',

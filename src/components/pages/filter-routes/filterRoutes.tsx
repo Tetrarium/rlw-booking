@@ -1,4 +1,6 @@
-import React from "react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import React, { useEffect, useRef } from "react";
 
 import ExpressIcon from "@/components/shared/icons/expressIcon";
 import TrainFirstClassIcon from "@/components/shared/icons/trainFirstClassIcon";
@@ -8,7 +10,7 @@ import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
 import WiFiIcon from "@/components/shared/icons/wifiIcon";
 import {
     booleansSettingToggled, dateEndArrivalChanged, dateStartArrivalChanged, rangeSettingsChanged,
-    selectBooleanSettings, selectDateEndArrival, selectDateStartArrival
+    selectBooleanSettings, selectDateEndArrival, selectDateStartArrival, selectQueryString
 } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import Calendar from "@/UI/calendar/calendar";
@@ -22,9 +24,11 @@ import ForwardIcon from "./icons/forwardIcon";
 
 const FilterRoutes = () => {
   const dispatch = useAppDispatch();
+
   const dateStartArrival = useAppSelector(selectDateStartArrival);
   const dateEndArrival = useAppSelector(selectDateEndArrival);
   const booleanSettings = useAppSelector(selectBooleanSettings);
+
   const priceFrom = useAppSelector(state => state["routes-settings"].price_from);
   const priceTo = useAppSelector(state => state["routes-settings"].price_to);
   const startDepartureHoursFrom = useAppSelector(state => state["routes-settings"].start_departure_hour_from);
@@ -36,6 +40,24 @@ const FilterRoutes = () => {
   const endArrivalHoursFrom = useAppSelector(state => state["routes-settings"].end_arrival_hour_from);
   const endArrivalHoursTo = useAppSelector(state => state["routes-settings"].end_arrival_hour_to);
 
+
+  const router = useRouter();
+  const params = useSearchParams();
+  const queryString = useAppSelector(selectQueryString);
+
+  const ref = useRef(params.toString());
+
+  useEffect(() => {
+    if (ref.current !== queryString) {
+      router.push({
+        pathname: router.pathname,
+        query: queryString
+      }, undefined, { shallow: true });
+
+      ref.current = queryString;
+    }
+
+  }, [queryString, router]);
 
   return (
     <div className={s.container}>

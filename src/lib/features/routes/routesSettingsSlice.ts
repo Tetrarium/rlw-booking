@@ -131,6 +131,12 @@ export const selectDefinedRoutesSettings = createSelector(
   }
 );
 
+export const selectQueryString = createSelector(
+  [selectDefinedRoutesSettings],
+  (routesSettings) => routesSettings ? new URLSearchParams(Object.entries(routesSettings)).toString() : '',
+);
+
+
 export const selectDateStart = dateStartHandlers.selector;
 export const selectDateEnd = dateEndHandlers.selector;
 export const selectDateStartArrival = dateStartArrivalHandlers.selector;
