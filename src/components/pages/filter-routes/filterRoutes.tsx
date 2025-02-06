@@ -22,7 +22,7 @@ const FilterRoutes = () => {
 
   dispatch(rangeSettingsChanged({
     keyFrom: "start_arrival_hour_from",
-    keyTo: "price_to",
+    keyTo: "end_departure_hour_to",
     value: [0, 100000]
   }));
 
