@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import PriceRange from "@/components/pages/price-range/priceRange";
+import PriceRange from "@/components/pages/filter-routes/components/filter-price/price-range/priceRange";
 import {
     RangeKeyFrom, RangeKeyTo, rangeSettingsChanged
 } from "@/lib/features/routes/routesSettingsSlice";
