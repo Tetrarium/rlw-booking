@@ -11,11 +11,13 @@ const initialState: RoutesSettings = {
 
 type RoutesSettingsKeys = keyof RoutesSettings;
 
-type CitiesKeys = Extract<RoutesSettingsKeys, `${string}_city_id`>;
+export type CitiesKeys = Extract<RoutesSettingsKeys, `${string}_city_id`>;
 
 type CitiesParams = Pick<RoutesSettings, CitiesKeys>;
 
-type DateKeys = Extract<RoutesSettingsKeys, `date_${string}`>;
+export type RangeKeys = Extract<RoutesSettingsKeys, `${string}_from` | `${string}_to`>;
+
+export type DateKeys = Extract<RoutesSettingsKeys, `date_${string}`>;
 
 export type BooleanKeys = Extract<RoutesSettingsKeys, `have_${string}`>;
 
@@ -62,9 +64,16 @@ export const routesSettingsSlice = createSlice({
   name: 'routes-settings',
   initialState,
   reducers: {
+    cityChanged: (state, action: PayloadAction<{ key: CitiesKeys, value: string; }>) => {
+      state[action.payload.key] = action.payload.value;
+    },
     citiesChanged: (state, action: PayloadAction<CitiesParams>) => {
       state.from_city_id = action.payload.from_city_id;
       state.to_city_id = action.payload.to_city_id;
+    },
+
+    datesChanged: (state, action: PayloadAction<{ key: DateKeys, value: string; }>) => {
+      state[action.payload.key] = action.payload.value;
     },
     dateStartChanged: dateStartHandlers.reducer,
     dateEndChanged: dateEndHandlers.reducer,
@@ -74,6 +83,9 @@ export const routesSettingsSlice = createSlice({
     booleansSettingToggled: (state, action: PayloadAction<BooleanKeys>) => {
       state[action.payload] = !state[action.payload];
     },
+    booleansSettingsChanged: (state, action: PayloadAction<{ key: BooleanKeys, value: boolean; }>) => {
+      state[action.payload.key] = action.payload.value;
+    },
 
     rangeSettingsChanged: <T extends RangeKeyFrom>(
       state: RoutesSettings,
@@ -81,6 +93,13 @@ export const routesSettingsSlice = createSlice({
     ) => {
       state[action.payload.keyFrom] = action.payload.value[0];
       state[action.payload.keyTo] = action.payload.value[1];
+    },
+    rangeOneSettingChanged: (state, action: PayloadAction<{ key: RangeKeys, value: number | undefined; }>) => {
+      state[action.payload.key] = action.payload.value;
+    },
+
+    offsetChanged: (state, action: PayloadAction<number>) => {
+      state.offset = action.payload;
     },
 
     // pagination
@@ -101,15 +120,21 @@ export const routesSettingsSlice = createSlice({
 });
 
 export const {
+  cityChanged,
   citiesChanged,
   dateStartChanged,
   dateEndChanged,
   dateStartArrivalChanged,
   dateEndArrivalChanged,
+  datesChanged,
   booleansSettingToggled,
+  booleansSettingsChanged,
   rangeSettingsChanged,
+  rangeOneSettingChanged,
   limitChanged,
   sortChanged,
+  pageChanged,
+  offsetChanged,
 } = routesSettingsSlice.actions;
 
 export default routesSettingsSlice;

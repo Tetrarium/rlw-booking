@@ -11,9 +11,17 @@ export function useRedirectOnSettingsChanged() {
   const queryString = useAppSelector(selectQueryString);
 
   const paramsRef = useRef(params.toString());
+  console.log('queryString:', queryString);
+  console.log('paramsRef.current:', paramsRef.current);
 
   useEffect(() => {
-    if (!paramsRef.current) return;
+    // if (!paramsRef.current) return;
+
+    if (queryString.length === 0) {
+      router.push({
+        pathname: '/'
+      }, undefined, { shallow: true });
+    }
 
     if (paramsRef.current !== queryString) {
       router.push({
