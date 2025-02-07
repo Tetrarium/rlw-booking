@@ -1,17 +1,17 @@
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import React from "react";
 
-import { useGetRoutesQuery } from "@/API/API";
+// import { useGetRoutesQuery } from "@/API/API";
 
 const RoutesContent = () => {
-  const searchParams = useSearchParams();
-  console.log(searchParams.toString());
-  const searchStr = searchParams.toString();
-  console.log(searchStr);
-  const { data, isLoading, error } = useGetRoutesQuery(searchStr);
-  console.log('Loading: ', isLoading);
-  console.log('error: ', error);
-  console.log('data: ', data);
+  // const searchParams = useSearchParams();
+  // console.log(searchParams.toString());
+  // const searchStr = searchParams.toString();
+  // console.log(searchStr);
+  // const { data, isLoading, error } = useGetRoutesQuery(searchStr);
+  // console.log('Loading: ', isLoading);
+  // console.log('error: ', error);
+  // console.log('data: ', data);
 
   return (
     <div>
