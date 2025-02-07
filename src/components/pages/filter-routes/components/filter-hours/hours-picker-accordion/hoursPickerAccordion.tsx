@@ -42,7 +42,8 @@ const HoursPickerAccordion: FC<HoursPickerAccordionProps> = ({
           margin: 0,
           minHeight: 'auto',
           '&.Mui-expanded': {
-            minHeight: 'auto'
+            minHeight: 'auto',
+            margin: 0,
           },
           '& .MuiAccordionSummary-content': {
             margin: 0,
