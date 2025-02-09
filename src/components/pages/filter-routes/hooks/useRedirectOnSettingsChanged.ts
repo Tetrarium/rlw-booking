@@ -17,11 +17,11 @@ export function useRedirectOnSettingsChanged() {
   useEffect(() => {
     // if (!paramsRef.current) return;
 
-    if (queryString.length === 0) {
-      router.push({
-        pathname: '/'
-      }, undefined, { shallow: true });
-    }
+    // if (queryString.length === 0) {
+    //   router.push({
+    //     pathname: '/'
+    //   }, undefined, { shallow: true });
+    // }
 
     if (paramsRef.current !== queryString) {
       router.push({
