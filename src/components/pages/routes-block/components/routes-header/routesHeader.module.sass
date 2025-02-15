@@ -1,0 +1,29 @@
+.container
+  display: flex
+  font-size: 1.125rem
+
+.sort
+  margin-left: auto
+  margin-right: 1.25rem
+
+.select
+  border: none
+  font-size: 1.125rem
+  width: fit-content
+  outline: none
+
+.showedNums
+  display: inline-flex
+  direction: row
+  gap: 0.625rem
+
+.showedNum
+  cursor: pointer
+  input
+    display: none
+
+    &:checked
+      + span
+        background-color: #fff
+        color: #000
+        font-weight: 700

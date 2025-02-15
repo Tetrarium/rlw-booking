@@ -1,6 +1,6 @@
 import { RootState } from "@/lib/store";
 import { dateFormatFromISO, dateFormatToISO, isValidDate } from "@/lib/utils/date";
-import { RoutesSettings } from "@/types/dto";
+import { RoutesSettings, SortValues } from "@/types/dto";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: RoutesSettings = {
@@ -128,7 +128,7 @@ export const routesSettingsSlice = createSlice({
     limitChanged: (state, action: PayloadAction<number>) => {
       state.limit = action.payload;
     },
-    sortChanged: (state, action: PayloadAction<string>) => {
+    sortChanged: (state, action: PayloadAction<SortValues>) => {
       state.sort = action.payload;
     },
   },

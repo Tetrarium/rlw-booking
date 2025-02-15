@@ -7,6 +7,7 @@ import {
     limitChanged, offsetChanged, RangeKeys, rangeOneSettingChanged, sortChanged
 } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import { SortValues } from "@/types/dto";
 
 export function useInitDataFromQuery() {
   const dispatch = useAppDispatch();
@@ -49,7 +50,7 @@ export function useInitDataFromQuery() {
       } else if (key === 'limit') {
         dispatch(limitChanged(Number(value)));
       } else if (key === 'sort') {
-        dispatch(sortChanged(value));
+        dispatch(sortChanged(value as SortValues));
       }
     });
 

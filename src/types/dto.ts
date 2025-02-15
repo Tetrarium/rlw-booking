@@ -1,3 +1,5 @@
+export type SortValues = 'date' | 'price' | 'duration';
+
 export interface RoutesSettings {
   from_city_id: string;
   to_city_id: string;
@@ -24,5 +26,5 @@ export interface RoutesSettings {
   end_arrival_hour_to?: number;
   limit?: number;
   offset?: number;
-  sort?: string;
+  sort?: SortValues;
 }
