@@ -1,8 +1,10 @@
 import "./global.sass";
+import "react-toastify/dist/ReactToastify.css";
 
 import { ru } from "date-fns/locale/ru";
 import { Roboto } from "next/font/google";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 import { makeStore } from "@/lib/store";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -26,6 +28,7 @@ export default function Home({ Component, pageProps }: AppProps) {
           {/* <Layout> */}
           <Component {...pageProps} />
           {/* </Layout> */}
+          <ToastContainer position="top-left" autoClose={5000} />
         </div>
       </LocalizationProvider>
     </Provider>
