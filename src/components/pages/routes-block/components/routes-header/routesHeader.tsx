@@ -31,7 +31,6 @@ const limits = [5, 10, 20];
 const RoutesHeader: FC<RoutesHeaderProps> = ({ count }) => {
   const dispatch = useAppDispatch();
   const sortBy = useAppSelector(state => state["routes-settings"].sort);
-  // const limit = useAppSelector(state => state["routes-settings"].limit);
 
   return (
     <header className={s.container}>

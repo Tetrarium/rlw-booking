@@ -1,8 +1,18 @@
-import React from "react";
+import React, { FC } from "react";
 
-const RoutesList = () => {
+import { TrainItem } from "@/types/models";
+
+import s from "./routesList.module.sass";
+
+interface RoutesListProps {
+  items: TrainItem[];
+}
+
+const RoutesList: FC<RoutesListProps> = ({ items }) => {
+  console.log(items);
+
   return (
-    <div>
+    <div className={s.container}>
       Routes List
     </div>
   );
