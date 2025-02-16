@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 
-import { limitChanged, sortChanged } from "@/lib/features/routes/routesSettingsSlice";
+import { sortChanged } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { SortValues } from "@/types/dto";
 
+import RoutesLimitItem from "../routes-limit-item/routesLimitItem";
 import s from "./routesHeader.module.sass";
 
 type SortOptions = {
@@ -12,7 +13,7 @@ type SortOptions = {
 
 const sortOptions: SortOptions = {
   date: 'времени',
-  price: 'цене',
+  price_min: 'цене',
   duration: 'длительности',
 };
 
@@ -48,8 +49,8 @@ const RoutesHeader: FC<RoutesHeaderProps> = ({ count }) => {
         >{renderedOptions}</select>
       </div>
       <div className={s.showed}>
-        показывать по <span className={s.showedNums}>
-          {limits.map(limit => <LimitRadio key={limit} limit={limit} />)}
+        показывать по <span className={s.limits}>
+          {limits.map(limit => <RoutesLimitItem key={limit} limit={limit} />)}
         </span>
       </div>
     </header>
@@ -58,24 +59,24 @@ const RoutesHeader: FC<RoutesHeaderProps> = ({ count }) => {
 
 export default RoutesHeader;
 
-const LimitRadio: FC<{ limit: number; }> = ({ limit }) => {
-  const dispatch = useAppDispatch();
-  const current = useAppSelector(state => state["routes-settings"].limit);
+// const LimitRadio: FC<{ limit: number; }> = ({ limit }) => {
+//   const dispatch = useAppDispatch();
+//   const current = useAppSelector(state => state["routes-settings"].limit);
 
-  return (
-    <label className={s.showedNum}>
-      <input
-        type="radio"
-        name="limit"
-        value={limit}
-        checked={current === limit}
-        onChange={e => {
-          if (e.target.checked) {
-            dispatch(limitChanged(limit));
-          }
-        }}
-      />
-      <span>{limit}</span>
-    </label>
-  );
-};
+//   return (
+//     <label className={s.showedNum}>
+//       <input
+//         type="radio"
+//         name="limit"
+//         value={limit}
+//         checked={current === limit}
+//         onChange={e => {
+//           if (e.target.checked) {
+//             dispatch(limitChanged(limit));
+//           }
+//         }}
+//       />
+//       <span>{limit}</span>
+//     </label>
+//   );
+// };

@@ -1,4 +1,4 @@
-export type SortValues = 'date' | 'price' | 'duration';
+export type SortValues = 'date' | 'price_min' | 'duration';
 
 export interface RoutesSettings {
   from_city_id: string;
