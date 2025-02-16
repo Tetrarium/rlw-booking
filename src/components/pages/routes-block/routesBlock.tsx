@@ -4,6 +4,7 @@ import React from "react";
 import { useGetRoutesQuery } from "@/API/API";
 
 import RoutesHeader from "./components/routes-header/routesHeader";
+import RoutesList from "./components/routes-list/routesList";
 import s from "./routesBlock.module.sass";
 
 const RoutesBlock = () => {
@@ -19,6 +20,7 @@ const RoutesBlock = () => {
   return (
     <div className={s.container}>
       <RoutesHeader count={data?.total_count || 0} />
+      <RoutesList />
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import { limitChanged, sortChanged } from "@/lib/features/routes/routesSettingsSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { SortValues } from "@/types/dto";
 
 import s from "./routesHeader.module.sass";
@@ -24,29 +26,31 @@ interface RoutesHeaderProps {
   count: number;
 }
 
+const limits = [5, 10, 20];
+
 const RoutesHeader: FC<RoutesHeaderProps> = ({ count }) => {
+  const dispatch = useAppDispatch();
+  const sortBy = useAppSelector(state => state["routes-settings"].sort);
+  // const limit = useAppSelector(state => state["routes-settings"].limit);
+
   return (
     <header className={s.container}>
       <div className={s.finded}>
         найдено: {count}
       </div>
       <div className={s.sort}>
-        сортировать по <select className={s.select}>{renderedOptions}</select>
+        сортировать по
+        {' '}
+        <select
+          className={s.select}
+          name="sort"
+          value={sortBy}
+          onChange={e => dispatch(sortChanged(e.target.value as SortValues))}
+        >{renderedOptions}</select>
       </div>
       <div className={s.showed}>
         показывать по <span className={s.showedNums}>
-          <label className={s.showedNum}>
-            <input type="radio" name="showed-num" value={5} />
-            <span>5</span>
-          </label>
-          <label className={s.showedNum}>
-            <input type="radio" name="showed-num" value={10} />
-            <span>10</span>
-          </label>
-          <label className={s.showedNum}>
-            <input type="radio" name="showed-num" value={20} />
-            <span>20</span>
-          </label>
+          {limits.map(limit => <LimitRadio key={limit} limit={limit} />)}
         </span>
       </div>
     </header>
@@ -54,3 +58,25 @@ const RoutesHeader: FC<RoutesHeaderProps> = ({ count }) => {
 };
 
 export default RoutesHeader;
+
+const LimitRadio: FC<{ limit: number; }> = ({ limit }) => {
+  const dispatch = useAppDispatch();
+  const current = useAppSelector(state => state["routes-settings"].limit);
+
+  return (
+    <label className={s.showedNum}>
+      <input
+        type="radio"
+        name="limit"
+        value={limit}
+        checked={current === limit}
+        onChange={e => {
+          if (e.target.checked) {
+            dispatch(limitChanged(limit));
+          }
+        }}
+      />
+      <span>{limit}</span>
+    </label>
+  );
+};

@@ -7,6 +7,8 @@ const initialState: RoutesSettings = {
   from_city_id: '',
   to_city_id: '',
   limit: 5,
+  offset: 0,
+  sort: 'date',
 };
 
 type RoutesSettingsKeys = keyof RoutesSettings;
