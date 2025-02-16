@@ -68,9 +68,15 @@ export interface TrainItem {
   total_avaliable_seats: number;
 }
 
-export interface RoutesResponse {
-  total_count: number;
-  items: TrainItem[];
+export interface ResponseError {
+  error: string;
 }
 
-export type CitiesResponse = City[] | { error: string; };
+export type RoutesSummary = {
+  total_count: number;
+  items: TrainItem[];
+};
+
+export type RoutesResponse = RoutesSummary | ResponseError;
+
+export type CitiesResponse = City[] | ResponseError;

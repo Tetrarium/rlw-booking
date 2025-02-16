@@ -1,8 +1,9 @@
 import React, { FC, ReactNode, useState } from "react";
 
+import { Range } from "@/lib/features/routes/routesSettingsSlice";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
-import HoursPickerSlider, { HoursRange } from "../hours-picker-slider.tsx/hoursPickerSlider";
+import HoursPickerSlider from "../hours-picker-slider.tsx/hoursPickerSlider";
 import s from "./hoursPickerAccordion.module.sass";
 import CollapseIcon from "./icons/collapseIcon";
 import ExpandIcon from "./icons/expandIcon";
@@ -10,10 +11,10 @@ import ExpandIcon from "./icons/expandIcon";
 interface HoursPickerAccordionProps {
   icon: ReactNode;
   title: string;
-  departureHoursRange?: HoursRange;
-  arrivalHoursRange?: HoursRange;
-  onChangeDepartureHoursRange?: (values: HoursRange) => void;
-  onChangeArrivalHoursRange?: (values: HoursRange) => void;
+  departureHoursRange?: Range;
+  arrivalHoursRange?: Range;
+  onChangeDepartureHoursRange?: (values: Range) => void;
+  onChangeArrivalHoursRange?: (values: Range) => void;
 }
 const HoursPickerAccordion: FC<HoursPickerAccordionProps> = ({
   icon,
@@ -43,6 +44,7 @@ const HoursPickerAccordion: FC<HoursPickerAccordionProps> = ({
           minHeight: 'auto',
           '&.Mui-expanded': {
             minHeight: 'auto',
+            height: 'auto',
             margin: 0,
           },
           '& .MuiAccordionSummary-content': {

@@ -3,7 +3,7 @@ import React from "react";
 import Wrapper from "@/components/shared/wrapper/wrapper";
 
 import FilterRoutes from "../filter-routes/filterRoutes";
-import RoutesContent from "../routes-content/routesContent";
+import RoutesContent from "../routes-block/routesBlock";
 import s from "./routesView.module.sass";
 
 const RoutesView = () => {

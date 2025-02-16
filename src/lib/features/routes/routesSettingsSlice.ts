@@ -1,12 +1,14 @@
 import { RootState } from "@/lib/store";
 import { dateFormatFromISO, dateFormatToISO, isValidDate } from "@/lib/utils/date";
-import { RoutesSettings } from "@/types/dto";
+import { RoutesSettings, SortValues } from "@/types/dto";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: RoutesSettings = {
   from_city_id: '',
   to_city_id: '',
   limit: 5,
+  offset: 0,
+  sort: 'date',
 };
 
 type RoutesSettingsKeys = keyof RoutesSettings;
@@ -15,23 +17,27 @@ export type CitiesKeys = Extract<RoutesSettingsKeys, `${string}_city_id`>;
 
 type CitiesParams = Pick<RoutesSettings, CitiesKeys>;
 
-export type RangeKeys = Extract<RoutesSettingsKeys, `${string}_from` | `${string}_to`>;
-
 export type DateKeys = Extract<RoutesSettingsKeys, `date_${string}`>;
 
 export type BooleanKeys = Extract<RoutesSettingsKeys, `have_${string}`>;
 
+export type Range = [number, number];
 
-type RangeKeysMap = {
-  [K in RoutesSettingsKeys as K extends `${infer Prefix}_from`
-  ? `${Prefix}_to` extends RoutesSettingsKeys
+export type RangeKeys = Extract<RoutesSettingsKeys, `${string}_from` | `${string}_to`>;
+
+type RangePayloadMap = {
+  [K in RangeKeys as K extends `${infer Prefix}_from`
+  ? `${Prefix}_to` extends RangeKeys
   ? K
   : never
-  : never]: `${K extends `${infer Prefix}_from` ? Prefix : never}_to`;
+  : never]: {
+    keyFrom: K extends `${infer Prefix}_from` ? `${Prefix}_from` : never;
+    keyTo: K extends `${infer Prefix}_from` ? `${Prefix}_to` : never;
+    value: Range;
+  }
 };
 
-export type RangeKeyFrom = keyof RangeKeysMap;
-export type RangeKeyTo<T extends RangeKeyFrom> = RangeKeysMap[T];
+export type RangePayload = RangePayloadMap[keyof RangePayloadMap];
 
 const createDateHandlers = <K extends DateKeys>(stateKey: K) => ({
   reducer: {
@@ -87,9 +93,9 @@ export const routesSettingsSlice = createSlice({
       state[action.payload.key] = action.payload.value;
     },
 
-    rangeSettingsChanged: <T extends RangeKeyFrom>(
+    rangeSettingsChanged: (
       state: RoutesSettings,
-      action: PayloadAction<{ keyFrom: T; keyTo: RangeKeyTo<T>; value: [number, number]; }>
+      action: PayloadAction<RangePayload>
     ) => {
       state[action.payload.keyFrom] = action.payload.value[0];
       state[action.payload.keyTo] = action.payload.value[1];
@@ -113,7 +119,7 @@ export const routesSettingsSlice = createSlice({
     limitChanged: (state, action: PayloadAction<number>) => {
       state.limit = action.payload;
     },
-    sortChanged: (state, action: PayloadAction<string>) => {
+    sortChanged: (state, action: PayloadAction<SortValues>) => {
       state.sort = action.payload;
     },
   },

@@ -1,13 +1,11 @@
 import React, { useCallback, useMemo } from "react";
 
-import { rangeSettingsChanged } from "@/lib/features/routes/routesSettingsSlice";
+import { Range, rangeSettingsChanged } from "@/lib/features/routes/routesSettingsSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 import FilterHours from "./filterHours";
 import HoursPickerAccordion from "./hours-picker-accordion/hoursPickerAccordion";
 import BackwardIcon from "./icons/backwardIcon";
-
-type Range = [number, number];
 
 const FilterHoursEnd = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +28,7 @@ const FilterHoursEnd = () => {
   );
 
   const handleDepartureRangeChanged = useCallback(
-    (value: [number, number]) => {
+    (value: Range) => {
       dispatch(rangeSettingsChanged({
         keyFrom: "end_departure_hour_from",
         keyTo: "end_departure_hour_to",
@@ -41,7 +39,7 @@ const FilterHoursEnd = () => {
   );
 
   const handleArrivalRangeChanged = useCallback(
-    (value: [number, number]) => {
+    (value: Range) => {
       dispatch(rangeSettingsChanged({
         keyFrom: "end_arrival_hour_from",
         keyTo: "end_arrival_hour_to",

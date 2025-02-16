@@ -1,12 +1,13 @@
 import React, { FC, useState } from "react";
 
+import { Range } from "@/lib/features/routes/routesSettingsSlice";
 import Slider from "@mui/material/Slider";
 
 import s from "./priceRange.module.sass";
 
 interface PriceRangeProps {
-  values?: [number, number];
-  onChange?: (values: [number, number]) => void;
+  values?: Range;
+  onChange?: (values: Range) => void;
   min?: number;
   max?: number;
 }
@@ -17,10 +18,12 @@ const PriceRange: FC<PriceRangeProps> = ({
   min = 0,
   max = 100,
 }) => {
-  const [value, setValue] = useState<[number, number]>(values);
+  const [value, setValue] = useState<Range>(values);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as [number, number]);
+    if (Array.isArray(newValue) && newValue.length === 2) {
+      setValue(newValue as Range);
+    }
   };
 
   const handleEndChange = () => {
