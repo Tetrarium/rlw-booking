@@ -25,17 +25,6 @@ export type Range = [number, number];
 
 export type RangeKeys = Extract<RoutesSettingsKeys, `${string}_from` | `${string}_to`>;
 
-// type RangeKeysMap = {
-//   [K in RoutesSettingsKeys as K extends `${infer Prefix}_from`
-//   ? `${Prefix}_to` extends RoutesSettingsKeys
-//   ? K
-//   : never
-//   : never]: `${K extends `${infer Prefix}_from` ? Prefix : never}_to`;
-// };
-
-// export type RangeKeyFrom = keyof RangeKeysMap;
-// export type RangeKeyTo<T extends RangeKeyFrom> = RangeKeysMap[T];
-
 type RangePayloadMap = {
   [K in RangeKeys as K extends `${infer Prefix}_from`
   ? `${Prefix}_to` extends RangeKeys
