@@ -3,6 +3,7 @@ import React from "react";
 import Logo from "@/components/shared/logo/logo";
 import Mask from "@/components/shared/mask/mask";
 import Nav from "@/components/shared/nav/nav";
+import ProgressBar from "@/components/shared/progress-bar/progressBar";
 
 import SearchRoutesForm from "../forms/search-routes-form.tsx/searchRoutesForm";
 import OrderSteps from "../order-steps/orderSteps";
@@ -19,6 +20,7 @@ const Header = () => {
         </div>
         <OrderSteps />
       </Mask>
+      <ProgressBar />
     </header>
   );
 };
