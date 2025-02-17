@@ -14,6 +14,7 @@ const ProgressBar = () => {
         color="inherit"
         sx={{
           height: '100%',
+          maxHeight: '20px',
         }}
       />}
     </div>

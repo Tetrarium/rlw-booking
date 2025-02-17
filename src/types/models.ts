@@ -63,7 +63,7 @@ export interface TrainItem {
   have_air_conditioning: boolean;
   is_express: boolean;
   min_price: boolean;
-  arrival: TrainDeatails;
+  arrival?: TrainDeatails;
   departure: TrainDeatails;
   total_avaliable_seats: number;
 }
