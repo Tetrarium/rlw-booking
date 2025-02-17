@@ -58,25 +58,3 @@ const RoutesHeader: FC<RoutesHeaderProps> = ({ count }) => {
 };
 
 export default RoutesHeader;
-
-// const LimitRadio: FC<{ limit: number; }> = ({ limit }) => {
-//   const dispatch = useAppDispatch();
-//   const current = useAppSelector(state => state["routes-settings"].limit);
-
-//   return (
-//     <label className={s.showedNum}>
-//       <input
-//         type="radio"
-//         name="limit"
-//         value={limit}
-//         checked={current === limit}
-//         onChange={e => {
-//           if (e.target.checked) {
-//             dispatch(limitChanged(limit));
-//           }
-//         }}
-//       />
-//       <span>{limit}</span>
-//     </label>
-//   );
-// };

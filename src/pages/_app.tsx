@@ -25,10 +25,8 @@ export default function Home({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
         <div className={roboto.className}>
-          {/* <Layout> */}
           <Component {...pageProps} />
-          {/* </Layout> */}
-          <ToastContainer position="top-left" autoClose={5000} />
+          <ToastContainer position="bottom-left" autoClose={3000} />
         </div>
       </LocalizationProvider>
     </Provider>
