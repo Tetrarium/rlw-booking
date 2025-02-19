@@ -156,7 +156,7 @@ export const selectDefinedRoutesSettings = createSelector(
       from_city_id,
       to_city_id,
       ...Object.fromEntries(
-        Object.entries(otherSettings).filter(([, value]) => value !== undefined)
+        Object.entries(otherSettings).filter(([, value]) => value !== false && value !== undefined)
       )
     } as RoutesSettings;
   }

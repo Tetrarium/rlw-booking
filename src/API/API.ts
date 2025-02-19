@@ -1,7 +1,9 @@
 import { toast } from "react-toastify";
 
+import { RootState } from "@/lib/store";
 import { BASE_SERVER_URL } from "@/setting";
 import { CitiesResponse, RoutesSummary } from "@/types/models";
+import { createSelector } from "@reduxjs/toolkit";
 import {
     BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError
 } from "@reduxjs/toolkit/query/react";
@@ -64,3 +66,10 @@ export const appApi = createApi({
 });
 
 export const { useGetRoutesQuery, useGetCitiesQuery } = appApi;
+
+export const selectCountActiveRequests = createSelector(
+  (state: RootState) => state.appApi.queries,
+  (queries) => {
+    return Object.values(queries).filter(q => q?.status === 'pending').length;
+  }
+);

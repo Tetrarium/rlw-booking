@@ -1,12 +1,15 @@
 import React from "react";
 
+import { selectCountActiveRequests } from "@/API/API";
+import { useAppSelector } from "@/lib/hooks";
 import { LinearProgress } from "@mui/material";
 
-import { useLoading } from "./loadingContext";
 import s from "./progressBar.module.sass";
 
 const ProgressBar = () => {
-  const { isLoading } = useLoading();
+  const countActiveRequests = useAppSelector(selectCountActiveRequests);
+
+  const isLoading = countActiveRequests > 0;
 
   return (
     <div className={s.progress}>
