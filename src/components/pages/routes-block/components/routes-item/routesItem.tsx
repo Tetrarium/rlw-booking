@@ -24,7 +24,15 @@ const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
         </div>
       </div>
       <div className={s.right}>
-
+        <div className={s.content}>
+          <div className={s.directions}>
+          </div>
+          <div className={s.info}>
+            <div className={s.classes}></div>
+            <div className={s.options}></div>
+          </div>
+        </div>
+        <div className={s.control}></div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 
 import { useGetRoutesQuery } from "@/API/API";
+import { usePopulateCities } from "@/hooks/usePopulateCities";
 
 import RoutesHeader from "./components/routes-header/routesHeader";
 import RoutesList from "./components/routes-list/routesList";
@@ -18,6 +19,8 @@ const RoutesBlock = () => {
 
   const totalCount = data?.total_count || 0;
   const routes = data?.items || [];
+
+  usePopulateCities(routes[0]);
 
   const contentClass = classNames(
     s.content,
