@@ -18,17 +18,17 @@ export interface SeatPriceInfo {
 }
 
 export interface SeatsInfo {
-  first: number;
-  second: number;
-  third: number;
-  fourth: number;
+  first?: number;
+  second?: number;
+  third?: number;
+  fourth?: number;
 }
 
 export interface PriceInfo {
-  first: SeatPriceInfo;
-  second: SeatPriceInfo;
-  third: SeatPriceInfo;
-  fourth: SeatPriceInfo;
+  first?: SeatPriceInfo;
+  second?: SeatPriceInfo;
+  third?: SeatPriceInfo;
+  fourth?: SeatPriceInfo;
 }
 
 export interface StationDetails {
@@ -65,7 +65,9 @@ export interface TrainItem {
   min_price: boolean;
   arrival?: TrainDeatails;
   departure: TrainDeatails;
-  total_avaliable_seats: number;
+  // total_avaliable_seats: number;
+  available_seats: number;
+  available_seats_info: SeatsInfo;
 }
 
 export interface ResponseError {

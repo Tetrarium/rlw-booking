@@ -11,7 +11,7 @@ const initialState: RoutesSettings = {
   sort: 'date',
 };
 
-type RoutesSettingsKeys = keyof RoutesSettings;
+export type RoutesSettingsKeys = keyof RoutesSettings;
 
 export type CitiesKeys = Extract<RoutesSettingsKeys, `${string}_city_id`>;
 
