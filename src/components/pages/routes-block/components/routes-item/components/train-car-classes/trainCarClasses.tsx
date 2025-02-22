@@ -1,35 +1,26 @@
 import React, { FC } from "react";
 
-import { RoutesSettingsKeys } from "@/lib/features/routes/routesSettingsSlice";
-import { TrainItem } from "@/types/models";
+import { SeatsInfo, TrainItem } from "@/types/models";
 
 import s from "./trainCarClasses.module.sass";
 
 type TrainCarClassesMap = {
-  [K in RoutesSettingsKeys as K extends `have_${infer Prefix}_class`
-  ? Prefix
-  : never
-  ]: {
-    name: K,
-    title: string,
-  }
+  [key in keyof Required<SeatsInfo>]: {
+    title: string;
+  };
 };
 
 const classesMap: TrainCarClassesMap = {
   first: {
-    name: 'have_first_class',
     title: 'Люкс',
   },
   second: {
-    name: 'have_second_class',
     title: 'Купе',
   },
   third: {
-    name: 'have_third_class',
     title: 'Плацкарт'
   },
   fourth: {
-    name: 'have_fourth_class',
     title: 'Сидячий',
   }
 };
@@ -45,11 +36,43 @@ const TrainCarClasses: FC<TrainProps> = ({ train }) => {
 
   return (
     <div className={s.container}>
-      {Object.entries(availableSeats).map(([key, value]) => (
-        <div key={key}>{classesMap[key as keyof TrainCarClassesMap].title}: {value}</div>
-      ))}
+      {/* 1. Исходный */}
+      {/* {(Object.entries(availableSeats) as [
+        keyof typeof availableSeats,
+        number
+      ][])
+        .map(([key, value]) => (
+        <div key={key}>{classesMap[key].title}: {value}</div>
+      ))} */}
+
+      {/* 2. Типизированный Entries */}
+      {/* {typedEntries(availableSeats).map(([key, value]) => (
+        <div key={key}>{classesMap[key].title}: {value}</div>
+      ))} */}
+
+      {/* 3. Универсальный маппинг  */}
+      {
+        mapEntries(availableSeats, ([key, value]) => (
+          <div key={key}>{classesMap[key].title}: {value}</div>
+        ))
+      }
     </div>
   );
 };
 
 export default TrainCarClasses;
+
+function typedEntries<T extends object>(obj: T): Array<[keyof T, T[keyof T]]> {
+  return Object.entries(obj) as Array<[keyof T, T[keyof T]]>;
+}
+
+function mapEntries<T extends object, V>(
+  obj: T,
+  cb: (
+    entry: [keyof T, T[keyof T]],
+    index: number,
+    arr: Array<[keyof T, T[keyof T]]>
+  ) => V
+): V[] {
+  return typedEntries(obj).map(cb);
+}
