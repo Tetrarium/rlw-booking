@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 
 import { useGetCitiesQuery } from "@/API/API";
-import { useDebounce } from "@/hooks/useDebounce";
+import { useDebounce2 } from "@/hooks/useDebounce";
 import { City } from "@/types/models";
 import PlaceIcon from "@mui/icons-material/Place";
 import { Autocomplete, TextField } from "@mui/material";
@@ -17,13 +17,12 @@ type Option = { label: string; id: string; };
 const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
   const [inputValue, setInputValue] = useState('');
   const [value, setValue] = useState<Option>({ id: city._id, label: city.name });
-  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const { data: cities } = useGetCitiesQuery(searchTerm);
+  const debouncedSearchTerm = useDebounce2(inputValue, 300);
 
-  useDebounce(() => {
-    setSearchTerm(inputValue);
-  }, inputValue, 300);
+  const { data: cities } = useGetCitiesQuery(debouncedSearchTerm, {
+    skip: !debouncedSearchTerm.trim(),
+  });
 
   const options = cities && cities instanceof Array
     ? cities.map(({ name, _id }) => ({
@@ -35,6 +34,7 @@ const CitySearchField: FC<FieldProps> = ({ label = '', city, onSelect }) => {
   const handleSelect = useCallback((option: (Option | null)) => {
     console.log(option);
     if (!option) {
+      setValue({ id: '', label: '' });
       onSelect('', '');
       return;
     };

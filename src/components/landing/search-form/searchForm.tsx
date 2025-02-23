@@ -11,7 +11,7 @@ import FindButton from "@/UI/buttons/findButton";
 import SwapLocationsButton from "@/UI/buttons/swapLocationsButton";
 import Calendar from "@/UI/calendar/calendar";
 
-import CitySearchField from "../../shared/сitySearchField/сitySearchField";
+import CitySearchField from "../../shared/сity-search-field/сitySearchField";
 import s from "./searchForm.module.sass";
 
 const SearchForm = () => {

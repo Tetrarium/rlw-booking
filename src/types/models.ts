@@ -17,18 +17,18 @@ export interface SeatPriceInfo {
   wifi_price: number;
 }
 
-export interface SeatsInfo {
-  first: number;
-  second: number;
-  third: number;
-  fourth: number;
-}
+export type SeatsInfo = {
+  first?: number;
+  second?: number;
+  third?: number;
+  fourth?: number;
+};
 
 export interface PriceInfo {
-  first: SeatPriceInfo;
-  second: SeatPriceInfo;
-  third: SeatPriceInfo;
-  fourth: SeatPriceInfo;
+  first?: SeatPriceInfo;
+  second?: SeatPriceInfo;
+  third?: SeatPriceInfo;
+  fourth?: SeatPriceInfo;
 }
 
 export interface StationDetails {
@@ -63,9 +63,11 @@ export interface TrainItem {
   have_air_conditioning: boolean;
   is_express: boolean;
   min_price: boolean;
-  arrival: TrainDeatails;
+  arrival?: TrainDeatails;
   departure: TrainDeatails;
-  total_avaliable_seats: number;
+  // total_avaliable_seats: number;
+  available_seats: number;
+  available_seats_info: SeatsInfo;
 }
 
 export interface ResponseError {
