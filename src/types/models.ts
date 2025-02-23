@@ -17,12 +17,12 @@ export interface SeatPriceInfo {
   wifi_price: number;
 }
 
-export interface SeatsInfo {
+export type SeatsInfo = {
   first?: number;
   second?: number;
   third?: number;
   fourth?: number;
-}
+};
 
 export interface PriceInfo {
   first?: SeatPriceInfo;

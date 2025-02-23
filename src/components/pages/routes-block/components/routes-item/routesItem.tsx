@@ -35,7 +35,10 @@ const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
         </div>
         <div className={s.info}>
           <div className={s.classes}>
-            <TrainCarClasses train={item} />
+            <TrainCarClasses
+              seatsInfo={item.available_seats_info}
+              pricesInfo={item.departure.price_info}
+            />
           </div>
           <div className={s.options}></div>
           <div className={s.control}></div>
