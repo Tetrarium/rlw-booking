@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 
 import { TrainItem } from "@/types/models";
+import ChooseTrainButton from "@/UI/buttons/chooseTrainButton";
 
 import TrainCarClasses from "./components/train-car-classes/trainCarClasses";
+import TrainOptions from "./components/train-options/trainOptions";
 import Train from "./components/train/train";
 import TrainIcon from "./icons/trainIcon";
 import s from "./routesItem.module.sass";
@@ -40,8 +42,12 @@ const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
               pricesInfo={item.departure.price_info}
             />
           </div>
-          <div className={s.options}></div>
-          <div className={s.control}></div>
+          <div className={s.options}>
+            <TrainOptions />
+          </div>
+          <div className={s.control}>
+            <ChooseTrainButton />
+          </div>
         </div>
       </div>
     </div>
