@@ -14,11 +14,11 @@ const LastTicket: FC<LastTicketProps> = ({ item }) => {
       <div className={s.locations}>
         <div className={s.location}>
           <div className={s.city}>{item.departure.from.city.name}</div>
-          <div className={s.time}>{item.departure.from.datetime}</div>
+          <div className={s.station}>{item.departure.from.railway_station_name}</div>
         </div>
         <div className={s.location}>
           <div className={s.city}>{item.departure.to.city.name}</div>
-          <div className={s.time}>{item.departure.to.datetime}</div>
+          <div className={s.station}>{item.departure.to.datetime}</div>
         </div>
       </div>
       <div className={s.price}>

@@ -17,9 +17,11 @@ const LastTickets = () => {
   return (
     <div className={s.container}>
       <h3 className={s.title}>Последние билеты</h3>
-      {lastTickets.map((ticket) => (
-        <LastTicket key={ticket.departure._id} item={ticket} />
-      ))}
+      <div className={s.tickets}>
+        {lastTickets.map((ticket) => (
+          <LastTicket key={ticket.departure._id} item={ticket} />
+        ))}
+      </div>
     </div>
   );
 };
