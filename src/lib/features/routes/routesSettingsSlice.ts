@@ -174,3 +174,8 @@ export const selectDateEndArrival = dateEndArrivalHandlers.selector;
 
 export const selectBooleanSettings = (state: RootState) =>
   state["routes-settings"] as { [K in BooleanKeys]: boolean | undefined };
+
+export const selectRoutesPage = createSelector(
+  (state: RootState) => state["routes-settings"],
+  (routesSettings) => routesSettings.offset / routesSettings.limit + 1,
+);

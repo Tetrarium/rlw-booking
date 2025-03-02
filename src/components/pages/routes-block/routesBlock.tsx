@@ -7,6 +7,7 @@ import { usePopulateCities } from "@/hooks/usePopulateCities";
 
 import RoutesHeader from "./components/routes-header/routesHeader";
 import RoutesList from "./components/routes-list/routesList";
+import RoutesPagination from "./routes-pagination/routesPagination";
 import s from "./routesBlock.module.sass";
 
 const RoutesBlock = () => {
@@ -34,6 +35,7 @@ const RoutesBlock = () => {
       <div className={contentClass}>
         <RoutesHeader count={totalCount} />
         <RoutesList items={routes} />
+        <RoutesPagination totalCount={totalCount} />
       </div>
       {(isLoading || isFetching) &&
         <div className={s.loading}>Загрузка...</div>
