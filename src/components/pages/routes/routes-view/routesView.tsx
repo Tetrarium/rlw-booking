@@ -1,13 +1,12 @@
-import React from "react";
+import React, { FC, PropsWithChildren } from "react";
 
 import Wrapper from "@/components/shared/wrapper/wrapper";
 
+import LastTickets from "../../last-tickets/lastTickets";
 import FilterRoutes from "../filter-routes/filterRoutes";
-import LastTickets from "../last-tickets/lastTickets";
-import RoutesContent from "../routes-block/routesBlock";
 import s from "./routesView.module.sass";
 
-const RoutesView = () => {
+const RoutesView: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Wrapper>
       <main className={s.container}>
@@ -16,7 +15,7 @@ const RoutesView = () => {
           <LastTickets />
         </aside>
         <section className={s.content}>
-          <RoutesContent />
+          {children}
         </section>
       </main>
     </Wrapper>

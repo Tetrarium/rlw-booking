@@ -4,6 +4,7 @@ import React from "react";
 
 import { useGetRoutesQuery } from "@/API/API";
 import { usePopulateCities } from "@/hooks/usePopulateCities";
+import { useRedirectOnSettingsChanged } from "@/hooks/useRedirectOnSettingsChanged";
 
 import RoutesHeader from "./components/routes-header/routesHeader";
 import RoutesList from "./components/routes-list/routesList";
@@ -21,6 +22,7 @@ const RoutesBlock = () => {
   const totalCount = data?.total_count || 0;
   const routes = data?.items || [];
 
+  useRedirectOnSettingsChanged();
   usePopulateCities(routes[0]);
 
   const contentClass = classNames(
