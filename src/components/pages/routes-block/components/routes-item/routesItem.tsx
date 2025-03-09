@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { FC } from "react";
 
 import { TrainItem } from "@/types/models";
@@ -46,7 +47,7 @@ const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
             <TrainOptions />
           </div>
           <div className={s.control}>
-            <ChooseTrainButton />
+            <ChooseTrainButton component={Link} href={`/routes/${item.departure._id}`} />
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { BASE_SERVER_URL } from "@/setting";
 import { CitiesResponse, RoutesSummary, TrainItem } from "@/types/models";
 import { createSelector } from "@reduxjs/toolkit";
 import {
-    BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError
+  BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError
 } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
@@ -65,10 +65,13 @@ export const appApi = createApi({
     getLastTickets: builder.query<TrainItem[], void>({
       query: () => `/routes/last`,
     }),
+    getTrainItem: builder.query<TrainItem, string>({
+      query: (id) => `/routes/${id}/seats`,
+    }),
   }),
 });
 
-export const { useGetRoutesQuery, useGetCitiesQuery, useGetLastTicketsQuery } = appApi;
+export const { useGetRoutesQuery, useGetCitiesQuery, useGetLastTicketsQuery, useGetTrainItemQuery } = appApi;
 
 export const selectCountActiveRequests = createSelector(
   (state: RootState) => state.appApi.queries,
