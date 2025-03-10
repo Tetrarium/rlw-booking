@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 import { RootState } from "@/lib/store";
 import { BASE_SERVER_URL } from "@/setting";
-import { CitiesResponse, RoutesSummary, TrainItem } from "@/types/models";
+import { CitiesResponse, CoachInfo, RoutesSummary, TrainItem } from "@/types/models";
 import { createSelector } from "@reduxjs/toolkit";
 import {
   BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError
@@ -65,7 +65,7 @@ export const appApi = createApi({
     getLastTickets: builder.query<TrainItem[], void>({
       query: () => `/routes/last`,
     }),
-    getTrainItem: builder.query<TrainItem, string>({
+    getTrainItem: builder.query<CoachInfo[], string>({
       query: (id) => `/routes/${id}/seats`,
     }),
   }),

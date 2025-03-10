@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
 
 import { TrainItem } from "@/types/models";
@@ -15,6 +15,15 @@ interface RoutesItemProps {
 }
 
 const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
+  const router = useRouter();
+
+  const handleChooseTrain = () => {
+    sessionStorage.setItem("trainData", JSON.stringify(item));
+    router.push(`/routes/${item.departure._id}`, "", {
+      scroll: false,
+    });
+  };
+
   return (
     <div className={s.container}>
       <div className={s.left}>
@@ -47,7 +56,7 @@ const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
             <TrainOptions />
           </div>
           <div className={s.control}>
-            <ChooseTrainButton component={Link} href={`/routes/${item.departure._id}`} />
+            <ChooseTrainButton onClick={handleChooseTrain} />
           </div>
         </div>
       </div>
