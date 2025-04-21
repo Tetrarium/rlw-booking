@@ -6,6 +6,8 @@ import { selectCurrentDeparture } from "@/lib/features/routes/currentRouteSlice"
 import { useAppSelector } from "@/lib/hooks";
 import { ROUTES } from "@/setting";
 
+import TrainBadge from "./components/trainBadge";
+
 const TrainView = () => {
   const params = useParams();
   const router = useRouter();
@@ -29,7 +31,7 @@ const TrainView = () => {
 
   return (
     <div>
-      {/* {trainData && <TrainBadge train={trainData.departure} />} */}
+      {trainData && <TrainBadge train={trainData} />}
     </div>
   );
 };

@@ -2,13 +2,13 @@ import React from "react";
 
 import Layout from "@/components/pages/layout";
 import RoutesView from "@/components/pages/routes/routes-view/routesView";
-import TrainView from "@/components/pages/routes/train-view/trainView";
+import SeatsPage from "@/components/pages/seats-page/seatsPage";
 
 const Train = () => {
   return (
     <Layout>
       <RoutesView>
-        <TrainView />
+        <SeatsPage />
       </RoutesView>
     </Layout>
   );
