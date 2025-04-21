@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
+import { setCurrentDeparture } from "@/lib/features/routes/currentRouteSlice";
+import { useAppDispatch } from "@/lib/hooks";
 import { TrainItem } from "@/types/models";
 import ChooseTrainButton from "@/UI/buttons/chooseTrainButton";
 
@@ -16,9 +18,13 @@ interface RoutesItemProps {
 
 const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  console.log(item);
 
   const handleChooseTrain = () => {
     sessionStorage.setItem("trainData", JSON.stringify(item));
+    dispatch(setCurrentDeparture(item.departure));
     router.push(`/routes/${item.departure._id}`, "", {
       scroll: false,
     });

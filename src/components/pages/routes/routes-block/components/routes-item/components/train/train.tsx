@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { formatDuration } from "@/lib/utils/date";
-import { TrainDeatails } from "@/types/models";
+import { TrainDetails } from "@/types/models";
 
 import Station from "../station/station";
 import ArrowLeftIcon from "./icons/arrowLeftIcon";
@@ -9,7 +9,7 @@ import ArrowRightIcon from "./icons/arrowRightIcon";
 import s from "./train.module.sass";
 
 interface TrainProps {
-  details: TrainDeatails;
+  details: TrainDetails;
   backward?: boolean;
 }
 

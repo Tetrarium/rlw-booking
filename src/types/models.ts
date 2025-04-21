@@ -37,7 +37,7 @@ export interface StationDetails {
   datetime: number;
 }
 
-export interface TrainDeatails {
+export interface TrainDetails {
   _id: string;
   have_first_class: boolean;
   have_second_class: boolean;
@@ -63,8 +63,8 @@ export interface TrainItem {
   have_air_conditioning: boolean;
   is_express: boolean;
   min_price: boolean;
-  arrival?: TrainDeatails;
-  departure: TrainDeatails;
+  arrival?: TrainDetails;
+  departure: TrainDetails;
   // total_avaliable_seats: number;
   available_seats: number;
   available_seats_info: SeatsInfo;

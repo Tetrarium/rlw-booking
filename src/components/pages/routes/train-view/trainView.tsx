@@ -1,37 +1,35 @@
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 import { useGetTrainItemQuery } from "@/API/API";
-import { TrainItem } from "@/types/models";
-
-import TrainBadge from "./components/trainBadge";
+import { selectCurrentDeparture } from "@/lib/features/routes/currentRouteSlice";
+import { useAppSelector } from "@/lib/hooks";
+import { ROUTES } from "@/setting";
 
 const TrainView = () => {
   const params = useParams();
-
+  const router = useRouter();
   const trainId = params ? Array.isArray(params.trainId) ? params.trainId[0] : params.trainId : '';
 
   const { data: coaches } = useGetTrainItemQuery(trainId, {
     skip: !trainId,
   });
 
-  console.log(coaches);
+  console.log('coaches:', coaches);
 
-  const [trainData, setTrainData] = React.useState<TrainItem | null>(null);
+  const trainData = useAppSelector(selectCurrentDeparture);
+  console.log('trainData:', trainData);
+
 
   useEffect(() => {
-    const storedData = sessionStorage.getItem('trainData');
-
-    if (storedData) {
-      setTrainData(JSON.parse(storedData));
+    if (!trainData) {
+      router.push(ROUTES.home);
     }
+  }, [trainData, router]);
 
-  }, []);
-
-  console.log(trainData);
   return (
     <div>
-      {trainData && <TrainBadge train={trainData.departure} />}
+      {/* {trainData && <TrainBadge train={trainData.departure} />} */}
     </div>
   );
 };

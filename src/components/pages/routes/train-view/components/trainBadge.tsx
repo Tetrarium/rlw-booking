@@ -1,14 +1,16 @@
 import React, { FC } from "react";
 
-import { TrainDeatails } from "@/types/models";
+import { TrainDetails } from "@/types/models";
 
 import s from "./trainBadge.module.sass";
 
 interface Props {
-  train: TrainDeatails;
+  train: TrainDetails;
 }
 
 const TrainBadge: FC<Props> = ({ train }) => {
+
+
   return (
     <div className={s.container}>
       <div className={s.logo}></div>
