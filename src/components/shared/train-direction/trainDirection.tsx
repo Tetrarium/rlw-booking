@@ -3,17 +3,18 @@ import { FC } from "react";
 import { formatDuration } from "@/lib/utils/date";
 import { TrainDetails } from "@/types/models";
 
-import Station from "../station/station";
+import Station from "./components/station-item/station";
 import ArrowLeftIcon from "./icons/arrowLeftIcon";
 import ArrowRightIcon from "./icons/arrowRightIcon";
-import s from "./train.module.sass";
+import s from "./trainDirection.module.sass";
 
-interface TrainProps {
+interface Props {
   details: TrainDetails;
   backward?: boolean;
+  showDuration?: boolean;
 }
 
-const Train: FC<TrainProps> = ({ details, backward }) => {
+const TrainDirection: FC<Props> = ({ details, backward, showDuration }) => {
   const {
     from,
     to,
@@ -28,13 +29,15 @@ const Train: FC<TrainProps> = ({ details, backward }) => {
           ? <ArrowLeftIcon />
           : <ArrowRightIcon />
         }
-        <div className={s.duration}>
-          {formatDuration(duration)}
-        </div>
+        {showDuration &&
+          <div className={s.duration}>
+            {formatDuration(duration)}
+          </div>
+        }
       </div>
       <Station station={to} />
     </div>
   );
 };
 
-export default Train;
+export default TrainDirection;

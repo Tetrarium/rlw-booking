@@ -10,6 +10,7 @@ const CancelTrainButton: FC<ButtonProps> = ({ sx = {}, ...other }) => {
     color: '#292929',
     height: '3.75rem',
     border: '1px solid #292929',
+    borderRadius: '5px',
     px: 5,
     ":hover": {
       color: '#FFA800',

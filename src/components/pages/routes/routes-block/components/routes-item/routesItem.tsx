@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
+import TrainDirection from "@/components/shared/train-direction/trainDirection";
 import { setCurrentDeparture } from "@/lib/features/routes/currentRouteSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { TrainItem } from "@/types/models";
@@ -8,7 +9,6 @@ import ChooseTrainButton from "@/UI/buttons/chooseTrainButton";
 
 import TrainCarClasses from "./components/train-car-classes/trainCarClasses";
 import TrainOptions from "./components/train-options/trainOptions";
-import Train from "./components/train/train";
 import TrainIcon from "./icons/trainIcon";
 import s from "./routesItem.module.sass";
 
@@ -48,8 +48,8 @@ const RoutesItem: FC<RoutesItemProps> = ({ item }) => {
       </div>
       <div className={s.right}>
         <div className={s.trains}>
-          <Train details={item.departure} />
-          {item.arrival && <Train details={item.arrival} backward />}
+          <TrainDirection details={item.departure} showDuration />
+          {item.arrival && <TrainDirection details={item.arrival} backward showDuration />}
         </div>
         <div className={s.info}>
           <div className={s.classes}>

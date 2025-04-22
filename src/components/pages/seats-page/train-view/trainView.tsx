@@ -7,7 +7,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { ROUTES } from "@/setting";
 import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 
-import TrainBadge from "./components/trainBadge";
+import TrainBadge from "./components/train-badge/trainBadge";
 import ForwardIcon from "./icons/ForwardIcon";
 import s from "./trainView.module.sass";
 
@@ -32,14 +32,19 @@ const TrainView = () => {
     }
   }, [trainData, router]);
 
+  if (!trainData) return null;
+
+  const handleGoBack = () => {
+    router.back();
+  };
+
   return (
     <div className={s.trainView}>
       <div className={s.trainView__control}>
         <ForwardIcon />
-        <CancelTrainButton />
+        <CancelTrainButton onClick={handleGoBack} />
       </div>
-
-      {trainData && <TrainBadge train={trainData} />}
+      <TrainBadge train={trainData} />
     </div>
   );
 };
