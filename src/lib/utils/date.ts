@@ -1,3 +1,6 @@
+import { formatDuration as formatDurationFns, intervalToDuration } from "date-fns";
+import { ru } from "date-fns/locale";
+
 export function dateFormatToISO(date: Date) {
   return new Intl.DateTimeFormat('sv-SE').format(date);
 };
@@ -26,4 +29,16 @@ export function formatDuration(duration: number): string {
   const hours = duration / (60 * 60 * 1000) | 0;
 
   return `${hours}:${minutes}`;
+}
+
+export function formatTravelDuration(ms: number) {
+  const duration = intervalToDuration({ start: 0, end: ms * 1000 });
+
+  const formatted = formatDurationFns(duration, {
+    format: ['hours', 'minutes'],
+    locale: ru,
+    zero: false,
+  });
+
+  return formatted;
 }
