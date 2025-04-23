@@ -7,6 +7,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { ROUTES } from "@/setting";
 import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 
+import TicketCounter from "./components/ticket-counter/ticketCounter";
 import TrainBadge from "./components/train-badge/trainBadge";
 import ForwardIcon from "./icons/ForwardIcon";
 import s from "./trainView.module.sass";
@@ -45,6 +46,7 @@ const TrainView = () => {
         <CancelTrainButton onClick={handleGoBack} />
       </div>
       <TrainBadge train={trainData} />
+      <TicketCounter />
     </div>
   );
 };
