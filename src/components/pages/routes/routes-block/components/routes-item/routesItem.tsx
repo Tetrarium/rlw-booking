@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-import TrainDirection from "@/components/shared/train-direction/trainDirection";
+import TrainDirection from "@/components/shared/train-schedule/trainSchedule";
 import { setCurrentDeparture } from "@/lib/features/routes/currentRouteSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { TrainItem } from "@/types/models";

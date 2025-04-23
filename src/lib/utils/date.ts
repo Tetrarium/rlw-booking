@@ -31,14 +31,15 @@ export function formatDuration(duration: number): string {
   return `${hours}:${minutes}`;
 }
 
-export function formatTravelDuration(ms: number) {
+export function getFormatTravelDurationParts(ms: number) {
   const duration = intervalToDuration({ start: 0, end: ms * 1000 });
 
   const formatted = formatDurationFns(duration, {
     format: ['hours', 'minutes'],
     locale: ru,
     zero: false,
+    delimiter: '|'
   });
 
-  return formatted;
+  return formatted.split('|');
 }

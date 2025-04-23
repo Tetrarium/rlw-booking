@@ -6,7 +6,7 @@ import { TrainDetails } from "@/types/models";
 import Station from "./components/station-item/station";
 import ArrowLeftIcon from "./icons/arrowLeftIcon";
 import ArrowRightIcon from "./icons/arrowRightIcon";
-import s from "./trainDirection.module.sass";
+import s from "./trainSchedule.module.sass";
 
 interface Props {
   details: TrainDetails;
@@ -14,7 +14,7 @@ interface Props {
   showDuration?: boolean;
 }
 
-const TrainDirection: FC<Props> = ({ details, backward, showDuration }) => {
+const TrainSchedule: FC<Props> = ({ details, backward, showDuration }) => {
   const {
     from,
     to,
@@ -40,4 +40,4 @@ const TrainDirection: FC<Props> = ({ details, backward, showDuration }) => {
   );
 };
 
-export default TrainDirection;
+export default TrainSchedule;
