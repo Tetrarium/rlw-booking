@@ -7,6 +7,8 @@ import { useAppSelector } from "@/lib/hooks";
 import { ROUTES } from "@/setting";
 import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 
+import CarInfo from "./components/car-info/carInfo";
+import CarPicker from "./components/car-picker/carPicker";
 import CarType from "./components/car-type/carType";
 import TicketCounter from "./components/ticket-counter/ticketCounter";
 import TrainBadge from "./components/train-badge/trainBadge";
@@ -49,6 +51,8 @@ const TrainView = () => {
       <TrainBadge train={trainData} />
       <TicketCounter />
       <CarType />
+      <CarPicker />
+      <CarInfo />
     </div>
   );
 };
