@@ -11,7 +11,7 @@ interface CarType {
   icon: React.FunctionComponent<TrainClassIconProps>;
 }
 
-export const carTypes: Record<string, CarType> = {
+export const carTypesMap: Record<string, CarType> = {
   fourth: {
     label: 'Сидячий',
     icon: TrainFourthClassIcon,

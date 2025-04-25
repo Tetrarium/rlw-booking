@@ -1,34 +1,32 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { FC } from "react";
+
+import { TCoach } from "@/types/models";
 
 import s from "./carPicker.module.sass";
 
-const cars: Record<number, string> = {
-  7: '07',
-  9: '09',
-};
+interface Props {
+  cars?: TCoach[],
+  pickedCarId?: string,
+  pickCar?: (id: string) => void;
+}
 
-const CarPicker = () => {
-  const [pickedCar, setPickedCar] = useState<keyof typeof cars>(7);
-
-  const pickCar = (key: keyof typeof cars) => {
-    setPickedCar(key);
-  };
+const CarPicker: FC<Props> = ({ cars = [], pickedCarId, pickCar = () => { } }) => {
   return (
     <div className={s.carPicker}>
       <h3 className={s.carPicker__title}>Вагоны</h3>
       <span className={s.carPicker__cars}>
-        {Object.entries(cars).map(([key, value]) => {
+        {cars.map(({ _id, name }) => {
           const carClass = classNames(s.carPicker__car, {
-            [s.selected]: pickedCar === +key
+            [s.selected]: pickedCarId === _id
           });
 
           return (
             <button
               className={carClass}
-              key={key}
-              onClick={() => pickCar(+key)}
-            >{value}</button>
+              key={_id}
+              onClick={() => pickCar(_id)}
+            >{name}</button>
           );
         })}
       </span>

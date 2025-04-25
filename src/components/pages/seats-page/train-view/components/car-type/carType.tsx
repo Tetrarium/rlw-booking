@@ -1,17 +1,19 @@
 import classNames from "classnames";
-import React from "react";
+import React, { FC } from "react";
 
 import s from "./carType.module.sass";
-import { carTypes } from "./carTypes";
+import { carTypesMap } from "./carTypesMap";
 
-const CarType = () => {
-  const selectedType = 'second';
+interface Props {
+  selectedType?: string;
+}
 
+const CarType: FC<Props> = ({ selectedType }) => {
   return (
     <div className={s.carType}>
       <h3 className={s.carType__title}>Тип вагона</h3>
       <ul className={s.carType__types}>
-        {Object.entries(carTypes).map(([type, info]) => {
+        {Object.entries(carTypesMap).map(([type, info]) => {
           const { icon: Icon, label } = info;
 
           const carTypeClass = classNames(s.carType__type, {

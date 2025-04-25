@@ -1,5 +1,5 @@
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { useGetTrainItemQuery } from "@/API/API";
 import { selectCurrentDeparture } from "@/lib/features/routes/currentRouteSlice";
@@ -24,7 +24,29 @@ const TrainView = () => {
     skip: !trainId,
   });
 
+  const [pickedCoachId, setPickedCoachId] = useState<string>();
+
+  useEffect(() => {
+    if (coaches) {
+      setPickedCoachId(coaches[0].coach._id);
+    }
+  }, [coaches]);
+
+  const pickedCoach = useMemo(() => {
+    return coaches?.find(coach => coach.coach._id === pickedCoachId);
+  }, [pickedCoachId, coaches]);
+
+  const cars = useMemo(() => {
+    return coaches?.map(coach => coach.coach);
+  }, [coaches]);
+
+  const pickCoach = (id: string) => {
+    setPickedCoachId(id);
+  };
+
   console.log('coaches:', coaches);
+  console.log('pickedCoachId:', pickedCoachId);
+  console.log('pickedCoach:', pickedCoach);
 
   const trainData = useAppSelector(selectCurrentDeparture);
   console.log('trainData:', trainData);
@@ -50,8 +72,8 @@ const TrainView = () => {
       </div>
       <TrainBadge train={trainData} />
       <TicketCounter />
-      <CarType />
-      <CarPicker />
+      <CarType selectedType={pickedCoach?.coach.class_type} />
+      <CarPicker cars={cars} pickedCarId={pickedCoachId} pickCar={pickCoach} />
       <CarInfo />
     </div>
   );
