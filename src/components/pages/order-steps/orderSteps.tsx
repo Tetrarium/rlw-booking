@@ -20,7 +20,7 @@ const steps: Step[] = [
 const OrderSteps = () => {
   const router = useRouter();
 
-  const currentStep = steps.findIndex(step => step.path === router.pathname) + 1;
+  const currentStep = steps.findIndex(step => router.pathname.includes(step.path)) + 1;
 
   return (
     <div className={s.container}>

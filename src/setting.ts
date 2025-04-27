@@ -5,3 +5,7 @@ export const SERVER_URLS = {
   CITIES: BASE_SERVER_URL + '/routes/cities',
   ROUTES: BASE_SERVER_URL + '/routes',
 };
+
+export const ROUTES = {
+  home: '/',
+};

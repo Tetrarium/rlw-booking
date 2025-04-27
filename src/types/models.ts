@@ -37,7 +37,7 @@ export interface StationDetails {
   datetime: number;
 }
 
-export interface TrainDeatails {
+export interface TrainDetails {
   _id: string;
   have_first_class: boolean;
   have_second_class: boolean;
@@ -63,8 +63,8 @@ export interface TrainItem {
   have_air_conditioning: boolean;
   is_express: boolean;
   min_price: boolean;
-  arrival?: TrainDeatails;
-  departure: TrainDeatails;
+  arrival?: TrainDetails;
+  departure: TrainDetails;
   // total_avaliable_seats: number;
   available_seats: number;
   available_seats_info: SeatsInfo;
@@ -82,3 +82,31 @@ export type RoutesSummary = {
 export type RoutesResponse = RoutesSummary | ResponseError;
 
 export type CitiesResponse = City[] | ResponseError;
+
+export type TCoach = {
+  _id: string;
+  name: string;
+  train: string;
+  class_type: keyof SeatsInfo;
+  have_wifi: boolean;
+  have_air_conditioning: boolean;
+  is_linens_included: boolean;
+  linens_price: number;
+  price: number;
+  side_price: number;
+  top_price: number;
+  wifi_price: number;
+};
+
+export type TSeat = {
+  index: number;
+  available: boolean;
+};
+
+export type CoachInfo = {
+  coach: TCoach;
+  seats: TSeat[];
+};
+
+export type CoachesResponse = CoachInfo[] | ResponseError;
+
