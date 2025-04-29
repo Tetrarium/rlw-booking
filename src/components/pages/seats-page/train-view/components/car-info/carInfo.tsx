@@ -1,6 +1,8 @@
 import React from "react";
 
 import s from "./carInfo.module.sass";
+import { coachServicesMap } from "./coachServicesMap";
+import ServiceCheckbox from "./components/service-checkbox/serviceCheckbox";
 
 const CarInfo = () => {
   return (
@@ -39,7 +41,18 @@ const CarInfo = () => {
             <span className={s.serviceType}>фпк</span>
           </div>
           <ul className={s.servicesList}>
-            <li className={s.servicesList__item}>Item</li>
+            {/* <li className={s.servicesList__item}>Item</li> */}
+            {
+              Object.entries(coachServicesMap).map(([type, { icon: Icon, tooltip }]) => {
+                return (
+                  <li key={type} className={s.servicesList__item}>
+                    <ServiceCheckbox tooltip={tooltip}>
+                      <Icon />
+                    </ServiceCheckbox>
+                  </li>
+                );
+              })
+            }
           </ul>
         </div>
       </div>
