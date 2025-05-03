@@ -1,5 +1,7 @@
 import React from "react";
 
+import { mapEntries } from "@/lib/utils/shared";
+
 import s from "./carInfo.module.sass";
 import { coachServicesMap } from "./coachServicesMap";
 import ServiceCheckbox from "./components/service-checkbox/serviceCheckbox";
@@ -43,10 +45,19 @@ const CarInfo = () => {
           <ul className={s.servicesList}>
             {/* <li className={s.servicesList__item}>Item</li> */}
             {
-              Object.entries(coachServicesMap).map(([type, { icon: Icon, tooltip }]) => {
+              // Object.entries(coachServicesMap).map(([type, { icon: Icon, tooltip }]) => {
+              //   return (
+              //     <li key={type} className={s.servicesList__item}>
+              //       <ServiceCheckbox tooltip={tooltip}>
+              //         <Icon />
+              //       </ServiceCheckbox>
+              //     </li>
+              //   );
+              // })
+              mapEntries(coachServicesMap, ([name, { icon: Icon, tooltip }]) => {
                 return (
-                  <li key={type} className={s.servicesList__item}>
-                    <ServiceCheckbox tooltip={tooltip}>
+                  <li key={name} className={s.servicesList__item}>
+                    <ServiceCheckbox tooltip={tooltip} name={name}>
                       <Icon />
                     </ServiceCheckbox>
                   </li>

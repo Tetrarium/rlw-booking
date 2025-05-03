@@ -110,3 +110,8 @@ export type CoachInfo = {
 
 export type CoachesResponse = CoachInfo[] | ResponseError;
 
+export type CoachServicesKeys =
+  'air_conditioning'
+  | 'wifi'
+  | 'linens'
+  | 'feed';

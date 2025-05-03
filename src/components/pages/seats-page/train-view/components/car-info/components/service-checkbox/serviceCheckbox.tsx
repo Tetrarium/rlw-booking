@@ -1,14 +1,21 @@
 import React, { FC, PropsWithChildren } from "react";
 
+import { coachServiceSelector, toggleCoachService } from "@/lib/features/order/coachServicesSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { CoachServicesKeys } from "@/types/models";
 import { Tooltip } from "@mui/material";
 
 import s from "./serviceCheckbox.module.sass";
 
 interface Props {
   tooltip: string;
+  name: CoachServicesKeys,
 }
 
-const ServiceCheckbox: FC<Props & PropsWithChildren> = ({ tooltip, children }) => {
+const ServiceCheckbox: FC<Props & PropsWithChildren> = ({ tooltip, name, children }) => {
+  const dispatch = useAppDispatch();
+  const serviceSelector = useAppSelector(coachServiceSelector(name));
+
   return (
     <Tooltip
       title={tooltip}
@@ -32,7 +39,7 @@ const ServiceCheckbox: FC<Props & PropsWithChildren> = ({ tooltip, children }) =
       arrow
     >
       <label className={s.container}>
-        <input type="checkbox" className={s.checkbox} />
+        <input type="checkbox" className={s.checkbox} checked={serviceSelector} onChange={() => dispatch(toggleCoachService(name))} />
         <span className={s.icon}>
           {children}
         </span>

@@ -1,15 +1,17 @@
 import { FC } from "react";
 
+import { CoachServicesKeys } from "@/types/models";
+
 import AirConditionIcon from "./icons/airConditionIcon";
 import FeedIcon from "./icons/feedIcon";
 import LinensIcon from "./icons/linensIcon";
 import WiFiIcon from "./icons/wifiIcon";
 
-export const coachServicesMap: Record<string, {
+export const coachServicesMap: Record<CoachServicesKeys, {
   tooltip: string,
   icon: FC;
 }> = {
-  airCondition: {
+  air_conditioning: {
     tooltip: 'кондиционер',
     icon: AirConditionIcon,
   },
