@@ -8,7 +8,7 @@ import { ROUTES } from "@/setting";
 import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 
 import CarPicker from "./components/car-picker/carPicker";
-import CarInfo from "./components/coach-info/carInfo";
+import CoachInfo from "./components/coach-info/coachInfo";
 import CoachType from "./components/coach-type/coachType";
 import TicketCounter from "./components/ticket-counter/ticketCounter";
 import TrainBadge from "./components/train-badge/trainBadge";
@@ -74,7 +74,7 @@ const TrainView = () => {
       <TicketCounter />
       <CoachType selectedType={pickedCoachInfo?.coach.class_type} />
       <CarPicker cars={cars} pickedCarId={pickedCoachId} pickCar={pickCoach} />
-      <CarInfo />
+      <CoachInfo />
     </div>
   );
 };
