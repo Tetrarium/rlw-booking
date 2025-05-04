@@ -5,13 +5,14 @@ import TrainFirstClassIcon from "@/components/shared/icons/trainFirstClassIcon";
 import TrainFourthClassIcon from "@/components/shared/icons/trainFourthClassIcon";
 import TrainSecondIcon from "@/components/shared/icons/trainSecondClassIcon";
 import TrainThirdClassIcon from "@/components/shared/icons/trainThirdClassIcon";
+import { CoachTypeKeys } from "@/types/models";
 
-interface CarType {
+interface CoachType {
   label: string;
   icon: React.FunctionComponent<TrainClassIconProps>;
 }
 
-export const carTypesMap: Record<string, CarType> = {
+export const coachTypesMap: Record<CoachTypeKeys, CoachType> = {
   fourth: {
     label: 'Сидячий',
     icon: TrainFourthClassIcon,

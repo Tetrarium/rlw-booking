@@ -43,17 +43,7 @@ const CarInfo = () => {
             <span className={s.serviceType}>фпк</span>
           </div>
           <ul className={s.servicesList}>
-            {/* <li className={s.servicesList__item}>Item</li> */}
             {
-              // Object.entries(coachServicesMap).map(([type, { icon: Icon, tooltip }]) => {
-              //   return (
-              //     <li key={type} className={s.servicesList__item}>
-              //       <ServiceCheckbox tooltip={tooltip}>
-              //         <Icon />
-              //       </ServiceCheckbox>
-              //     </li>
-              //   );
-              // })
               mapEntries(coachServicesMap, ([name, { icon: Icon, tooltip }]) => {
                 return (
                   <li key={name} className={s.servicesList__item}>

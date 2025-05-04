@@ -7,9 +7,9 @@ import { useAppSelector } from "@/lib/hooks";
 import { ROUTES } from "@/setting";
 import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 
-import CarInfo from "./components/car-info/carInfo";
 import CarPicker from "./components/car-picker/carPicker";
-import CarType from "./components/car-type/carType";
+import CarInfo from "./components/coach-info/carInfo";
+import CoachType from "./components/coach-type/coachType";
 import TicketCounter from "./components/ticket-counter/ticketCounter";
 import TrainBadge from "./components/train-badge/trainBadge";
 import ForwardIcon from "./icons/ForwardIcon";
@@ -20,33 +20,33 @@ const TrainView = () => {
   const router = useRouter();
   const trainId = params ? Array.isArray(params.trainId) ? params.trainId[0] : params.trainId : '';
 
-  const { data: coaches } = useGetTrainItemQuery(trainId, {
+  const { data: coachesInfos } = useGetTrainItemQuery(trainId, {
     skip: !trainId,
   });
 
   const [pickedCoachId, setPickedCoachId] = useState<string>();
 
   useEffect(() => {
-    if (coaches) {
-      setPickedCoachId(coaches[0].coach._id);
+    if (coachesInfos) {
+      setPickedCoachId(coachesInfos[0].coach._id);
     }
-  }, [coaches]);
+  }, [coachesInfos]);
 
-  const pickedCoach = useMemo(() => {
-    return coaches?.find(coach => coach.coach._id === pickedCoachId);
-  }, [pickedCoachId, coaches]);
+  const pickedCoachInfo = useMemo(() => {
+    return coachesInfos?.find(coachInfo => coachInfo.coach._id === pickedCoachId);
+  }, [pickedCoachId, coachesInfos]);
 
   const cars = useMemo(() => {
-    return coaches?.map(coach => coach.coach);
-  }, [coaches]);
+    return coachesInfos?.map(coachInfo => coachInfo.coach);
+  }, [coachesInfos]);
 
   const pickCoach = (id: string) => {
     setPickedCoachId(id);
   };
 
-  console.log('coaches:', coaches);
+  console.log('coaches:', coachesInfos);
   console.log('pickedCoachId:', pickedCoachId);
-  console.log('pickedCoach:', pickedCoach);
+  console.log('pickedCoach:', pickedCoachInfo);
 
   const trainData = useAppSelector(selectCurrentDeparture);
   console.log('trainData:', trainData);
@@ -72,7 +72,7 @@ const TrainView = () => {
       </div>
       <TrainBadge train={trainData} />
       <TicketCounter />
-      <CarType selectedType={pickedCoach?.coach.class_type} />
+      <CoachType selectedType={pickedCoachInfo?.coach.class_type} />
       <CarPicker cars={cars} pickedCarId={pickedCoachId} pickCar={pickCoach} />
       <CarInfo />
     </div>

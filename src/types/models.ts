@@ -83,11 +83,13 @@ export type RoutesResponse = RoutesSummary | ResponseError;
 
 export type CitiesResponse = City[] | ResponseError;
 
+export type CoachTypeKeys = keyof SeatsInfo;
+
 export type TCoach = {
   _id: string;
   name: string;
   train: string;
-  class_type: keyof SeatsInfo;
+  class_type: CoachTypeKeys;
   have_wifi: boolean;
   have_air_conditioning: boolean;
   is_linens_included: boolean;
