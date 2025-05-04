@@ -7,8 +7,8 @@ import { useAppSelector } from "@/lib/hooks";
 import { ROUTES } from "@/setting";
 import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 
-import CarPicker from "./components/car-picker/carPicker";
 import CoachInfo from "./components/coach-info/coachInfo";
+import CoachPicker from "./components/coach-picker/coachPicker";
 import CoachType from "./components/coach-type/coachType";
 import TicketCounter from "./components/ticket-counter/ticketCounter";
 import TrainBadge from "./components/train-badge/trainBadge";
@@ -36,11 +36,11 @@ const TrainView = () => {
     return coachesInfos?.find(coachInfo => coachInfo.coach._id === pickedCoachId);
   }, [pickedCoachId, coachesInfos]);
 
-  const cars = useMemo(() => {
+  const coaches = useMemo(() => {
     return coachesInfos?.map(coachInfo => coachInfo.coach);
   }, [coachesInfos]);
 
-  const pickCoach = (id: string) => {
+  const handlePickCoach = (id: string) => {
     setPickedCoachId(id);
   };
 
@@ -73,7 +73,7 @@ const TrainView = () => {
       <TrainBadge train={trainData} />
       <TicketCounter />
       <CoachType selectedType={pickedCoachInfo?.coach.class_type} />
-      <CarPicker cars={cars} pickedCarId={pickedCoachId} pickCar={pickCoach} />
+      <CoachPicker coaches={coaches} pickedCoachId={pickedCoachId} onPickCoach={handlePickCoach} />
       <CoachInfo />
     </div>
   );
