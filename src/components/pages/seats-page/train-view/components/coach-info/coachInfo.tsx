@@ -1,29 +1,43 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { mapEntries } from "@/lib/utils/shared";
+import { CoachInfo as TCoachInfo } from "@/types/models";
 
 import s from "./coachInfo.module.sass";
 import { coachServicesMap } from "./coachServicesMap";
 import ServiceCheckbox from "./components/service-checkbox/serviceCheckbox";
 
-const CoachInfo = () => {
+interface Props {
+  coachInfo: TCoachInfo | undefined;
+}
+
+const CoachInfo: FC<Props> = ({ coachInfo }) => {
+  if (!coachInfo) {
+    return <div>Данные по вагону не подгрузились</div>;
+  }
+
+  const { coach, seats } = coachInfo;
+
+  console.log(coach);
+  console.log(seats);
+
   return (
     <div className={s.coachInfo}>
       <div className={s.coachInfo__header}>
-        <h3 className={s.coachInfo__title}>07</h3>
+        <h3 className={s.coachInfo__title}>{coach.name.split('-')[1]}</h3>
         <div className={s.coachInfo__subtitle}>Вагон</div>
       </div>
       <div className={s.coachInfo__content}>
         <div className={s.coachInfo__places}>
           <div className={s.label}>
-            Места <span className={s.count}>11</span>
+            Места <span className={s.count}>{coach.available_seats}</span>
           </div>
           <div className={s.label}>Стоимость</div>
           <div className={s.coachInfo__place}>
             Верхние <span className={s.count}>3</span>
           </div>
           <div className={s.coachInfo__place}>
-            <span className={s.price}>2 920</span>
+            <span className={s.price}>{coach.top_price}</span>
             {' '}
             <span className={s.currency}>₽</span>
           </div>
@@ -31,7 +45,7 @@ const CoachInfo = () => {
             Нижние <span className={s.count}>8</span>
           </div>
           <div className={s.coachInfo__place}>
-            <span className={s.price}>3 530</span>
+            <span className={s.price}>{coach.bottom_price}</span>
             {' '}
             <span className={s.currency}>₽</span>
           </div>

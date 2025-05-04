@@ -94,9 +94,11 @@ export type TCoach = {
   have_air_conditioning: boolean;
   is_linens_included: boolean;
   linens_price: number;
+  available_seats: number;
   price: number;
   side_price: number;
   top_price: number;
+  bottom_price: number;
   wifi_price: number;
 };
 

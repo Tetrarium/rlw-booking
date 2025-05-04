@@ -74,7 +74,7 @@ const TrainView = () => {
       <TicketCounter />
       <CoachType selectedType={pickedCoachInfo?.coach.class_type} />
       <CoachPicker coaches={coaches} pickedCoachId={pickedCoachId} onPickCoach={handlePickCoach} />
-      <CoachInfo />
+      <CoachInfo coachInfo={pickedCoachInfo} />
     </div>
   );
 };
