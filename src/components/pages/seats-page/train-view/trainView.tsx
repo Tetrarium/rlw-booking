@@ -10,6 +10,7 @@ import CancelTrainButton from "@/UI/buttons/cancelTrainButton";
 import CoachInfo from "./components/coach-info/coachInfo";
 import CoachPicker from "./components/coach-picker/coachPicker";
 import CoachType from "./components/coach-type/coachType";
+import SeatsPicker from "./components/seats-picker/seatsPicker";
 import TicketCounter from "./components/ticket-counter/ticketCounter";
 import TrainBadge from "./components/train-badge/trainBadge";
 import ForwardIcon from "./icons/ForwardIcon";
@@ -75,6 +76,7 @@ const TrainView = () => {
       <CoachType selectedType={pickedCoachInfo?.coach.class_type} />
       <CoachPicker coaches={coaches} pickedCoachId={pickedCoachId} onPickCoach={handlePickCoach} />
       <CoachInfo coachInfo={pickedCoachInfo} />
+      <SeatsPicker />
     </div>
   );
 };
