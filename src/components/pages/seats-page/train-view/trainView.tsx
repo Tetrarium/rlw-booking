@@ -76,7 +76,7 @@ const TrainView = () => {
       <CoachType selectedType={pickedCoachInfo?.coach.class_type} />
       <CoachPicker coaches={coaches} pickedCoachId={pickedCoachId} onPickCoach={handlePickCoach} />
       <CoachInfo coachInfo={pickedCoachInfo} />
-      <SeatsPicker />
+      <SeatsPicker name={pickedCoachInfo?.coach.name || ''} seats={pickedCoachInfo?.seats || []} />
     </div>
   );
 };
