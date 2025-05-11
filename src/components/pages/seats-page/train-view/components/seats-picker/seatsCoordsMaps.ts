@@ -3,39 +3,46 @@ export interface SeatCoords {
   y: number;
   width: number;
   height: number;
+  strokeWidth: number;
 }
 
-export const secondSeatsCoords: SeatCoords[] = [
-  { x: 136.5, y: 59.5, width: 24, height: 28, },
-  { x: 136.5, y: 30.5, width: 24, height: 28, },
-  { x: 195.5, y: 59.5, width: 24, height: 28, },
-  { x: 195.5, y: 30.5, width: 24, height: 28, },
-  { x: 225.5, y: 59.5, width: 24, height: 28, },
-  { x: 225.5, y: 30.5, width: 24, height: 28, },
-  { x: 285.5, y: 59.5, width: 24, height: 28, },
-  { x: 285.5, y: 30.5, width: 24, height: 28, },
-  { x: 315.5, y: 59.5, width: 24, height: 28, },
-  { x: 315.5, y: 30.5, width: 24, height: 28, },
-  { x: 375.5, y: 59.5, width: 24, height: 28, },
-  { x: 375.5, y: 30.5, width: 24, height: 28, },
-  { x: 405.5, y: 59.5, width: 24, height: 28, },
-  { x: 405.5, y: 30.5, width: 24, height: 28, },
-  { x: 464.5, y: 59.5, width: 24, height: 28, },
-  { x: 464.5, y: 30.5, width: 24, height: 28, },
-  { x: 494.5, y: 59.5, width: 24, height: 28, },
-  { x: 494.5, y: 30.5, width: 24, height: 28, },
-  { x: 554.5, y: 59.5, width: 24, height: 28, },
-  { x: 554.5, y: 30.5, width: 24, height: 28, },
-  { x: 584.5, y: 59.5, width: 24, height: 28, },
-  { x: 584.5, y: 30.5, width: 24, height: 28, },
-  { x: 644.5, y: 59.5, width: 24, height: 28, },
-  { x: 644.5, y: 30.5, width: 24, height: 28, },
-  { x: 674.5, y: 59.5, width: 24, height: 28, },
-  { x: 674.5, y: 30.5, width: 24, height: 28, },
-  { x: 734.5, y: 59.5, width: 24, height: 28, },
-  { x: 734.5, y: 30.5, width: 24, height: 28, },
-  { x: 764.5, y: 59.5, width: 24, height: 28, },
-  { x: 764.5, y: 30.5, width: 24, height: 28, },
-  { x: 823.5, y: 59.5, width: 24, height: 28, },
-  { x: 823.5, y: 30.5, width: 24, height: 28, },
-];
+function getSecondSeatsCoords(): SeatCoords[] {
+  const TOTAL_SEATS = 32;
+  const INNER_STEP_X = 60;
+  const OUTER_STEP_X = 30;
+
+  const ODD_Y = 59;
+  const EVEN_Y = 30;
+
+  const WIDTH = 23;
+  const HEIGHT = 27;
+  const STROKE_WIDTH = 2;
+  const START_X = 136;
+
+  const seats: SeatCoords[] = [];
+  let currentX = START_X;
+
+  for (let i = 1; i <= TOTAL_SEATS; i++) {
+    const y = i % 2 === 1 ? ODD_Y : EVEN_Y;
+
+    seats.push({
+      x: currentX,
+      y,
+      width:
+        WIDTH,
+      height: HEIGHT,
+      strokeWidth: STROKE_WIDTH,
+    });
+
+    if (i % 4 === 0) {
+      currentX += OUTER_STEP_X;
+    } else if (i % 2 === 0) {
+      currentX += INNER_STEP_X;
+    }
+  }
+
+  return seats;
+}
+
+export const secondSeatsCoords = getSecondSeatsCoords();
+

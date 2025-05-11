@@ -18,7 +18,6 @@ const Seat: FC<Props> = ({ coords, seatNumber }) => {
       <rect
         {...coords}
         stroke="white"
-        strokeWidth={1}
         className={s.rect}
         fill="white"
       />
