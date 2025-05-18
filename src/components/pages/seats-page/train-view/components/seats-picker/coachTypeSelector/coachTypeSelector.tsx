@@ -17,7 +17,7 @@ const CoachTypeSelector: FC<Props> = ({ coachType, coachNumber }) => {
     <>
       {coachType === "first" && <FirstCoachMap coachNumber={coachNumber} />}
       {coachType === "second" && <SecondCoachMap coachNumber={coachNumber} />}
-      {coachType === "third" && <ThirdCoachMap />}
+      {coachType === "third" && <ThirdCoachMap coachNumber={coachNumber} />}
       {coachType === "fourth" && <FourthCoachMap />}
     </>
   );
