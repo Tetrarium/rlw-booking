@@ -15,7 +15,7 @@ interface Props {
 const CoachTypeSelector: FC<Props> = ({ coachType, coachNumber }) => {
   return (
     <>
-      {coachType === "first" && <FirstCoachMap />}
+      {coachType === "first" && <FirstCoachMap coachNumber={coachNumber} />}
       {coachType === "second" && <SecondCoachMap coachNumber={coachNumber} />}
       {coachType === "third" && <ThirdCoachMap />}
       {coachType === "fourth" && <FourthCoachMap />}

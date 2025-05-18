@@ -8,10 +8,10 @@ const CoachMapLabel: FC<Props> = ({ label }) => {
   return (
     <g>
       <rect
-        x="41"
-        y="0"
+        x="40.5"
+        y="1"
         width="33"
-        height="24"
+        height="23"
         fill="#000"
         stroke="#999"
         strokeWidth={1}
