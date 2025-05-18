@@ -77,3 +77,36 @@ function getSecondSeatsCoords(): SeatCoords[] {
 
 export const secondSeatsCoords = getSecondSeatsCoords();
 
+function getThirdSeatsCoords(): SeatCoords[] {
+  const sectionSeats = getSecondSeatsCoords();
+  const sideSeats: SeatCoords[] = [];
+
+  const SIDE_SEATS_COUNT = 16;
+  const WIDTH = 40.5;
+  const HEIGHT = 21;
+  const STROKE_WIDTH = 2;
+  const START_X = 136;
+  const Y = 114;
+  const BORDER_WIDTH = 5;
+  const innerStepX = WIDTH + STROKE_WIDTH;
+  const outerStepX = innerStepX + BORDER_WIDTH;
+
+  let currentX = START_X;
+
+  for (let i = 1; i <= SIDE_SEATS_COUNT; i++) {
+    sideSeats.push({
+      x: currentX,
+      y: Y,
+      width:
+        WIDTH,
+      height: HEIGHT,
+      strokeWidth: STROKE_WIDTH,
+    });
+
+    currentX += i % 2 === 0 ? outerStepX : innerStepX;
+  }
+
+  return [...sectionSeats, ...sideSeats];
+}
+
+export const thirdSeatsCoords = getThirdSeatsCoords();
