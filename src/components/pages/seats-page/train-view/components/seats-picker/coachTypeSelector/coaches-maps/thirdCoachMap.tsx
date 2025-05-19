@@ -39,55 +39,6 @@ const ThirdCoachMap: FC<Props> = ({ coachNumber }) => {
           available
         />;
       })}
-      {/* Places */}
-      {/* <rect x="808.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="766" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="718.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="676" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="628.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="586" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="538.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="496" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="448.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="406" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="358.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="316" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="268.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="226" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="178.5" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="136" y="114" width="40.5" height="21" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="826" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="826" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="766" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="766" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="736" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="736" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="676" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="676" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="646" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="646" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="586" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="586" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="556" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="556" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="496" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="496" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="466" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="466" y="59" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="406" y="30" width="23" height="27" stroke="black" stroke-width="2" shape-rendering="crispEdges" />
-      <rect x="406" y="59" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="376" y="30" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="376" y="59" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="316" y="30" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="316" y="59" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="286" y="30" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="286" y="59" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="226" y="30" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="226" y="59" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="196" y="30" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="196" y="59" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="136" y="30" width="23" height="27" stroke="black" stroke-width="2" />
-      <rect x="136" y="59" width="23" height="27" stroke="black" stroke-width="2" /> */}
     </svg>
   );
 };
