@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { FC } from "react";
 
 import { SeatCoords } from "../seatsCoordsMaps";
@@ -7,13 +8,17 @@ interface Props {
   coords: SeatCoords;
   available: boolean;
   seatNumber: number;
+  coachId: string;
 }
 
-const Seat: FC<Props> = ({ coords, seatNumber }) => {
+const Seat: FC<Props> = ({ coords, seatNumber, available }) => {
+  const seatClassName = classNames(s.seat, {
+    [s.unavailable]: !available
+  });
   return (
     <g
       key={seatNumber}
-      className={s.seat}
+      className={seatClassName}
     >
       <rect
         {...coords}

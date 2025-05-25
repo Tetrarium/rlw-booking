@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { CoachTypeKeys } from "@/types/models";
+import { CoachTypeKeys, TSeat } from "@/types/models";
 
 import FirstCoachMap from "./coaches-maps/firstCoachMap";
 import FourthCoachMap from "./coaches-maps/fourthCoachMap";
@@ -10,15 +10,17 @@ import ThirdCoachMap from "./coaches-maps/thirdCoachMap";
 interface Props {
   coachType: CoachTypeKeys;
   coachNumber: string;
+  coachId: string;
+  seats: TSeat[];
 }
 
-const CoachTypeSelector: FC<Props> = ({ coachType, coachNumber }) => {
+const CoachTypeSelector: FC<Props> = ({ coachType, coachNumber, coachId, seats }) => {
   return (
     <>
-      {coachType === "first" && <FirstCoachMap coachNumber={coachNumber} />}
-      {coachType === "second" && <SecondCoachMap coachNumber={coachNumber} />}
-      {coachType === "third" && <ThirdCoachMap coachNumber={coachNumber} />}
-      {coachType === "fourth" && <FourthCoachMap coachNumber={coachNumber} />}
+      {coachType === "first" && <FirstCoachMap coachNumber={coachNumber} coachId={coachId} seats={seats} />}
+      {coachType === "second" && <SecondCoachMap coachNumber={coachNumber} coachId={coachId} seats={seats} />}
+      {coachType === "third" && <ThirdCoachMap coachNumber={coachNumber} coachId={coachId} seats={seats} />}
+      {coachType === "fourth" && <FourthCoachMap coachNumber={coachNumber} coachId={coachId} seats={seats} />}
     </>
   );
 };
